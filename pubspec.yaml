@@ -34,3 +34,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#06446C"
+  adaptive_icon_foreground: "assets/icon/foreground.png"
+  android: true
+  ios: true
