@@ -14,6 +14,20 @@ class _BookingTable extends StatelessWidget {
         (_) {
           final bloc = context.read<BookingInfoBloc>();
           bloc.add(DateChangeRequested(bloc.date));
+
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text("Fatto!"),
+              content: const Text("La prenotazione è avvenuta con successo."),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text("Ok"),
+                ),
+              ],
+            ),
+          );
         },
         error: (e) => context.read<ErrorCubit>().showInDialog(e),
       ),
