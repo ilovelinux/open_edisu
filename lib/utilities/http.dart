@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -72,5 +73,5 @@ class ApiException implements Exception {
   final String? error;
 
   @override
-  String toString() => "$status: $message : $error";
+  String toString() => kDebugMode ? "$status: $message : $error" : message;
 }
