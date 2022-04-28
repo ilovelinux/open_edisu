@@ -36,7 +36,7 @@ class BookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Seleziona il posto")),
+      appBar: AppBar(title: Text(hall.hname)),
       body: BookingView(hall: hall),
     );
   }
