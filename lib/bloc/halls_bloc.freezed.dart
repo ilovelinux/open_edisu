@@ -12,31 +12,7 @@ part of 'halls_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$HallsStateTearOff {
-  const _$HallsStateTearOff();
-
-  Showing call(List<Hall> halls) {
-    return Showing(
-      halls,
-    );
-  }
-
-  Loading loading() {
-    return const Loading();
-  }
-
-  ErrorDetails error(String message) {
-    return ErrorDetails(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $HallsState = _$HallsStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$HallsState {
@@ -134,10 +110,14 @@ class _$ShowingCopyWithImpl<$Res> extends _$HallsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Showing with DiagnosticableTreeMixin implements Showing {
-  const _$Showing(this.halls);
+  const _$Showing(final List<Hall> halls) : _halls = halls;
 
+  final List<Hall> _halls;
   @override
-  final List<Hall> halls;
+  List<Hall> get halls {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_halls);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -239,9 +219,9 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
 }
 
 abstract class Showing implements HallsState {
-  const factory Showing(List<Hall> halls) = _$Showing;
+  const factory Showing(final List<Hall> halls) = _$Showing;
 
-  List<Hall> get halls;
+  List<Hall> get halls => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ShowingCopyWith<Showing> get copyWith => throw _privateConstructorUsedError;
 }
@@ -275,7 +255,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HallsState.loading'));
+    properties.add(DiagnosticsProperty('type', 'HallsState.loading'));
   }
 
   @override
@@ -499,9 +479,9 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
 }
 
 abstract class ErrorDetails implements HallsState {
-  const factory ErrorDetails(String message) = _$ErrorDetails;
+  const factory ErrorDetails(final String message) = _$ErrorDetails;
 
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ErrorDetailsCopyWith<ErrorDetails> get copyWith =>
       throw _privateConstructorUsedError;

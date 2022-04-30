@@ -12,30 +12,7 @@ part of 'authentication_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthenticationEventTearOff {
-  const _$AuthenticationEventTearOff();
-
-  LoginRequested login(String username, String password) {
-    return LoginRequested(
-      username,
-      password,
-    );
-  }
-
-  LogoutRequested logout() {
-    return const LogoutRequested();
-  }
-
-  RestoreRequested restore() {
-    return const RestoreRequested();
-  }
-}
-
-/// @nodoc
-const $AuthenticationEvent = _$AuthenticationEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthenticationEvent {
@@ -253,11 +230,11 @@ class _$LoginRequested with DiagnosticableTreeMixin implements LoginRequested {
 }
 
 abstract class LoginRequested implements AuthenticationEvent {
-  const factory LoginRequested(String username, String password) =
+  const factory LoginRequested(final String username, final String password) =
       _$LoginRequested;
 
-  String get username;
-  String get password;
+  String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LoginRequestedCopyWith<LoginRequested> get copyWith =>
       throw _privateConstructorUsedError;
@@ -297,7 +274,7 @@ class _$LogoutRequested
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthenticationEvent.logout'));
+    properties.add(DiagnosticsProperty('type', 'AuthenticationEvent.logout'));
   }
 
   @override
@@ -416,7 +393,7 @@ class _$RestoreRequested
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthenticationEvent.restore'));
+    properties.add(DiagnosticsProperty('type', 'AuthenticationEvent.restore'));
   }
 
   @override
@@ -500,30 +477,6 @@ class _$RestoreRequested
 abstract class RestoreRequested implements AuthenticationEvent {
   const factory RestoreRequested() = _$RestoreRequested;
 }
-
-/// @nodoc
-class _$AuthenticationStateTearOff {
-  const _$AuthenticationStateTearOff();
-
-  Authenticated call(User user) {
-    return Authenticated(
-      user,
-    );
-  }
-
-  Unauthenticated unauthenticated([String? message]) {
-    return Unauthenticated(
-      message,
-    );
-  }
-
-  Unknown unknown() {
-    return const Unknown();
-  }
-}
-
-/// @nodoc
-const $AuthenticationState = _$AuthenticationStateTearOff();
 
 /// @nodoc
 mixin _$AuthenticationState {
@@ -730,9 +683,9 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
 }
 
 abstract class Authenticated implements AuthenticationState {
-  const factory Authenticated(User user) = _$Authenticated;
+  const factory Authenticated(final User user) = _$Authenticated;
 
-  User get user;
+  User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -880,9 +833,9 @@ class _$Unauthenticated
 }
 
 abstract class Unauthenticated implements AuthenticationState {
-  const factory Unauthenticated([String? message]) = _$Unauthenticated;
+  const factory Unauthenticated([final String? message]) = _$Unauthenticated;
 
-  String? get message;
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UnauthenticatedCopyWith<Unauthenticated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -918,7 +871,7 @@ class _$Unknown with DiagnosticableTreeMixin implements Unknown {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthenticationState.unknown'));
+    properties.add(DiagnosticsProperty('type', 'AuthenticationState.unknown'));
   }
 
   @override

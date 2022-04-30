@@ -12,46 +12,7 @@ part of 'booking_info_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BookingInfoStateTearOff {
-  const _$BookingInfoStateTearOff();
-
-  Showing call(BookingsPerSeats bookingsPerSeat) {
-    return Showing(
-      bookingsPerSeat,
-    );
-  }
-
-  ShowingAlternative alternative(List<Slot> slots, List<Seats> seats) {
-    return ShowingAlternative(
-      slots,
-      seats,
-    );
-  }
-
-  Update update() {
-    return const Update();
-  }
-
-  Loading loading() {
-    return const Loading();
-  }
-
-  Closed closed() {
-    return const Closed();
-  }
-
-  ErrorDetails error(String message) {
-    return ErrorDetails(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $BookingInfoState = _$BookingInfoStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BookingInfoState {
@@ -292,9 +253,9 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
 }
 
 abstract class Showing implements BookingInfoState {
-  const factory Showing(BookingsPerSeats bookingsPerSeat) = _$Showing;
+  const factory Showing(final BookingsPerSeats bookingsPerSeat) = _$Showing;
 
-  BookingsPerSeats get bookingsPerSeat;
+  BookingsPerSeats get bookingsPerSeat => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ShowingCopyWith<Showing> get copyWith => throw _privateConstructorUsedError;
 }
@@ -341,12 +302,23 @@ class _$ShowingAlternativeCopyWithImpl<$Res>
 class _$ShowingAlternative
     with DiagnosticableTreeMixin
     implements ShowingAlternative {
-  const _$ShowingAlternative(this.slots, this.seats);
+  const _$ShowingAlternative(final List<Slot> slots, final List<Seats> seats)
+      : _slots = slots,
+        _seats = seats;
 
+  final List<Slot> _slots;
   @override
-  final List<Slot> slots;
+  List<Slot> get slots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_slots);
+  }
+
+  final List<Seats> _seats;
   @override
-  final List<Seats> seats;
+  List<Seats> get seats {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_seats);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -470,11 +442,11 @@ class _$ShowingAlternative
 }
 
 abstract class ShowingAlternative implements BookingInfoState {
-  const factory ShowingAlternative(List<Slot> slots, List<Seats> seats) =
-      _$ShowingAlternative;
+  const factory ShowingAlternative(
+      final List<Slot> slots, final List<Seats> seats) = _$ShowingAlternative;
 
-  List<Slot> get slots;
-  List<Seats> get seats;
+  List<Slot> get slots => throw _privateConstructorUsedError;
+  List<Seats> get seats => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ShowingAlternativeCopyWith<ShowingAlternative> get copyWith =>
       throw _privateConstructorUsedError;
@@ -509,7 +481,7 @@ class _$Update with DiagnosticableTreeMixin implements Update {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'BookingInfoState.update'));
+    properties.add(DiagnosticsProperty('type', 'BookingInfoState.update'));
   }
 
   @override
@@ -641,7 +613,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'BookingInfoState.loading'));
+    properties.add(DiagnosticsProperty('type', 'BookingInfoState.loading'));
   }
 
   @override
@@ -773,7 +745,7 @@ class _$Closed with DiagnosticableTreeMixin implements Closed {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'BookingInfoState.closed'));
+    properties.add(DiagnosticsProperty('type', 'BookingInfoState.closed'));
   }
 
   @override
@@ -1034,9 +1006,9 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
 }
 
 abstract class ErrorDetails implements BookingInfoState {
-  const factory ErrorDetails(String message) = _$ErrorDetails;
+  const factory ErrorDetails(final String message) = _$ErrorDetails;
 
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ErrorDetailsCopyWith<ErrorDetails> get copyWith =>
       throw _privateConstructorUsedError;

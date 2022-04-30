@@ -12,22 +12,7 @@ part of 'booking_table_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BookingTableEventTearOff {
-  const _$BookingTableEventTearOff();
-
-  SelectRequested call(BookedSeat seat, TimeRange slot) {
-    return SelectRequested(
-      seat,
-      slot,
-    );
-  }
-}
-
-/// @nodoc
-const $BookingTableEvent = _$BookingTableEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BookingTableEvent {
@@ -161,37 +146,18 @@ class _$SelectRequested
 }
 
 abstract class SelectRequested implements BookingTableEvent {
-  const factory SelectRequested(BookedSeat seat, TimeRange slot) =
+  const factory SelectRequested(final BookedSeat seat, final TimeRange slot) =
       _$SelectRequested;
 
   @override
-  BookedSeat get seat;
+  BookedSeat get seat => throw _privateConstructorUsedError;
   @override
-  TimeRange get slot;
+  TimeRange get slot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SelectRequestedCopyWith<SelectRequested> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$BookingTableStateTearOff {
-  const _$BookingTableStateTearOff();
-
-  Selected call(BookedSeat seat, TimeRange slot) {
-    return Selected(
-      seat,
-      slot,
-    );
-  }
-
-  Unselected unselected() {
-    return const Unselected();
-  }
-}
-
-/// @nodoc
-const $BookingTableState = _$BookingTableStateTearOff();
 
 /// @nodoc
 mixin _$BookingTableState {
@@ -394,10 +360,11 @@ class _$Selected with DiagnosticableTreeMixin implements Selected {
 }
 
 abstract class Selected implements BookingTableState {
-  const factory Selected(BookedSeat seat, TimeRange slot) = _$Selected;
+  const factory Selected(final BookedSeat seat, final TimeRange slot) =
+      _$Selected;
 
-  BookedSeat get seat;
-  TimeRange get slot;
+  BookedSeat get seat => throw _privateConstructorUsedError;
+  TimeRange get slot => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SelectedCopyWith<Selected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -434,8 +401,7 @@ class _$Unselected with DiagnosticableTreeMixin implements Unselected {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BookingTableState.unselected'));
+    properties.add(DiagnosticsProperty('type', 'BookingTableState.unselected'));
   }
 
   @override
