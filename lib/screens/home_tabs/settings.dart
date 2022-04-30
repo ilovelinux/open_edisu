@@ -11,6 +11,7 @@ class _SettingsView extends StatelessWidget {
           title: const Text("About"),
           onTap: () => showDialog(
             context: context,
+            // TODO: Use AboutDialog()
             builder: (_) => _AboutDialog(),
           ),
         )
