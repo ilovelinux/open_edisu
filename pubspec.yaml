@@ -22,6 +22,7 @@ dependencies:
   charts_flutter: ^0.12.0
   flutter_bloc: ^8.0.1
   freezed: ^2.0.2
+  url_launcher: ^6.1.0
 
 dev_dependencies:
   flutter_test:

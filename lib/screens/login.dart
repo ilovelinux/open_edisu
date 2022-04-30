@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../bloc/authentication_bloc.dart';
 
@@ -37,6 +38,29 @@ class LoginWidget extends StatelessWidget {
             padding: const EdgeInsets.all(32.0),
             child: _LoginForm(),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Row(
+              children: const [
+                Expanded(child: Divider()),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text("OPPURE"),
+                ),
+                Expanded(child: Divider()),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: TextButton(
+              onPressed: () => launchUrl(
+                Uri.https(
+                    "edisuprenotazioni.edisu-piemonte.it", "auth/register"),
+              ),
+              child: const Text("Non sei ancora registrato? Registrati!"),
+            ),
+          )
         ],
       ),
     );
