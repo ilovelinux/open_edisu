@@ -51,7 +51,7 @@ class _TimeTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final slots = bookingsPerSeats.slots;
+    final slots = bookingsPerSeats.futureSlots;
     return HorizontalDataTable(
       isFixedHeader: true,
       leftHandSideColumnWidth: 40,

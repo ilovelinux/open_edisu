@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/utilities/extensions/date.dart';
 
 import '../utilities/constants/api.dart';
 import '../utilities/extensions/time.dart';

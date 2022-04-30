@@ -100,7 +100,9 @@ class BookingsPerSeats {
   final TimeRange timeRange;
   final BookedSeatList seats;
 
-  BookingsPerSeats(Map<String, dynamic> data)
+  final DateTime date; // Not given by api
+
+  BookingsPerSeats(Map<String, dynamic> data, this.date)
       : timeRange = TimeRange.data(data),
         seats = data["seats"].map<BookedSeat>((e) => BookedSeat(e)).toList();
 
@@ -111,6 +113,10 @@ class BookingsPerSeats {
             .step(steps: index),
         growable: false,
       );
+
+  List<TimeRange> get futureSlots => date.isBefore(DateTime.now())
+      ? slots.where((e) => e.timeEnd > TimeOfDay.now()).toList()
+      : slots;
 }
 
 class BookedSeat {

@@ -71,7 +71,7 @@ Future<BookingsPerSeats> getBookingsPerSeat(Hall hall, {DateTime? date}) async {
     throw ApiException(response["status"], message, response["error"]);
   }
 
-  return BookingsPerSeats(response["result"]);
+  return BookingsPerSeats(response["result"], date);
 }
 
 Future<void> customSlotBook({
