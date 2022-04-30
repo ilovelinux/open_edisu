@@ -12,85 +12,39 @@ part of 'bookings_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BookingsEventTearOff {
-  const _$BookingsEventTearOff();
-
-  NewBookingRequested call(
-      {required Hall hall,
-      required int seatID,
-      required DateTime date,
-      required TimeRange slot}) {
-    return NewBookingRequested(
-      hall: hall,
-      seatID: seatID,
-      date: date,
-      slot: slot,
-    );
-  }
-
-  UpdateRequested update() {
-    return const UpdateRequested();
-  }
-
-  DeleteRequested delete(Booking booking) {
-    return DeleteRequested(
-      booking,
-    );
-  }
-}
-
-/// @nodoc
-const $BookingsEvent = _$BookingsEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BookingsEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function() update,
-    required TResult Function(Booking booking) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? update,
-    TResult Function(Booking booking)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function()? update,
-    TResult Function(Booking booking)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(NewBookingRequested value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(UpdateRequested value) update,
-    required TResult Function(DeleteRequested value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,201 +65,6 @@ class _$BookingsEventCopyWithImpl<$Res>
   final BookingsEvent _value;
   // ignore: unused_field
   final $Res Function(BookingsEvent) _then;
-}
-
-/// @nodoc
-abstract class $NewBookingRequestedCopyWith<$Res> {
-  factory $NewBookingRequestedCopyWith(
-          NewBookingRequested value, $Res Function(NewBookingRequested) then) =
-      _$NewBookingRequestedCopyWithImpl<$Res>;
-  $Res call({Hall hall, int seatID, DateTime date, TimeRange slot});
-}
-
-/// @nodoc
-class _$NewBookingRequestedCopyWithImpl<$Res>
-    extends _$BookingsEventCopyWithImpl<$Res>
-    implements $NewBookingRequestedCopyWith<$Res> {
-  _$NewBookingRequestedCopyWithImpl(
-      NewBookingRequested _value, $Res Function(NewBookingRequested) _then)
-      : super(_value, (v) => _then(v as NewBookingRequested));
-
-  @override
-  NewBookingRequested get _value => super._value as NewBookingRequested;
-
-  @override
-  $Res call({
-    Object? hall = freezed,
-    Object? seatID = freezed,
-    Object? date = freezed,
-    Object? slot = freezed,
-  }) {
-    return _then(NewBookingRequested(
-      hall: hall == freezed
-          ? _value.hall
-          : hall // ignore: cast_nullable_to_non_nullable
-              as Hall,
-      seatID: seatID == freezed
-          ? _value.seatID
-          : seatID // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      slot: slot == freezed
-          ? _value.slot
-          : slot // ignore: cast_nullable_to_non_nullable
-              as TimeRange,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$NewBookingRequested
-    with DiagnosticableTreeMixin
-    implements NewBookingRequested {
-  const _$NewBookingRequested(
-      {required this.hall,
-      required this.seatID,
-      required this.date,
-      required this.slot});
-
-  @override
-  final Hall hall;
-  @override
-  final int seatID;
-  @override
-  final DateTime date;
-  @override
-  final TimeRange slot;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookingsEvent(hall: $hall, seatID: $seatID, date: $date, slot: $slot)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BookingsEvent'))
-      ..add(DiagnosticsProperty('hall', hall))
-      ..add(DiagnosticsProperty('seatID', seatID))
-      ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('slot', slot));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is NewBookingRequested &&
-            const DeepCollectionEquality().equals(other.hall, hall) &&
-            const DeepCollectionEquality().equals(other.seatID, seatID) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.slot, slot));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(hall),
-      const DeepCollectionEquality().hash(seatID),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(slot));
-
-  @JsonKey(ignore: true)
-  @override
-  $NewBookingRequestedCopyWith<NewBookingRequested> get copyWith =>
-      _$NewBookingRequestedCopyWithImpl<NewBookingRequested>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)
-        $default, {
-    required TResult Function() update,
-    required TResult Function(Booking booking) delete,
-  }) {
-    return $default(hall, seatID, date, slot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
-    TResult Function()? update,
-    TResult Function(Booking booking)? delete,
-  }) {
-    return $default?.call(hall, seatID, date, slot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
-    TResult Function()? update,
-    TResult Function(Booking booking)? delete,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(hall, seatID, date, slot);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(NewBookingRequested value) $default, {
-    required TResult Function(UpdateRequested value) update,
-    required TResult Function(DeleteRequested value) delete,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
-    TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
-    TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class NewBookingRequested implements BookingsEvent {
-  const factory NewBookingRequested(
-      {required Hall hall,
-      required int seatID,
-      required DateTime date,
-      required TimeRange slot}) = _$NewBookingRequested;
-
-  Hall get hall;
-  int get seatID;
-  DateTime get date;
-  TimeRange get slot;
-  @JsonKey(ignore: true)
-  $NewBookingRequestedCopyWith<NewBookingRequested> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -342,7 +101,7 @@ class _$UpdateRequested
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'BookingsEvent.update'));
+    properties.add(DiagnosticsProperty('type', 'BookingsEvent.update'));
   }
 
   @override
@@ -356,33 +115,24 @@ class _$UpdateRequested
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)
-        $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function() update,
-    required TResult Function(Booking booking) delete,
   }) {
     return update();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? update,
-    TResult Function(Booking booking)? delete,
   }) {
     return update?.call();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function()? update,
-    TResult Function(Booking booking)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -393,30 +143,24 @@ class _$UpdateRequested
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(NewBookingRequested value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(UpdateRequested value) update,
-    required TResult Function(DeleteRequested value) delete,
   }) {
     return update(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
   }) {
     return update?.call(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -429,183 +173,6 @@ class _$UpdateRequested
 abstract class UpdateRequested implements BookingsEvent {
   const factory UpdateRequested() = _$UpdateRequested;
 }
-
-/// @nodoc
-abstract class $DeleteRequestedCopyWith<$Res> {
-  factory $DeleteRequestedCopyWith(
-          DeleteRequested value, $Res Function(DeleteRequested) then) =
-      _$DeleteRequestedCopyWithImpl<$Res>;
-  $Res call({Booking booking});
-}
-
-/// @nodoc
-class _$DeleteRequestedCopyWithImpl<$Res>
-    extends _$BookingsEventCopyWithImpl<$Res>
-    implements $DeleteRequestedCopyWith<$Res> {
-  _$DeleteRequestedCopyWithImpl(
-      DeleteRequested _value, $Res Function(DeleteRequested) _then)
-      : super(_value, (v) => _then(v as DeleteRequested));
-
-  @override
-  DeleteRequested get _value => super._value as DeleteRequested;
-
-  @override
-  $Res call({
-    Object? booking = freezed,
-  }) {
-    return _then(DeleteRequested(
-      booking == freezed
-          ? _value.booking
-          : booking // ignore: cast_nullable_to_non_nullable
-              as Booking,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$DeleteRequested
-    with DiagnosticableTreeMixin
-    implements DeleteRequested {
-  const _$DeleteRequested(this.booking);
-
-  @override
-  final Booking booking;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookingsEvent.delete(booking: $booking)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BookingsEvent.delete'))
-      ..add(DiagnosticsProperty('booking', booking));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DeleteRequested &&
-            const DeepCollectionEquality().equals(other.booking, booking));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(booking));
-
-  @JsonKey(ignore: true)
-  @override
-  $DeleteRequestedCopyWith<DeleteRequested> get copyWith =>
-      _$DeleteRequestedCopyWithImpl<DeleteRequested>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)
-        $default, {
-    required TResult Function() update,
-    required TResult Function(Booking booking) delete,
-  }) {
-    return delete(booking);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
-    TResult Function()? update,
-    TResult Function(Booking booking)? delete,
-  }) {
-    return delete?.call(booking);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Hall hall, int seatID, DateTime date, TimeRange slot)?
-        $default, {
-    TResult Function()? update,
-    TResult Function(Booking booking)? delete,
-    required TResult orElse(),
-  }) {
-    if (delete != null) {
-      return delete(booking);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(NewBookingRequested value) $default, {
-    required TResult Function(UpdateRequested value) update,
-    required TResult Function(DeleteRequested value) delete,
-  }) {
-    return delete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
-    TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
-  }) {
-    return delete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(NewBookingRequested value)? $default, {
-    TResult Function(UpdateRequested value)? update,
-    TResult Function(DeleteRequested value)? delete,
-    required TResult orElse(),
-  }) {
-    if (delete != null) {
-      return delete(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DeleteRequested implements BookingsEvent {
-  const factory DeleteRequested(Booking booking) = _$DeleteRequested;
-
-  Booking get booking;
-  @JsonKey(ignore: true)
-  $DeleteRequestedCopyWith<DeleteRequested> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-class _$BookingsStateTearOff {
-  const _$BookingsStateTearOff();
-
-  Showing call(List<Booking> bookings) {
-    return Showing(
-      bookings,
-    );
-  }
-
-  Loading loading() {
-    return const Loading();
-  }
-
-  Error error(String message) {
-    return Error(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $BookingsState = _$BookingsStateTearOff();
 
 /// @nodoc
 mixin _$BookingsState {
@@ -704,10 +271,14 @@ class _$ShowingCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Showing with DiagnosticableTreeMixin implements Showing {
-  const _$Showing(this.bookings);
+  const _$Showing(final List<Booking> bookings) : _bookings = bookings;
 
+  final List<Booking> _bookings;
   @override
-  final List<Booking> bookings;
+  List<Booking> get bookings {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookings);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -809,9 +380,9 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
 }
 
 abstract class Showing implements BookingsState {
-  const factory Showing(List<Booking> bookings) = _$Showing;
+  const factory Showing(final List<Booking> bookings) = _$Showing;
 
-  List<Booking> get bookings;
+  List<Booking> get bookings => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ShowingCopyWith<Showing> get copyWith => throw _privateConstructorUsedError;
 }
@@ -845,7 +416,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'BookingsState.loading'));
+    properties.add(DiagnosticsProperty('type', 'BookingsState.loading'));
   }
 
   @override
@@ -1067,9 +638,9 @@ class _$Error with DiagnosticableTreeMixin implements Error {
 }
 
 abstract class Error implements BookingsState {
-  const factory Error(String message) = _$Error;
+  const factory Error(final String message) = _$Error;
 
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }

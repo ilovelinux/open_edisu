@@ -7,9 +7,11 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../bloc/authentication_bloc.dart';
 import '../bloc/halls_bloc.dart';
+import '../cubit/error_cubit.dart';
 import '../cubit/page_cubit.dart';
 import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
+import '../utilities/api.dart';
 import '../widgets/commons.dart';
 import 'booking/booking.dart';
 

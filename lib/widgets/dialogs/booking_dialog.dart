@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:open_edisu/utilities/api.dart';
 
 import '../../bloc/bookings_bloc.dart';
+import '../../cubit/error_cubit.dart';
 import '../../models/edisu.dart';
 import '../../utilities/extensions/time.dart';
 
@@ -31,14 +33,17 @@ class BookingDialog extends StatelessWidget {
         TextButton(
           child: const Text('Si'),
           onPressed: () async {
-            context.read<BookingsBloc>().add(
-                  BookingsEvent(
-                    hall: hall,
-                    date: date,
-                    slot: slot,
-                    seatID: seat.id,
-                  ),
-                );
+            try {
+              await customSlotBook(
+                hall: hall,
+                date: date,
+                seatID: seat.id,
+                slot: slot,
+              );
+              context.read<BookingsBloc>().add(const BookingsEvent.update());
+            } catch (e) {
+              context.read<ErrorCubit>().showInDialog(e.toString());
+            }
             Navigator.of(context).pop();
           },
         ),

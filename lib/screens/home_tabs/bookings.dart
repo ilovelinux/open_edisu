@@ -144,7 +144,12 @@ class _BookingDialog extends StatelessWidget {
           TextButton(
             child: const Text("Cancella"),
             onPressed: () async {
-              context.read<BookingsBloc>().add(BookingsEvent.delete(booking));
+              try {
+                await bookingCancel(booking.id);
+                context.read<BookingsBloc>().add(const BookingsEvent.update());
+              } catch (e) {
+                context.read<ErrorCubit>().showInDialog(e.toString());
+              }
               Navigator.of(context).pop();
             },
           ),

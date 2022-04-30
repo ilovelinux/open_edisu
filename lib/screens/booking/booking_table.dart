@@ -8,8 +8,7 @@ class _BookingTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<bookings.BookingsBloc, bookings.BookingsState>(
-      listenWhen: (_, current) =>
-          current is bookings.Showing || current is bookings.Error,
+      listenWhen: (_, current) => current is bookings.Showing,
       listener: (context, state) => state.whenOrNull<void>(
         (_) {
           final bloc = context.read<BookingInfoBloc>();
@@ -29,7 +28,6 @@ class _BookingTable extends StatelessWidget {
             ),
           );
         },
-        error: (e) => context.read<ErrorCubit>().showInDialog(e),
       ),
       child: BlocProvider(
         create: (context) => BookingTableBloc(),

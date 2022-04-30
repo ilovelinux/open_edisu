@@ -6,7 +6,6 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 import '../../bloc/booking_info_bloc.dart';
 import '../../bloc/booking_table_alternative_bloc.dart';
 import '../../bloc/bookings_bloc.dart' as bookings;
-import '../../cubit/error_cubit.dart';
 import '../../models/edisu.dart';
 import '../../widgets/commons.dart';
 import '../../widgets/dialogs/booking_dialog.dart';
