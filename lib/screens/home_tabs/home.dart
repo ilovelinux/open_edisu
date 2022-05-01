@@ -111,7 +111,10 @@ class _WeeklyChartbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shortWeekDays = DateFormat.EEEE().dateSymbols.SHORTWEEKDAYS;
+    final shortWeekDays =
+        DateFormat.EEEE(Localizations.localeOf(context).toLanguageTag())
+            .dateSymbols
+            .SHORTWEEKDAYS;
     final counterPerWeek = List.filled(shortWeekDays.length, 0);
 
     for (final booking in bookings) {
@@ -123,9 +126,12 @@ class _WeeklyChartbar extends StatelessWidget {
         charts.Series<MapEntry<int, int>, String>(
           id: 'Bookings',
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (MapEntry<int, int> v, _) => shortWeekDays[v.key],
+          domainFn: (MapEntry<int, int> v, _) => shortWeekDays[(v.key + 1) % 7],
           measureFn: (MapEntry<int, int> v, _) => v.value,
-          data: counterPerWeek.asMap().entries.toList(),
+          data: (counterPerWeek.sublist(1)..add(counterPerWeek[0]))
+              .asMap()
+              .entries
+              .toList(),
         )
       ],
       animate: true,

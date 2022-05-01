@@ -92,7 +92,9 @@ class BookingListTile extends StatelessWidget {
         children: [Text("${booking.seatNo}")],
       ),
       title: Text(booking.hallName),
-      subtitle: Text(DateFormat.yMEd().format(booking.date)),
+      subtitle: Text(
+          DateFormat.yMEd(Localizations.localeOf(context).toLanguageTag())
+              .format(booking.date)),
       trailing: Text(
         "${booking.startTime.format(context)} - ${booking.endTime.format(context)}",
       ),

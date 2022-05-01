@@ -105,7 +105,9 @@ class _DateSelector extends StatelessWidget {
                 changeDate(context, newDate);
               }
             },
-            child: Text(DateFormat.yMEd().format(date)),
+            child: Text(
+                DateFormat.yMEd(Localizations.localeOf(context).toLanguageTag())
+                    .format(date)),
           ),
           TextButton(
             onPressed: _increase(context),
