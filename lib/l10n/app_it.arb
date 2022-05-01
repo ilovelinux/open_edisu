@@ -1,0 +1,54 @@
+{
+    "login": "Accedi",
+    "emailPlaceholder": "Inserire l'email",
+    "passwordPlaceholder": "Password",
+    "invalidEmail": "L'email inserita non è un'email valida.",
+    "invalidPassword": "La password è troppo corta.",
+    "submit": "Entra",
+    "or": "OPPURE",
+    "signup": "Non sei ancora registrato? Registrati!",
+
+    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {PRENOTAZIONI} 2 {SALE STUDIO} 3 {IMPOSTAZIONI}}",
+    "@homeTitles": {
+        "description": "Titoli dell'homepage",
+        "placeholders": {
+            "page": {}
+        }
+    },
+    "homeBottom": "Home",
+    "bookingsBottom": "Prenotazioni",
+    "newBookingBottom": "Nuova",
+    "settingsBottom": "Impostazioni",
+
+    "welcome": "Benvenuto, {firstName} {lastName}",
+    "@welcome" : {
+        "placeholders": {
+            "firstName": {},
+            "lastName": {}
+        }
+    },
+    "logout": "Logout",
+    "logoutMessage": "Vuoi effettuare il logout?",
+    "yes": "Sì",
+    "no": "No",
+    "weeklyStatisticsTitle": "Statistiche settimanali",
+
+    "comingBookings": "Future",
+    "oldBookings": "Vecchie",
+    "noBookings": "Non ci sono prenotazioni al momento",
+
+    "bookingButton": "PRENOTA",
+    "bookingConfirmationTitle": "Conferma la prenotazione",
+    "bookingConfirmationContent": "Vuoi prenotare il posto {seatNo} dalle {timeStart} alle {timeEnd}?",
+    "@bookingConfirmationContent" : {
+        "placeholders": {
+            "seatNo": {},
+            "timeStart": {},
+            "timeEnd": {}
+        }
+    },
+    "bookingSuccessTitle": "Fatto!",
+    "bookingSuccessContent": "Il posto è stato prenotato con successo!",
+
+    "errorTitle": "Errore"
+}

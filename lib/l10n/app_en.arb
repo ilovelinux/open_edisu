@@ -1,0 +1,54 @@
+{
+    "login": "Login",
+    "emailPlaceholder": "Insert your email",
+    "passwordPlaceholder": "Password",
+    "invalidEmail": "The email is not a valid email.",
+    "invalidPassword": "The password is too short.",
+    "submit": "Sign in",
+    "or": "OR",
+    "signup": "Not yet registered? Sign up!",
+
+    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} 3 {SETTINGS}}",
+    "@homeTitles": {
+        "description": "Homepage titles",
+        "placeholders": {
+            "page": {}
+        }
+    },
+    "homeBottom": "Home",
+    "bookingsBottom": "Bookings",
+    "newBookingBottom": "New",
+    "settingsBottom": "Settings",
+
+    "welcome": "Welcome, {firstName} {lastName}",
+    "@welcome" : {
+        "placeholders": {
+            "firstName": {},
+            "lastName": {}
+        }
+    },
+    "logout": "Logout",
+    "logoutMessage": "Do you want to logout?",
+    "yes": "Yes",
+    "no": "No",
+    "weeklyStatisticsTitle": "Weekly Statistics",
+
+    "comingBookings": "Coming",
+    "oldBookings": "Old",
+    "noBookings": "There are no bookings right now",
+
+    "bookingButton": "BOOK",
+    "bookingConfirmationTitle": "Confirm booking",
+    "bookingConfirmationContent": "Do you want to book the seat {seatNo} from {timeStart} to {timeEnd}?",
+    "@bookingConfirmationContent" : {
+        "placeholders": {
+            "seatNo": {},
+            "timeStart": {},
+            "timeEnd": {}
+        }
+    },
+    "bookingSuccessTitle": "Done!",
+    "bookingSuccessContent": "The seat has been successfully booked!",
+
+    "errorTitle": "Error"
+}
