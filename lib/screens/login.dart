@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../bloc/authentication_bloc.dart';
 
@@ -27,9 +28,9 @@ class LoginWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "Login",
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.login,
+            style: const TextStyle(
               fontSize: 32.0,
               fontWeight: FontWeight.bold,
             ),
@@ -41,13 +42,13 @@ class LoginWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: Row(
-              children: const [
-                Expanded(child: Divider()),
+              children: [
+                const Expanded(child: Divider()),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text("OPPURE"),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(AppLocalizations.of(context)!.or),
                 ),
-                Expanded(child: Divider()),
+                const Expanded(child: Divider()),
               ],
             ),
           ),
@@ -58,7 +59,7 @@ class LoginWidget extends StatelessWidget {
                 Uri.https(
                     "edisuprenotazioni.edisu-piemonte.it", "auth/register"),
               ),
-              child: const Text("Non sei ancora registrato? Registrati!"),
+              child: Text(AppLocalizations.of(context)!.signup),
             ),
           )
         ],
@@ -85,17 +86,21 @@ class _LoginForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter your email',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.emailPlaceholder,
             ),
-            validator: _validateEmail,
+            validator: (s) => _validateEmail(s)
+                ? null
+                : AppLocalizations.of(context)!.invalidEmail,
             controller: _emailController,
           ),
           TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Password',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.passwordPlaceholder,
             ),
-            validator: _validateInput,
+            validator: (s) => _validateInput(s)
+                ? null
+                : AppLocalizations.of(context)!.invalidPassword,
             controller: _passwordController,
             obscureText: true,
             enableSuggestions: false,
@@ -105,7 +110,7 @@ class _LoginForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
               onPressed: () => _sendForm(context),
-              child: const Text('Submit'),
+              child: Text(AppLocalizations.of(context)!.submit),
             ),
           ),
         ],
@@ -122,13 +127,10 @@ class _LoginForm extends StatelessWidget {
   }
 
   // Using regex to validate email. Code is pretty awful though
-  String? _validateEmail(String? value) =>
-      _validateInput(value) ??
-      (RegExp(r'^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-              .hasMatch(value!)
-          ? null
-          : "Invalid email");
+  bool _validateEmail(String? value) =>
+      _validateInput(value) &&
+      RegExp(r'^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+          .hasMatch(value!);
 
-  String? _validateInput(String? value) =>
-      (value == null || value.isEmpty) ? 'Please enter some text' : null;
+  bool _validateInput(String? value) => value != null && value.isNotEmpty;
 }

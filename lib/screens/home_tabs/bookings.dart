@@ -42,9 +42,10 @@ class _BookingsView extends StatelessWidget {
                     onRefresh: () async => context
                         .read<BookingsBloc>()
                         .add(const BookingsEvent.update()),
-                    child: const Tab(text: 'Future prenotazioni'),
+                    child:
+                        Tab(text: AppLocalizations.of(context)!.comingBookings),
                   ),
-                  const Tab(text: 'Vecchie prenotazioni'),
+                  Tab(text: AppLocalizations.of(context)!.oldBookings),
                 ],
               )
             ],
@@ -69,7 +70,7 @@ class BookingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (bookings.isEmpty) {
-      return const CenteredText("Non ci sono prenotazioni al momento :(");
+      return CenteredText("${AppLocalizations.of(context)!.noBookings} :(");
     }
     return ListView.builder(
       itemCount: bookings.length,

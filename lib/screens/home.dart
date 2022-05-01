@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../bloc/authentication_bloc.dart';
 import '../bloc/halls_bloc.dart';
@@ -22,13 +23,6 @@ part 'home_tabs/settings.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  final _titles = const [
-    "OPEN EDISU",
-    "PRENOTAZIONI",
-    "NUOVA PRENOTAZIONE",
-    if (kDebugMode) "IMPOSTAZIONI",
-  ];
 
   final _pages = const [
     _Home(),
@@ -49,7 +43,8 @@ class HomePage extends StatelessWidget {
       child: BlocBuilder<PageCubit, int>(
         builder: (context, index) {
           return Scaffold(
-            appBar: AppBar(title: Text(_titles[index])),
+            appBar: AppBar(
+                title: Text(AppLocalizations.of(context)!.homeTitles(index))),
             body: IndexedStack(
               index: index,
               children: _pages,
@@ -58,23 +53,23 @@ class HomePage extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               currentIndex: index,
               onTap: (i) => context.read<PageCubit>().change(i),
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: "Home",
+                  icon: const Icon(Icons.home),
+                  label: AppLocalizations.of(context)!.homeBottom,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.library_books),
-                  label: "Prenotazioni",
+                  icon: const Icon(Icons.library_books),
+                  label: AppLocalizations.of(context)!.bookingsBottom,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.plus_one),
-                  label: "Nuova",
+                  icon: const Icon(Icons.plus_one),
+                  label: AppLocalizations.of(context)!.newBookingBottom,
                 ),
                 if (kDebugMode)
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: "Impostazioni",
+                    icon: const Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.settingsBottom,
                   ),
               ],
             ),

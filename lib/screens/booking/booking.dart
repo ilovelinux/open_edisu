@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../bloc/booking_info_bloc.dart';
 import '../../bloc/booking_table_alternative_bloc.dart';

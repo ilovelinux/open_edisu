@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_edisu/utilities/api.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../bloc/bookings_bloc.dart';
 import '../../cubit/error_cubit.dart';
@@ -24,14 +25,17 @@ class BookingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Conferma prenotazione'),
+      title: Text(AppLocalizations.of(context)!.bookingConfirmationTitle),
       content: Text(
-        "Vuoi prenotare il posto ${seat.seatNo} "
-        "dalle ${slot.timeStart.to24hours()} alle ${slot.timeEnd.to24hours()}",
+        AppLocalizations.of(context)!.bookingConfirmationContent(
+          seat.seatNo,
+          slot.timeStart.to24hours(),
+          slot.timeEnd.to24hours(),
+        ),
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text('Si'),
+          child: Text(AppLocalizations.of(context)!.yes),
           onPressed: () async {
             try {
               await customSlotBook(
@@ -49,7 +53,7 @@ class BookingDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('No'),
+          child: Text(AppLocalizations.of(context)!.no),
         ),
       ],
     );

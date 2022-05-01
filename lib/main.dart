@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'bloc/authentication_bloc.dart';
 import 'cubit/error_cubit.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Open Edisu',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),

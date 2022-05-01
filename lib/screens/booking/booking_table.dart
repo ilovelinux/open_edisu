@@ -17,8 +17,9 @@ class _BookingTable extends StatelessWidget {
           showDialog(
             context: context,
             builder: (BuildContext context) => AlertDialog(
-              title: const Text("Fatto!"),
-              content: const Text("La prenotazione è avvenuta con successo."),
+              title: Text(AppLocalizations.of(context)!.bookingSuccessTitle),
+              content:
+                  Text(AppLocalizations.of(context)!.bookingSuccessContent),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
@@ -168,9 +169,9 @@ class _BookingButton extends StatelessWidget {
           width: double.infinity,
           child: OutlinedButton(
             onPressed: _book(context, state),
-            child: const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text("PRENOTA"),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(AppLocalizations.of(context)!.bookingButton),
             ),
           ),
         );

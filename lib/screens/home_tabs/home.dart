@@ -36,7 +36,7 @@ class _UserCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Text(
-            "Benvenuto, ${user.name} ${user.surname}!",
+            AppLocalizations.of(context)!.welcome(user.name, user.surname),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 18.0,
@@ -54,18 +54,18 @@ class _LogoutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Logout'),
-      content: const Text('Vuoi uscire?'),
+      title: Text(AppLocalizations.of(context)!.logout),
+      content: Text(AppLocalizations.of(context)!.logoutMessage),
       actions: [
         TextButton(
-          child: const Text('Si'),
+          child: Text(AppLocalizations.of(context)!.yes),
           onPressed: () {
             context.read<AuthBloc>().add(const AuthenticationEvent.logout());
             Navigator.of(context).pop();
           },
         ),
         TextButton(
-          child: const Text('No'),
+          child: Text(AppLocalizations.of(context)!.no),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ],
@@ -84,7 +84,7 @@ class _WeeklyStatisticsCard extends StatelessWidget {
       margin: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          const Text("Weekly statistics"),
+          Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
           Container(
             margin: const EdgeInsets.all(16.0),
             height: 150,
