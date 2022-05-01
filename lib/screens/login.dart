@@ -120,7 +120,7 @@ class _LoginForm extends StatelessWidget {
 
   void _sendForm(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      var email = _emailController.text;
+      var email = _emailController.text.trim();
       var password = _passwordController.text;
       context.read<AuthBloc>().add(LoginRequested(email, password));
     }
@@ -130,7 +130,7 @@ class _LoginForm extends StatelessWidget {
   bool _validateEmail(String? value) =>
       _validateInput(value) &&
       RegExp(r'^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-          .hasMatch(value!);
+          .hasMatch(value!.trim());
 
   bool _validateInput(String? value) => value != null && value.isNotEmpty;
 }
