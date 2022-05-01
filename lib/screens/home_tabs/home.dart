@@ -117,7 +117,7 @@ class _WeeklyChartbar extends StatelessWidget {
             .SHORTWEEKDAYS;
     final counterPerWeek = List.filled(shortWeekDays.length, 0);
 
-    for (final booking in bookings) {
+    for (final booking in bookings.where((e) => e.bookingStatus == 2)) {
       counterPerWeek[booking.date.weekday - 1]++;
     }
 
