@@ -126,8 +126,8 @@ class _TableRow extends StatelessWidget {
 
   Color _getCellColor(BookingTableState state, TimeRange slot) {
     for (final booking in bookedSlots ?? <Booking>[]) {
-      if (slot.isAtTheSameMonmentAs(
-          TimeRange(booking.startTime, booking.endTime))) {
+      if (slot
+          .isAtTheSameMomentAs(TimeRange(booking.startTime, booking.endTime))) {
         return booked;
       }
     }
@@ -138,7 +138,7 @@ class _TableRow extends StatelessWidget {
 
     return state.when(
       (selectedSeat, selectedSlot) =>
-          selectedSeat.id == seat.id && slot.isAtTheSameMonmentAs(selectedSlot)
+          selectedSeat.id == seat.id && slot.isAtTheSameMomentAs(selectedSlot)
               ? conflict
               : available,
       unselected: () => available,

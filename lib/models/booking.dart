@@ -138,7 +138,7 @@ class BookedSeat {
   int get hashCode => id;
 
   bool isBusy(TimeRange slot) =>
-      bookedTime.any((e) => slot.isAtTheSameMonmentAs(e));
+      bookedTime.any((e) => slot.isAtTheSameMomentAs(e));
 }
 
 typedef BookedSeatList = List<BookedSeat>;
@@ -160,7 +160,7 @@ class TimeRange {
   TimeRange step({int steps = 1}) =>
       TimeRange(timeStart.step(steps: steps), timeEnd.step(steps: steps));
 
-  bool isAtTheSameMonmentAs(TimeRange slot) =>
+  bool isAtTheSameMomentAs(TimeRange slot) =>
       (slot.timeStart <= timeStart &&
           slot.normalizedTimeEnd >= normalizedTimeEnd) ||
       (timeStart <= slot.timeStart &&
