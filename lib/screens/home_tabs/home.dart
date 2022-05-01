@@ -84,7 +84,23 @@ class _WeeklyStatisticsCard extends StatelessWidget {
       margin: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => _showWeeklyStatisticsInfo(context),
+                  child: Icon(
+                    Icons.question_mark,
+                    size: 14,
+                    color: Colors.red.shade400,
+                  ),
+                ),
+              ),
+            ],
+          ),
           Container(
             margin: const EdgeInsets.all(16.0),
             height: 150,
@@ -102,6 +118,15 @@ class _WeeklyStatisticsCard extends StatelessWidget {
       ),
     );
   }
+
+  void _showWeeklyStatisticsInfo(BuildContext context) => showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
+          content:
+              Text(AppLocalizations.of(context)!.weeklyStatisticsDescription),
+        ),
+      );
 }
 
 class _WeeklyChartbar extends StatelessWidget {
