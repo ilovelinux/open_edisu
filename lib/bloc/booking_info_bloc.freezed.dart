@@ -22,7 +22,6 @@ mixin _$BookingInfoState {
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +31,6 @@ mixin _$BookingInfoState {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +40,6 @@ mixin _$BookingInfoState {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -53,7 +50,6 @@ mixin _$BookingInfoState {
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +59,6 @@ mixin _$BookingInfoState {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,7 +68,6 @@ mixin _$BookingInfoState {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) =>
@@ -172,7 +166,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) {
     return $default(bookingsPerSeat);
@@ -185,7 +178,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) {
     return $default?.call(bookingsPerSeat);
@@ -198,7 +190,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -215,7 +206,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) {
     return $default(this);
@@ -228,7 +218,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) {
     return $default?.call(this);
@@ -241,7 +230,6 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) {
@@ -361,7 +349,6 @@ class _$ShowingAlternative
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) {
     return alternative(slots, seats);
@@ -374,7 +361,6 @@ class _$ShowingAlternative
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) {
     return alternative?.call(slots, seats);
@@ -387,7 +373,6 @@ class _$ShowingAlternative
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -404,7 +389,6 @@ class _$ShowingAlternative
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) {
     return alternative(this);
@@ -417,7 +401,6 @@ class _$ShowingAlternative
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) {
     return alternative?.call(this);
@@ -430,7 +413,6 @@ class _$ShowingAlternative
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) {
@@ -500,7 +482,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) {
     return update();
@@ -513,7 +494,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) {
     return update?.call();
@@ -526,7 +506,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -543,7 +522,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) {
     return update(this);
@@ -556,7 +534,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) {
     return update?.call(this);
@@ -569,7 +546,6 @@ class _$Update with DiagnosticableTreeMixin implements Update {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) {
@@ -632,7 +608,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -645,7 +620,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -658,7 +632,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -675,7 +648,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) {
     return loading(this);
@@ -688,7 +660,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) {
     return loading?.call(this);
@@ -701,7 +672,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) {
@@ -714,138 +684,6 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
 
 abstract class Loading implements BookingInfoState {
   const factory Loading() = _$Loading;
-}
-
-/// @nodoc
-abstract class $ClosedCopyWith<$Res> {
-  factory $ClosedCopyWith(Closed value, $Res Function(Closed) then) =
-      _$ClosedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$ClosedCopyWithImpl<$Res> extends _$BookingInfoStateCopyWithImpl<$Res>
-    implements $ClosedCopyWith<$Res> {
-  _$ClosedCopyWithImpl(Closed _value, $Res Function(Closed) _then)
-      : super(_value, (v) => _then(v as Closed));
-
-  @override
-  Closed get _value => super._value as Closed;
-}
-
-/// @nodoc
-
-class _$Closed with DiagnosticableTreeMixin implements Closed {
-  const _$Closed();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookingInfoState.closed()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'BookingInfoState.closed'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Closed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(BookingsPerSeats bookingsPerSeat) $default, {
-    required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
-    required TResult Function() update,
-    required TResult Function() loading,
-    required TResult Function() closed,
-    required TResult Function(String message) error,
-  }) {
-    return closed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(BookingsPerSeats bookingsPerSeat)? $default, {
-    TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
-    TResult Function()? update,
-    TResult Function()? loading,
-    TResult Function()? closed,
-    TResult Function(String message)? error,
-  }) {
-    return closed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(BookingsPerSeats bookingsPerSeat)? $default, {
-    TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
-    TResult Function()? update,
-    TResult Function()? loading,
-    TResult Function()? closed,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (closed != null) {
-      return closed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(Showing value) $default, {
-    required TResult Function(ShowingAlternative value) alternative,
-    required TResult Function(Update value) update,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
-    required TResult Function(ErrorDetails value) error,
-  }) {
-    return closed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(Showing value)? $default, {
-    TResult Function(ShowingAlternative value)? alternative,
-    TResult Function(Update value)? update,
-    TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
-    TResult Function(ErrorDetails value)? error,
-  }) {
-    return closed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(Showing value)? $default, {
-    TResult Function(ShowingAlternative value)? alternative,
-    TResult Function(Update value)? update,
-    TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
-    TResult Function(ErrorDetails value)? error,
-    required TResult orElse(),
-  }) {
-    if (closed != null) {
-      return closed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Closed implements BookingInfoState {
-  const factory Closed() = _$Closed;
 }
 
 /// @nodoc
@@ -925,7 +763,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     required TResult Function(List<Slot> slots, List<Seats> seats) alternative,
     required TResult Function() update,
     required TResult Function() loading,
-    required TResult Function() closed,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -938,7 +775,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -951,7 +787,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     TResult Function(List<Slot> slots, List<Seats> seats)? alternative,
     TResult Function()? update,
     TResult Function()? loading,
-    TResult Function()? closed,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -968,7 +803,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     required TResult Function(ShowingAlternative value) alternative,
     required TResult Function(Update value) update,
     required TResult Function(Loading value) loading,
-    required TResult Function(Closed value) closed,
     required TResult Function(ErrorDetails value) error,
   }) {
     return error(this);
@@ -981,7 +815,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
   }) {
     return error?.call(this);
@@ -994,7 +827,6 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
     TResult Function(ShowingAlternative value)? alternative,
     TResult Function(Update value)? update,
     TResult Function(Loading value)? loading,
-    TResult Function(Closed value)? closed,
     TResult Function(ErrorDetails value)? error,
     required TResult orElse(),
   }) {

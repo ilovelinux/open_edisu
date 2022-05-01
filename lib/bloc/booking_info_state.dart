@@ -7,6 +7,5 @@ class BookingInfoState with _$BookingInfoState {
       ShowingAlternative;
   const factory BookingInfoState.update() = Update;
   const factory BookingInfoState.loading() = Loading;
-  const factory BookingInfoState.closed() = Closed;
   const factory BookingInfoState.error(String message) = ErrorDetails;
 }

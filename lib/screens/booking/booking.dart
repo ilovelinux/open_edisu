@@ -67,7 +67,6 @@ class BookingView extends StatelessWidget {
                     _TimeTable2(slots: slots, seats: seats),
                 loading: () => const LoadingWidget(),
                 update: () => const LoadingWidget(),
-                closed: () => const Text("Building closed."),
                 error: (e) => CenteredText(e),
               ),
             ),
