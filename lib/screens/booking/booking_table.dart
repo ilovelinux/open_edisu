@@ -51,6 +51,13 @@ class _TimeTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final slots = bookingsPerSeats.futureSlots;
+    final bookingsOfTheDay = groupBy(
+      context.read<BookingsBloc>().bookings.where((booking) =>
+          booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
+          booking.isComing()),
+      (Booking booking) => booking.seatNo,
+    );
+
     return HorizontalDataTable(
       isFixedHeader: true,
       leftHandSideColumnWidth: 40,
@@ -64,8 +71,8 @@ class _TimeTable extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
         alignment: Alignment.center,
       ),
-      rightSideItemBuilder: (_, int index) =>
-          _TableRow(slots, bookingsPerSeats.seats[index]),
+      rightSideItemBuilder: (_, int index) => _TableRow(
+          slots, bookingsPerSeats.seats[index], bookingsOfTheDay[index + 1]),
     );
   }
 
@@ -86,10 +93,12 @@ class _TimeTable extends StatelessWidget {
 }
 
 class _TableRow extends StatelessWidget {
-  const _TableRow(this.slots, this.seat, {Key? key}) : super(key: key);
+  const _TableRow(this.slots, this.seat, this.bookedSlots, {Key? key})
+      : super(key: key);
 
   final List<TimeRange> slots;
   final BookedSeat seat;
+  final Bookings? bookedSlots;
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +125,13 @@ class _TableRow extends StatelessWidget {
   }
 
   Color _getCellColor(BookingTableState state, TimeRange slot) {
+    for (final booking in bookedSlots ?? <Booking>[]) {
+      if (slot.isAtTheSameMonmentAs(
+          TimeRange(booking.startTime, booking.endTime))) {
+        return booked;
+      }
+    }
+
     if (seat.isBusy(slot)) {
       return unavailable;
     }
