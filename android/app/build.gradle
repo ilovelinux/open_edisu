@@ -73,6 +73,15 @@ android {
             }
         }
     }
+
+    flavorDimensions "github"
+    productFlavors {
+        githubDebug {
+            dimension "github"
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".githubdebug"
+        }
+    }
 }
 
 flutter {

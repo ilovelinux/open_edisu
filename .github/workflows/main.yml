@@ -20,9 +20,9 @@ jobs:
 
       - run: flutter pub get
       # - run: flutter test
-      - run: flutter build apk
+      - run: flutter build apk --flavor githubDebug
 
       - uses: actions/upload-artifact@v3
         with:
           name: release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
