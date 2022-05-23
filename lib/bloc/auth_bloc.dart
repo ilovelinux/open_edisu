@@ -7,29 +7,29 @@ import 'package:flutter/foundation.dart';
 import '../models/edisu.dart';
 import '../utilities/session.dart';
 
-part 'authentication_event.dart';
-part 'authentication_state.dart';
-part 'authentication_bloc.freezed.dart';
+part 'auth_event.dart';
+part 'auth_state.dart';
+part 'auth_bloc.freezed.dart';
 
-class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthBloc() : super(const AuthenticationState.unknown()) {
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  AuthBloc() : super(const AuthState.unknown()) {
     on<LoginRequested>((event, emit) async {
-      emit(const AuthenticationState.unknown());
+      emit(const AuthState.unknown());
       try {
         final user = await login(event.username, event.password);
-        emit(AuthenticationState(user));
+        emit(AuthState(user));
       } catch (e) {
-        emit(AuthenticationState.unauthenticated(e.toString()));
+        emit(AuthState.unauthenticated(e.toString()));
       }
     });
 
     on<LogoutRequested>((event, emit) async {
       await logout();
-      emit(const AuthenticationState.unauthenticated());
+      emit(const AuthState.unauthenticated());
     });
 
     on<RestoreRequested>((event, emit) async {
-      emit(const AuthenticationState.unknown());
+      emit(const AuthState.unknown());
       User? user;
       String? error;
       try {
@@ -37,14 +37,12 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
       } catch (e) {
         error = e.toString();
       }
-      emit(user == null
-          ? AuthenticationState.unauthenticated(error)
-          : AuthenticationState(user));
+      emit(user == null ? AuthState.unauthenticated(error) : AuthState(user));
     });
   }
 
   @override
-  void onChange(Change<AuthenticationState> change) {
+  void onChange(Change<AuthState> change) {
     log(change.toString(), name: "AUTH");
     super.onChange(change);
   }

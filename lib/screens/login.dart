@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../bloc/authentication_bloc.dart';
+import '../bloc/auth_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key, this.error}) : super(key: key);

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'bloc/authentication_bloc.dart';
+import 'bloc/auth_bloc.dart';
 import 'cubit/error_cubit.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
                 ),
             );
           },
-          child: BlocBuilder<AuthBloc, AuthenticationState>(
+          child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.when(
                 (user) => const HomePage(),

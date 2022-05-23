@@ -60,7 +60,7 @@ class _LogoutDialog extends StatelessWidget {
         TextButton(
           child: Text(AppLocalizations.of(context)!.yes),
           onPressed: () {
-            context.read<AuthBloc>().add(const AuthenticationEvent.logout());
+            context.read<AuthBloc>().add(const AuthEvent.logout());
             Navigator.of(context).pop();
           },
         ),
