@@ -60,32 +60,32 @@ class _$BookingTableEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SelectRequestedCopyWith<$Res>
+abstract class _$$SelectRequestedCopyWith<$Res>
     implements $BookingTableEventCopyWith<$Res> {
-  factory $SelectRequestedCopyWith(
-          SelectRequested value, $Res Function(SelectRequested) then) =
-      _$SelectRequestedCopyWithImpl<$Res>;
+  factory _$$SelectRequestedCopyWith(
+          _$SelectRequested value, $Res Function(_$SelectRequested) then) =
+      __$$SelectRequestedCopyWithImpl<$Res>;
   @override
   $Res call({BookedSeat seat, TimeRange slot});
 }
 
 /// @nodoc
-class _$SelectRequestedCopyWithImpl<$Res>
+class __$$SelectRequestedCopyWithImpl<$Res>
     extends _$BookingTableEventCopyWithImpl<$Res>
-    implements $SelectRequestedCopyWith<$Res> {
-  _$SelectRequestedCopyWithImpl(
-      SelectRequested _value, $Res Function(SelectRequested) _then)
-      : super(_value, (v) => _then(v as SelectRequested));
+    implements _$$SelectRequestedCopyWith<$Res> {
+  __$$SelectRequestedCopyWithImpl(
+      _$SelectRequested _value, $Res Function(_$SelectRequested) _then)
+      : super(_value, (v) => _then(v as _$SelectRequested));
 
   @override
-  SelectRequested get _value => super._value as SelectRequested;
+  _$SelectRequested get _value => super._value as _$SelectRequested;
 
   @override
   $Res call({
     Object? seat = freezed,
     Object? slot = freezed,
   }) {
-    return _then(SelectRequested(
+    return _then(_$SelectRequested(
       seat == freezed
           ? _value.seat
           : seat // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class _$SelectRequested
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SelectRequested &&
+            other is _$SelectRequested &&
             const DeepCollectionEquality().equals(other.seat, seat) &&
             const DeepCollectionEquality().equals(other.slot, slot));
   }
@@ -141,8 +141,8 @@ class _$SelectRequested
 
   @JsonKey(ignore: true)
   @override
-  $SelectRequestedCopyWith<SelectRequested> get copyWith =>
-      _$SelectRequestedCopyWithImpl<SelectRequested>(this, _$identity);
+  _$$SelectRequestedCopyWith<_$SelectRequested> get copyWith =>
+      __$$SelectRequestedCopyWithImpl<_$SelectRequested>(this, _$identity);
 }
 
 abstract class SelectRequested implements BookingTableEvent {
@@ -155,7 +155,7 @@ abstract class SelectRequested implements BookingTableEvent {
   TimeRange get slot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SelectRequestedCopyWith<SelectRequested> get copyWith =>
+  _$$SelectRequestedCopyWith<_$SelectRequested> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -219,27 +219,29 @@ class _$BookingTableStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SelectedCopyWith<$Res> {
-  factory $SelectedCopyWith(Selected value, $Res Function(Selected) then) =
-      _$SelectedCopyWithImpl<$Res>;
+abstract class _$$SelectedCopyWith<$Res> {
+  factory _$$SelectedCopyWith(
+          _$Selected value, $Res Function(_$Selected) then) =
+      __$$SelectedCopyWithImpl<$Res>;
   $Res call({BookedSeat seat, TimeRange slot});
 }
 
 /// @nodoc
-class _$SelectedCopyWithImpl<$Res> extends _$BookingTableStateCopyWithImpl<$Res>
-    implements $SelectedCopyWith<$Res> {
-  _$SelectedCopyWithImpl(Selected _value, $Res Function(Selected) _then)
-      : super(_value, (v) => _then(v as Selected));
+class __$$SelectedCopyWithImpl<$Res>
+    extends _$BookingTableStateCopyWithImpl<$Res>
+    implements _$$SelectedCopyWith<$Res> {
+  __$$SelectedCopyWithImpl(_$Selected _value, $Res Function(_$Selected) _then)
+      : super(_value, (v) => _then(v as _$Selected));
 
   @override
-  Selected get _value => super._value as Selected;
+  _$Selected get _value => super._value as _$Selected;
 
   @override
   $Res call({
     Object? seat = freezed,
     Object? slot = freezed,
   }) {
-    return _then(Selected(
+    return _then(_$Selected(
       seat == freezed
           ? _value.seat
           : seat // ignore: cast_nullable_to_non_nullable
@@ -280,7 +282,7 @@ class _$Selected with DiagnosticableTreeMixin implements Selected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Selected &&
+            other is _$Selected &&
             const DeepCollectionEquality().equals(other.seat, seat) &&
             const DeepCollectionEquality().equals(other.slot, slot));
   }
@@ -293,8 +295,8 @@ class _$Selected with DiagnosticableTreeMixin implements Selected {
 
   @JsonKey(ignore: true)
   @override
-  $SelectedCopyWith<Selected> get copyWith =>
-      _$SelectedCopyWithImpl<Selected>(this, _$identity);
+  _$$SelectedCopyWith<_$Selected> get copyWith =>
+      __$$SelectedCopyWithImpl<_$Selected>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -366,26 +368,27 @@ abstract class Selected implements BookingTableState {
   BookedSeat get seat => throw _privateConstructorUsedError;
   TimeRange get slot => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SelectedCopyWith<Selected> get copyWith =>
+  _$$SelectedCopyWith<_$Selected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnselectedCopyWith<$Res> {
-  factory $UnselectedCopyWith(
-          Unselected value, $Res Function(Unselected) then) =
-      _$UnselectedCopyWithImpl<$Res>;
+abstract class _$$UnselectedCopyWith<$Res> {
+  factory _$$UnselectedCopyWith(
+          _$Unselected value, $Res Function(_$Unselected) then) =
+      __$$UnselectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnselectedCopyWithImpl<$Res>
+class __$$UnselectedCopyWithImpl<$Res>
     extends _$BookingTableStateCopyWithImpl<$Res>
-    implements $UnselectedCopyWith<$Res> {
-  _$UnselectedCopyWithImpl(Unselected _value, $Res Function(Unselected) _then)
-      : super(_value, (v) => _then(v as Unselected));
+    implements _$$UnselectedCopyWith<$Res> {
+  __$$UnselectedCopyWithImpl(
+      _$Unselected _value, $Res Function(_$Unselected) _then)
+      : super(_value, (v) => _then(v as _$Unselected));
 
   @override
-  Unselected get _value => super._value as Unselected;
+  _$Unselected get _value => super._value as _$Unselected;
 }
 
 /// @nodoc
@@ -407,7 +410,7 @@ class _$Unselected with DiagnosticableTreeMixin implements Unselected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Unselected);
+        (other.runtimeType == runtimeType && other is _$Unselected);
   }
 
   @override

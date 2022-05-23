@@ -68,22 +68,22 @@ class _$BookingsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $UpdateRequestedCopyWith<$Res> {
-  factory $UpdateRequestedCopyWith(
-          UpdateRequested value, $Res Function(UpdateRequested) then) =
-      _$UpdateRequestedCopyWithImpl<$Res>;
+abstract class _$$UpdateRequestedCopyWith<$Res> {
+  factory _$$UpdateRequestedCopyWith(
+          _$UpdateRequested value, $Res Function(_$UpdateRequested) then) =
+      __$$UpdateRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UpdateRequestedCopyWithImpl<$Res>
+class __$$UpdateRequestedCopyWithImpl<$Res>
     extends _$BookingsEventCopyWithImpl<$Res>
-    implements $UpdateRequestedCopyWith<$Res> {
-  _$UpdateRequestedCopyWithImpl(
-      UpdateRequested _value, $Res Function(UpdateRequested) _then)
-      : super(_value, (v) => _then(v as UpdateRequested));
+    implements _$$UpdateRequestedCopyWith<$Res> {
+  __$$UpdateRequestedCopyWithImpl(
+      _$UpdateRequested _value, $Res Function(_$UpdateRequested) _then)
+      : super(_value, (v) => _then(v as _$UpdateRequested));
 
   @override
-  UpdateRequested get _value => super._value as UpdateRequested;
+  _$UpdateRequested get _value => super._value as _$UpdateRequested;
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class _$UpdateRequested
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UpdateRequested);
+        (other.runtimeType == runtimeType && other is _$UpdateRequested);
   }
 
   @override
@@ -240,28 +240,28 @@ class _$BookingsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ShowingCopyWith<$Res> {
-  factory $ShowingCopyWith(Showing value, $Res Function(Showing) then) =
-      _$ShowingCopyWithImpl<$Res>;
+abstract class _$$ShowingCopyWith<$Res> {
+  factory _$$ShowingCopyWith(_$Showing value, $Res Function(_$Showing) then) =
+      __$$ShowingCopyWithImpl<$Res>;
   $Res call({List<Booking> bookings});
 }
 
 /// @nodoc
-class _$ShowingCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
-    implements $ShowingCopyWith<$Res> {
-  _$ShowingCopyWithImpl(Showing _value, $Res Function(Showing) _then)
-      : super(_value, (v) => _then(v as Showing));
+class __$$ShowingCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
+    implements _$$ShowingCopyWith<$Res> {
+  __$$ShowingCopyWithImpl(_$Showing _value, $Res Function(_$Showing) _then)
+      : super(_value, (v) => _then(v as _$Showing));
 
   @override
-  Showing get _value => super._value as Showing;
+  _$Showing get _value => super._value as _$Showing;
 
   @override
   $Res call({
     Object? bookings = freezed,
   }) {
-    return _then(Showing(
+    return _then(_$Showing(
       bookings == freezed
-          ? _value.bookings
+          ? _value._bookings
           : bookings // ignore: cast_nullable_to_non_nullable
               as List<Booking>,
     ));
@@ -297,18 +297,18 @@ class _$Showing with DiagnosticableTreeMixin implements Showing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Showing &&
-            const DeepCollectionEquality().equals(other.bookings, bookings));
+            other is _$Showing &&
+            const DeepCollectionEquality().equals(other._bookings, _bookings));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(bookings));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_bookings));
 
   @JsonKey(ignore: true)
   @override
-  $ShowingCopyWith<Showing> get copyWith =>
-      _$ShowingCopyWithImpl<Showing>(this, _$identity);
+  _$$ShowingCopyWith<_$Showing> get copyWith =>
+      __$$ShowingCopyWithImpl<_$Showing>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -384,23 +384,24 @@ abstract class Showing implements BookingsState {
 
   List<Booking> get bookings => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ShowingCopyWith<Showing> get copyWith => throw _privateConstructorUsedError;
+  _$$ShowingCopyWith<_$Showing> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class _$$LoadingCopyWith<$Res> {
+  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
+      __$$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class __$$LoadingCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
+    implements _$$LoadingCopyWith<$Res> {
+  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+      : super(_value, (v) => _then(v as _$Loading));
 
   @override
-  Loading get _value => super._value as Loading;
+  _$Loading get _value => super._value as _$Loading;
 }
 
 /// @nodoc
@@ -422,7 +423,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Loading);
+        (other.runtimeType == runtimeType && other is _$Loading);
   }
 
   @override
@@ -502,26 +503,26 @@ abstract class Loading implements BookingsState {
 }
 
 /// @nodoc
-abstract class $ErrorCopyWith<$Res> {
-  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
-      _$ErrorCopyWithImpl<$Res>;
+abstract class _$$ErrorCopyWith<$Res> {
+  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
+      __$$ErrorCopyWithImpl<$Res>;
   $Res call({String message});
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
-    implements $ErrorCopyWith<$Res> {
-  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
-      : super(_value, (v) => _then(v as Error));
+class __$$ErrorCopyWithImpl<$Res> extends _$BookingsStateCopyWithImpl<$Res>
+    implements _$$ErrorCopyWith<$Res> {
+  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
+      : super(_value, (v) => _then(v as _$Error));
 
   @override
-  Error get _value => super._value as Error;
+  _$Error get _value => super._value as _$Error;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(Error(
+    return _then(_$Error(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -555,7 +556,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Error &&
+            other is _$Error &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -565,8 +566,8 @@ class _$Error with DiagnosticableTreeMixin implements Error {
 
   @JsonKey(ignore: true)
   @override
-  $ErrorCopyWith<Error> get copyWith =>
-      _$ErrorCopyWithImpl<Error>(this, _$identity);
+  _$$ErrorCopyWith<_$Error> get copyWith =>
+      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -642,5 +643,5 @@ abstract class Error implements BookingsState {
 
   String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
+  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
 }

@@ -80,30 +80,30 @@ class _$AuthenticationEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $LoginRequestedCopyWith<$Res> {
-  factory $LoginRequestedCopyWith(
-          LoginRequested value, $Res Function(LoginRequested) then) =
-      _$LoginRequestedCopyWithImpl<$Res>;
+abstract class _$$LoginRequestedCopyWith<$Res> {
+  factory _$$LoginRequestedCopyWith(
+          _$LoginRequested value, $Res Function(_$LoginRequested) then) =
+      __$$LoginRequestedCopyWithImpl<$Res>;
   $Res call({String username, String password});
 }
 
 /// @nodoc
-class _$LoginRequestedCopyWithImpl<$Res>
+class __$$LoginRequestedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res>
-    implements $LoginRequestedCopyWith<$Res> {
-  _$LoginRequestedCopyWithImpl(
-      LoginRequested _value, $Res Function(LoginRequested) _then)
-      : super(_value, (v) => _then(v as LoginRequested));
+    implements _$$LoginRequestedCopyWith<$Res> {
+  __$$LoginRequestedCopyWithImpl(
+      _$LoginRequested _value, $Res Function(_$LoginRequested) _then)
+      : super(_value, (v) => _then(v as _$LoginRequested));
 
   @override
-  LoginRequested get _value => super._value as LoginRequested;
+  _$LoginRequested get _value => super._value as _$LoginRequested;
 
   @override
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
   }) {
-    return _then(LoginRequested(
+    return _then(_$LoginRequested(
       username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ class _$LoginRequested with DiagnosticableTreeMixin implements LoginRequested {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LoginRequested &&
+            other is _$LoginRequested &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.password, password));
   }
@@ -157,8 +157,8 @@ class _$LoginRequested with DiagnosticableTreeMixin implements LoginRequested {
 
   @JsonKey(ignore: true)
   @override
-  $LoginRequestedCopyWith<LoginRequested> get copyWith =>
-      _$LoginRequestedCopyWithImpl<LoginRequested>(this, _$identity);
+  _$$LoginRequestedCopyWith<_$LoginRequested> get copyWith =>
+      __$$LoginRequestedCopyWithImpl<_$LoginRequested>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -236,27 +236,27 @@ abstract class LoginRequested implements AuthenticationEvent {
   String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginRequestedCopyWith<LoginRequested> get copyWith =>
+  _$$LoginRequestedCopyWith<_$LoginRequested> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LogoutRequestedCopyWith<$Res> {
-  factory $LogoutRequestedCopyWith(
-          LogoutRequested value, $Res Function(LogoutRequested) then) =
-      _$LogoutRequestedCopyWithImpl<$Res>;
+abstract class _$$LogoutRequestedCopyWith<$Res> {
+  factory _$$LogoutRequestedCopyWith(
+          _$LogoutRequested value, $Res Function(_$LogoutRequested) then) =
+      __$$LogoutRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LogoutRequestedCopyWithImpl<$Res>
+class __$$LogoutRequestedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res>
-    implements $LogoutRequestedCopyWith<$Res> {
-  _$LogoutRequestedCopyWithImpl(
-      LogoutRequested _value, $Res Function(LogoutRequested) _then)
-      : super(_value, (v) => _then(v as LogoutRequested));
+    implements _$$LogoutRequestedCopyWith<$Res> {
+  __$$LogoutRequestedCopyWithImpl(
+      _$LogoutRequested _value, $Res Function(_$LogoutRequested) _then)
+      : super(_value, (v) => _then(v as _$LogoutRequested));
 
   @override
-  LogoutRequested get _value => super._value as LogoutRequested;
+  _$LogoutRequested get _value => super._value as _$LogoutRequested;
 }
 
 /// @nodoc
@@ -280,7 +280,7 @@ class _$LogoutRequested
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LogoutRequested);
+        (other.runtimeType == runtimeType && other is _$LogoutRequested);
   }
 
   @override
@@ -360,22 +360,22 @@ abstract class LogoutRequested implements AuthenticationEvent {
 }
 
 /// @nodoc
-abstract class $RestoreRequestedCopyWith<$Res> {
-  factory $RestoreRequestedCopyWith(
-          RestoreRequested value, $Res Function(RestoreRequested) then) =
-      _$RestoreRequestedCopyWithImpl<$Res>;
+abstract class _$$RestoreRequestedCopyWith<$Res> {
+  factory _$$RestoreRequestedCopyWith(
+          _$RestoreRequested value, $Res Function(_$RestoreRequested) then) =
+      __$$RestoreRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RestoreRequestedCopyWithImpl<$Res>
+class __$$RestoreRequestedCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res>
-    implements $RestoreRequestedCopyWith<$Res> {
-  _$RestoreRequestedCopyWithImpl(
-      RestoreRequested _value, $Res Function(RestoreRequested) _then)
-      : super(_value, (v) => _then(v as RestoreRequested));
+    implements _$$RestoreRequestedCopyWith<$Res> {
+  __$$RestoreRequestedCopyWithImpl(
+      _$RestoreRequested _value, $Res Function(_$RestoreRequested) _then)
+      : super(_value, (v) => _then(v as _$RestoreRequested));
 
   @override
-  RestoreRequested get _value => super._value as RestoreRequested;
+  _$RestoreRequested get _value => super._value as _$RestoreRequested;
 }
 
 /// @nodoc
@@ -399,7 +399,7 @@ class _$RestoreRequested
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is RestoreRequested);
+        (other.runtimeType == runtimeType && other is _$RestoreRequested);
   }
 
   @override
@@ -544,29 +544,29 @@ class _$AuthenticationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $AuthenticatedCopyWith<$Res> {
-  factory $AuthenticatedCopyWith(
-          Authenticated value, $Res Function(Authenticated) then) =
-      _$AuthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthenticatedCopyWith<$Res> {
+  factory _$$AuthenticatedCopyWith(
+          _$Authenticated value, $Res Function(_$Authenticated) then) =
+      __$$AuthenticatedCopyWithImpl<$Res>;
   $Res call({User user});
 }
 
 /// @nodoc
-class _$AuthenticatedCopyWithImpl<$Res>
+class __$$AuthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $AuthenticatedCopyWith<$Res> {
-  _$AuthenticatedCopyWithImpl(
-      Authenticated _value, $Res Function(Authenticated) _then)
-      : super(_value, (v) => _then(v as Authenticated));
+    implements _$$AuthenticatedCopyWith<$Res> {
+  __$$AuthenticatedCopyWithImpl(
+      _$Authenticated _value, $Res Function(_$Authenticated) _then)
+      : super(_value, (v) => _then(v as _$Authenticated));
 
   @override
-  Authenticated get _value => super._value as Authenticated;
+  _$Authenticated get _value => super._value as _$Authenticated;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(Authenticated(
+    return _then(_$Authenticated(
       user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -600,7 +600,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Authenticated &&
+            other is _$Authenticated &&
             const DeepCollectionEquality().equals(other.user, user));
   }
 
@@ -610,8 +610,8 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
 
   @JsonKey(ignore: true)
   @override
-  $AuthenticatedCopyWith<Authenticated> get copyWith =>
-      _$AuthenticatedCopyWithImpl<Authenticated>(this, _$identity);
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
+      __$$AuthenticatedCopyWithImpl<_$Authenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -687,34 +687,34 @@ abstract class Authenticated implements AuthenticationState {
 
   User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthenticatedCopyWith<Authenticated> get copyWith =>
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnauthenticatedCopyWith<$Res> {
-  factory $UnauthenticatedCopyWith(
-          Unauthenticated value, $Res Function(Unauthenticated) then) =
-      _$UnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$UnauthenticatedCopyWith<$Res> {
+  factory _$$UnauthenticatedCopyWith(
+          _$Unauthenticated value, $Res Function(_$Unauthenticated) then) =
+      __$$UnauthenticatedCopyWithImpl<$Res>;
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$UnauthenticatedCopyWithImpl<$Res>
+class __$$UnauthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $UnauthenticatedCopyWith<$Res> {
-  _$UnauthenticatedCopyWithImpl(
-      Unauthenticated _value, $Res Function(Unauthenticated) _then)
-      : super(_value, (v) => _then(v as Unauthenticated));
+    implements _$$UnauthenticatedCopyWith<$Res> {
+  __$$UnauthenticatedCopyWithImpl(
+      _$Unauthenticated _value, $Res Function(_$Unauthenticated) _then)
+      : super(_value, (v) => _then(v as _$Unauthenticated));
 
   @override
-  Unauthenticated get _value => super._value as Unauthenticated;
+  _$Unauthenticated get _value => super._value as _$Unauthenticated;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(Unauthenticated(
+    return _then(_$Unauthenticated(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -750,7 +750,7 @@ class _$Unauthenticated
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Unauthenticated &&
+            other is _$Unauthenticated &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -760,8 +760,8 @@ class _$Unauthenticated
 
   @JsonKey(ignore: true)
   @override
-  $UnauthenticatedCopyWith<Unauthenticated> get copyWith =>
-      _$UnauthenticatedCopyWithImpl<Unauthenticated>(this, _$identity);
+  _$$UnauthenticatedCopyWith<_$Unauthenticated> get copyWith =>
+      __$$UnauthenticatedCopyWithImpl<_$Unauthenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -837,25 +837,25 @@ abstract class Unauthenticated implements AuthenticationState {
 
   String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UnauthenticatedCopyWith<Unauthenticated> get copyWith =>
+  _$$UnauthenticatedCopyWith<_$Unauthenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnknownCopyWith<$Res> {
-  factory $UnknownCopyWith(Unknown value, $Res Function(Unknown) then) =
-      _$UnknownCopyWithImpl<$Res>;
+abstract class _$$UnknownCopyWith<$Res> {
+  factory _$$UnknownCopyWith(_$Unknown value, $Res Function(_$Unknown) then) =
+      __$$UnknownCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnknownCopyWithImpl<$Res>
+class __$$UnknownCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $UnknownCopyWith<$Res> {
-  _$UnknownCopyWithImpl(Unknown _value, $Res Function(Unknown) _then)
-      : super(_value, (v) => _then(v as Unknown));
+    implements _$$UnknownCopyWith<$Res> {
+  __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
+      : super(_value, (v) => _then(v as _$Unknown));
 
   @override
-  Unknown get _value => super._value as Unknown;
+  _$Unknown get _value => super._value as _$Unknown;
 }
 
 /// @nodoc
@@ -877,7 +877,7 @@ class _$Unknown with DiagnosticableTreeMixin implements Unknown {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Unknown);
+        (other.runtimeType == runtimeType && other is _$Unknown);
   }
 
   @override
