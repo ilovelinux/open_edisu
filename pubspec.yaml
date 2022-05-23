@@ -27,6 +27,7 @@ dependencies:
   collection: ^1.15.0
   freezed_annotation: ^2.0.3
   window_manager: ^0.2.2
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:

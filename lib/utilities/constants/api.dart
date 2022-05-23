@@ -1,3 +1,5 @@
+import 'package:get_it/get_it.dart';
+
 import '../http.dart';
 
-final client = HttpClient();
+get client => GetIt.I<HttpClient>();
