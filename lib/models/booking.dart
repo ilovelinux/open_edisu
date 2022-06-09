@@ -147,6 +147,9 @@ class BookingsPerSeats {
     required this.date, //!!
   });
 
+  factory BookingsPerSeats.fromJson(Map<String, dynamic> json) =>
+      _$BookingsPerSeatsFromJson(json);
+
   List<TimeRange> get slots => List.unmodifiable(
         Iterable.generate(
           (timeRange.timeEnd.hour - timeRange.timeStart.hour) * 2 +
