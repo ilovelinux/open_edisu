@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension TimeOfDayConverter on TimeOfDay {
+extension TimeOfDayExtension on TimeOfDay {
   bool operator <(TimeOfDay time) =>
       hour < time.hour || (hour == time.hour && minute < time.minute);
   bool operator <=(TimeOfDay time) => this < time || this == time;
