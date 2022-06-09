@@ -222,13 +222,6 @@ class Slot {
   final TimeOfDay end;
 
   Slot(this.begin, this.end);
-
-  static Slot fromData(String data) {
-    final sData = data.split(' ');
-    final begin = sData.first.parseTime();
-    final end = sData.last.parseTime();
-    return Slot(begin, end);
-  }
 }
 
 typedef Slots = List<Slot>;
