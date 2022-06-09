@@ -217,6 +217,7 @@ class TimeRange {
           normalizedTimeEnd >= slot.normalizedTimeEnd);
 }
 
+@JsonSerializable(converters: [TimeOfDayConverter()])
 class Slot {
   final TimeOfDay begin;
   final TimeOfDay end;
