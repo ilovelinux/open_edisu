@@ -60,6 +60,7 @@ class Hall {
   final String floor;
   final String building;
   final String hstatus;
+
   const Hall({
     required this.id,
     required this.hname,
@@ -79,6 +80,28 @@ class Hall {
 }
 
 typedef Halls = List<Hall>;
+
+@JsonSerializable()
+class HallMobile {
+  final int id;
+  final String name;
+  final String location;
+  final String lat;
+  final String long;
+
+  const HallMobile({
+    required this.id,
+    required this.name,
+    required this.location,
+    required this.lat,
+    required this.long,
+  });
+
+  factory HallMobile.fromJson(Map<String, dynamic> json) =>
+      _$HallMobileFromJson(json);
+}
+
+typedef HallsMobile = List<Hall>;
 
 @JsonSerializable()
 class Seats {
