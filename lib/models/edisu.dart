@@ -13,10 +13,6 @@ part 'user.dart';
 part 'edisu.g.dart';
 part 'booking.dart';
 
-extension on String {
-  TimeOfDay parseTime() => TimeOfDay.fromDateTime(DateFormat.Hm().parse(this));
-}
-
 extension on TimeOfDay {
   TimeOfDay step({int steps = 1}) => TimeOfDay(
         hour: hour + (minute + 30 * steps) ~/ 60,
