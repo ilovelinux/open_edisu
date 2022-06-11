@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:open_edisu/utilities/json/converters.dart';
 
 import '../../models/edisu.dart';
-import '../generic_responses.dart';
+import '../generic_response.dart';
 
 part 'slots_response.freezed.dart';
 part 'slots_response.g.dart';

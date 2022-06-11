@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../models/edisu.dart';
-import '../generic_responses.dart';
+import '../generic_response.dart';
 
 part 'halllistmobile_response.freezed.dart';
 part 'halllistmobile_response.g.dart';
