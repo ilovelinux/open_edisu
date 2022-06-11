@@ -15,3 +15,21 @@ extension on TimeOfDay {
         minute: (minute + 30 * steps) % 60,
       );
 }
+
+@JsonSerializable()
+class University {
+  final String name;
+  final String address;
+  final int id;
+
+  const University({
+    required this.name,
+    required this.address,
+    required this.id,
+  });
+
+  factory University.fromJson(Map<String, dynamic> json) =>
+      _$UniversityFromJson(json);
+}
+
+typedef Universities = List<University>;
