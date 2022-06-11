@@ -20,7 +20,7 @@ dependencies:
     # See https://github.com/theyakka/qr.flutter/issues/174
     # git:
     #   url: https://github.com/theyakka/qr.flutter.git
-  horizontal_data_table: ^3.6.1+1
+  horizontal_data_table: ^4.0.0
   charts_flutter: ^0.12.0
   flutter_bloc: ^8.0.1
   url_launcher: ^6.1.0
@@ -28,6 +28,19 @@ dependencies:
   freezed_annotation: ^2.0.3
   window_manager: ^0.2.2
   get_it: ^7.2.0
+  retrofit: ^3.0.1+1
+  dio: ^4.0.6
+  json_annotation: ^4.5.0
+
+dependency_overrides:
+  json_serializable:
+    git:
+      url: https://github.com/google/json_serializable.dart
+      path: json_serializable
+  json_annotation:
+    git:
+      url: https://github.com/google/json_serializable.dart
+      path: json_annotation
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +52,9 @@ dev_dependencies:
   bloc_test: ^9.0.3
   freezed: ^2.0.2
   mockito: ^5.2.0
+  json_serializable: ^6.2.0
+  retrofit_generator: ^4.0.1
+  pretty_dio_logger: ^1.2.0-beta-1
 
 flutter:
   uses-material-design: true

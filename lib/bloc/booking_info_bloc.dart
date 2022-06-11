@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
 import '../models/edisu.dart';
-import '../utilities/api.dart';
+import '../utilities/inceptor.dart';
 
 part 'booking_info_event.dart';
 part 'booking_info_state.dart';
@@ -20,7 +20,7 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
       emit(const BookingInfoState.loading());
 
       try {
-        final result = await getBookingsPerSeat(hall, date: date);
+        final result = await client.getBookingsPerSeat(hall, date: date);
 
         // Check that date hasn't changed. If it has changed, another
         //  event has been emitted before the end of this.
@@ -39,9 +39,9 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
 
       try {
         final results = await Future.wait(<Future>[
-          getSlots(hall, date: event.date),
-          getSeats(hall, date: event.date),
-        ]);
+          client.getSlots(hall, date: event.date),
+          client.getSeats(hall, date: event.date),
+        ]); // TODO: Cancel this when date changes
 
         // Check that date hasn't changed. If it has changed, another
         //  event has been emitted before the end of this.

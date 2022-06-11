@@ -24,7 +24,11 @@ class BookingTableBloc extends Bloc<BookingTableEvent, BookingTableState> {
           } else if (slot.timeStart == event.slot.timeStart) {
             emit(const BookingTableState.unselected());
           } else if (event.slot.timeEnd > slot.timeEnd) {
-            final newSlot = TimeRange(slot.timeStart, event.slot.timeEnd);
+            final newSlot = TimeRange(
+              timeStart: slot.timeStart,
+              timeEnd: event.slot.timeEnd,
+            );
+
             if (!event.seat.isBusy(newSlot)) {
               emit(BookingTableState(seat, newSlot));
             }

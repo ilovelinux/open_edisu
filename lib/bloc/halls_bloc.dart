@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import '../utilities/api.dart';
 import '../models/edisu.dart';
+import '../utilities/inceptor.dart';
 
 part 'halls_event.dart';
 part 'halls_state.dart';
@@ -13,9 +13,10 @@ class HallsBloc extends Bloc<HallsEvent, HallsState> {
     on<HallsUpdateRequested>((event, emit) async {
       emit(const HallsState.loading());
       try {
-        emit(HallsState(await getHalls()));
+        emit(HallsState(await client.getHalls()));
       } catch (e) {
         emit(HallsState.error(e.toString()));
+        rethrow;
       }
     });
   }

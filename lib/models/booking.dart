@@ -4,6 +4,7 @@ part of 'edisu.dart';
 class Booking {
   final int id;
   final String bookingId;
+  @JsonKey(fromJson: int.parse)
   final int seatNo;
   final String location;
   final DateTime date;
@@ -48,11 +49,14 @@ typedef Bookings = List<Booking>;
 
 @JsonSerializable()
 class Hall {
+  @JsonKey(fromJson: int.parse)
   final int id;
   final String hname;
   final String hcode;
   final String hpassword;
+  @JsonKey(fromJson: int.parse)
   final int hmax;
+  @JsonKey(fromJson: int.parse)
   final int husable;
   final String slotTime;
   final String closedFrom;
@@ -135,17 +139,21 @@ class Seat {
 
 typedef SeatsList = List<Seats>;
 
-@JsonSerializable()
+@JsonSerializable(converters: [TimeOfDayConverter()])
 class BookingsPerSeats {
-  final TimeRange timeRange;
+  final TimeOfDay timeStart;
+  final TimeOfDay timeEnd;
   final BookedSeatList seats;
-  final DateTime date; // Not given by api
+  @JsonKey(ignore: true)
+  late final DateTime date; // Not given by api
 
-  const BookingsPerSeats({
-    required this.timeRange,
+  BookingsPerSeats({
+    required this.timeStart,
+    required this.timeEnd,
     required this.seats,
-    required this.date, //!!
   });
+
+  TimeRange get timeRange => TimeRange(timeStart: timeStart, timeEnd: timeEnd);
 
   factory BookingsPerSeats.fromJson(Map<String, dynamic> json) =>
       _$BookingsPerSeatsFromJson(json);

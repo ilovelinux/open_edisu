@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
 import '../models/edisu.dart';
-import '../utilities/session.dart';
+import '../utilities/inceptor.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -16,28 +16,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginRequested>((event, emit) async {
       emit(const AuthState.unknown());
       try {
-        final user = await login(event.username, event.password);
-        emit(AuthState(user));
+        emit(AuthState.authenticated(
+            await client.signin(event.username, event.password)));
       } catch (e) {
         emit(AuthState.unauthenticated(e.toString()));
       }
     });
 
     on<LogoutRequested>((event, emit) async {
-      await logout();
+      await client.logout();
       emit(const AuthState.unauthenticated());
     });
 
     on<RestoreRequested>((event, emit) async {
       emit(const AuthState.unknown());
-      User? user;
-      String? error;
       try {
-        user = await restore();
+        emit(AuthState.authenticated(await client.me()));
       } catch (e) {
-        error = e.toString();
+        emit(AuthState.unauthenticated(e.toString()));
+        rethrow;
       }
-      emit(user == null ? AuthState.unauthenticated(error) : AuthState(user));
     });
   }
 
