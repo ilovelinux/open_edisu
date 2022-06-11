@@ -4,14 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'bloc/authentication_bloc.dart';
+import 'bloc/auth_bloc.dart';
 import 'cubit/error_cubit.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
+import 'utilities/inceptor.dart';
 import 'widgets/commons.dart';
 import 'widgets/dialogs/error_dialog.dart';
 
-void main() async => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  initInceptor();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -38,23 +43,23 @@ class MyApp extends StatelessWidget {
         ).copyWith(appBarTheme: const AppBarTheme(centerTitle: true)),
         home: BlocListener<ErrorCubit, ErrorState>(
           listener: (context, state) {
-            if (state is SnackBarError) {
-              ScaffoldMessenger.of(context)
+            state.when(
+              () => null,
+              dialogError: (String? message) => showDialog(
+                context: context,
+                builder: (_) => ErrorDialog(message ?? "UNKNOWN ERROR"),
+              ),
+              snackBarError: (String? message) => ScaffoldMessenger.of(context)
                 ..clearSnackBars()
                 ..showSnackBar(
-                  SnackBar(content: Text(state.message ?? "UNKNOWN ERROR")),
-                );
-            } else if (state is DialogError) {
-              showDialog(
-                context: context,
-                builder: (_) => ErrorDialog(state.message ?? "UNKNOWN ERROR"),
-              );
-            }
+                  SnackBar(content: Text(message ?? "UNKNOWN ERROR")),
+                ),
+            );
           },
-          child: BlocBuilder<AuthBloc, AuthenticationState>(
+          child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.when(
-                (user) => const HomePage(),
+                authenticated: (user) => const HomePage(),
                 unauthenticated: (String? e) {
                   if (e != null) context.read<ErrorCubit>().showInSnackBar(e);
                   return const LoginPage();

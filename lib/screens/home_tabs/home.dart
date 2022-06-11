@@ -20,7 +20,8 @@ class _UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (context.read<AuthBloc>().state as Authenticated).user;
+    final user =
+        (context.read<AuthBloc>().state as AuthStateAuthenticated).user;
 
     return Card(
       margin: const EdgeInsets.all(16.0),
@@ -60,7 +61,7 @@ class _LogoutDialog extends StatelessWidget {
         TextButton(
           child: Text(AppLocalizations.of(context)!.yes),
           onPressed: () {
-            context.read<AuthBloc>().add(const AuthenticationEvent.logout());
+            context.read<AuthBloc>().add(const AuthEvent.logout());
             Navigator.of(context).pop();
           },
         ),

@@ -72,7 +72,10 @@ class _TimeTable extends StatelessWidget {
         alignment: Alignment.center,
       ),
       rightSideItemBuilder: (_, int index) => _TableRow(
-          slots, bookingsPerSeats.seats[index], bookingsOfTheDay[index + 1]),
+        slots: slots,
+        seat: bookingsPerSeats.seats[index],
+        bookedSlots: bookingsOfTheDay[index + 1],
+      ),
     );
   }
 
@@ -93,12 +96,17 @@ class _TimeTable extends StatelessWidget {
 }
 
 class _TableRow extends StatelessWidget {
-  const _TableRow(this.slots, this.seat, this.bookedSlots, {Key? key})
-      : super(key: key);
+  const _TableRow({
+    Key? key,
+    required this.slots,
+    required this.seat,
+    Bookings? bookedSlots,
+  })  : bookedSlots = bookedSlots ?? const [],
+        super(key: key);
 
   final List<TimeRange> slots;
   final BookedSeat seat;
-  final Bookings? bookedSlots;
+  final Bookings bookedSlots;
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +133,10 @@ class _TableRow extends StatelessWidget {
   }
 
   Color _getCellColor(BookingTableState state, TimeRange slot) {
-    for (final booking in bookedSlots ?? <Booking>[]) {
-      if (slot
-          .isAtTheSameMomentAs(TimeRange(booking.startTime, booking.endTime))) {
+    for (final booking in bookedSlots) {
+      if (slot.isAtTheSameMomentAs(
+        TimeRange(timeStart: booking.startTime, timeEnd: booking.endTime),
+      )) {
         return booked;
       }
     }

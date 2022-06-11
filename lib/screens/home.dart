@@ -6,13 +6,13 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../bloc/authentication_bloc.dart';
+import '../bloc/auth_bloc.dart';
 import '../bloc/halls_bloc.dart';
 import '../cubit/error_cubit.dart';
 import '../cubit/page_cubit.dart';
 import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
-import '../utilities/api.dart';
+import '../utilities/inceptor.dart';
 import '../widgets/commons.dart';
 import 'booking/booking.dart';
 

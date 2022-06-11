@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -24,7 +24,11 @@ class BookingTableBloc extends Bloc<BookingTableEvent, BookingTableState> {
           } else if (slot.timeStart == event.slot.timeStart) {
             emit(const BookingTableState.unselected());
           } else if (event.slot.timeEnd > slot.timeEnd) {
-            final newSlot = TimeRange(slot.timeStart, event.slot.timeEnd);
+            final newSlot = TimeRange(
+              timeStart: slot.timeStart,
+              timeEnd: event.slot.timeEnd,
+            );
+
             if (!event.seat.isBusy(newSlot)) {
               emit(BookingTableState(seat, newSlot));
             }

@@ -127,7 +127,9 @@ class _BookingDialog extends StatelessWidget {
           SizedBox(
             width: 200,
             height: 200,
-            child: QrImage(data: booking.bookingId),
+            child: QrImage(
+              data: booking.bookingId.toUpperCase(),
+            ),
           ),
           Text(
             booking.bookingId,
@@ -148,7 +150,7 @@ class _BookingDialog extends StatelessWidget {
             child: const Text("Cancella"),
             onPressed: () async {
               try {
-                await bookingCancel(booking.id);
+                await client.bookingCancel(booking.id);
                 context.read<BookingsBloc>().add(const BookingsEvent.update());
               } catch (e) {
                 context.read<ErrorCubit>().showInDialog(e.toString());

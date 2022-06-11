@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_edisu/utilities/api.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../bloc/bookings_bloc.dart';
 import '../../cubit/error_cubit.dart';
 import '../../models/edisu.dart';
 import '../../utilities/extensions/time.dart';
+import '../../utilities/inceptor.dart';
 
 class BookingDialog extends StatelessWidget {
   const BookingDialog({
@@ -38,7 +38,7 @@ class BookingDialog extends StatelessWidget {
           child: Text(AppLocalizations.of(context)!.yes),
           onPressed: () async {
             try {
-              await customSlotBook(
+              await client.customSlotBook(
                 hall: hall,
                 date: date,
                 seatID: seat.id,

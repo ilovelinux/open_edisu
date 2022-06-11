@@ -74,10 +74,14 @@ android {
         }
     }
 
-    flavorDimensions "github"
+    flavorDimensions "app"
     productFlavors {
+        prod {
+            dimension "app"
+            signingConfig signingConfigs.release
+        }
         githubDebug {
-            dimension "github"
+            dimension "app"
             signingConfig signingConfigs.debug
             applicationIdSuffix ".githubdebug"
         }
