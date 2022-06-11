@@ -14,6 +14,10 @@ class _SettingsView extends StatelessWidget {
             // TODO: Use AboutDialog()
             builder: (_) => _AboutDialog(),
           ),
+        ),
+        ListTile(
+          title: const Text("Logout"),
+          onTap: () => context.read<AuthBloc>().add(const AuthEvent.logout()),
         )
       ],
     );
