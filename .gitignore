@@ -48,5 +48,6 @@ app.*.map.json
 /android/key.properties
 
 
-# Freezed
+# Generated
 *.freezed.dart
+*.g.dart
