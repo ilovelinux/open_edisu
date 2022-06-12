@@ -65,20 +65,14 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-            ndk {
-                debugSymbolLevel = 'FULL'
-            }
-        }
-    }
-
     flavorDimensions "app"
     productFlavors {
         prod {
             dimension "app"
             signingConfig signingConfigs.release
+            ndk {
+                debugSymbolLevel = 'FULL'
+            }
         }
         githubDebug {
             dimension "app"
