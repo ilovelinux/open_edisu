@@ -31,5 +31,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: release
+          name: github-build
           path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
