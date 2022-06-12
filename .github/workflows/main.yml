@@ -33,3 +33,4 @@ jobs:
         with:
           name: github-build
           path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
+          if-no-files-found: error
