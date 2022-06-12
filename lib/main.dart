@@ -8,6 +8,7 @@ import 'bloc/auth_bloc.dart';
 import 'cubit/error_cubit.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
+import 'screens/signup.dart';
 import 'utilities/inceptor.dart';
 import 'widgets/commons.dart';
 import 'widgets/dialogs/error_dialog.dart';
@@ -41,6 +42,10 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
           ),
         ).copyWith(appBarTheme: const AppBarTheme(centerTitle: true)),
+        routes: {
+          'login': (_) => const LoginPage(),
+          'signup': (_) => const SignupPage(),
+        },
         home: BlocListener<ErrorCubit, ErrorState>(
           listener: (context, state) {
             state.when(

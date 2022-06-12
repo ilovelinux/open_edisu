@@ -6,7 +6,25 @@
     "invalidPassword": "La password è troppo corta.",
     "submit": "Entra",
     "or": "OPPURE",
-    "signup": "Non sei ancora registrato? Registrati!",
+    "signupButton": "Non sei ancora registrato? Registrati!",
+
+    "signup": "Registrati",
+    "continueSignup": "Continua",
+    "verifyCode": "Inserisci il codice",
+    "verifyCodeInfo": "Controlla la tua email e inserisci il codice alfanumerico a 6 cifre che ti abbiamo inviato per confermare la tua email.",
+    "signupInformations": "Completa la registrazione",
+    "emptyField": "Questo campo non può essere vuoto",
+    "firstNamePlaceholder": "Nome",
+    "lastNamePlaceholder": "Cognome",
+    "rollNoPlaceholder": "Matricola",
+    "university": "Università:",
+    "cpasswordPlaceholder": "Ripeti la password",
+    "isDisabled": "Sei uno studente disabile?",
+    "passwordNotMatched": "Le password non corrispondono",
+    "signupSuccess": "Ti sei registrato correttamente!",
+    "signupSuccessButton": "Inizia",
+
+    "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
     "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {PRENOTAZIONI} 2 {SALE STUDIO} 3 {IMPOSTAZIONI}}",
     "@homeTitles": {

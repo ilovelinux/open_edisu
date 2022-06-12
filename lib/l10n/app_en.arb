@@ -6,7 +6,25 @@
     "invalidPassword": "The password is too short.",
     "submit": "Sign in",
     "or": "OR",
-    "signup": "Not yet registered? Sign up!",
+    "signupButton": "Not yet registered? Sign up!",
+
+    "signup": "Signup",
+    "continueSignup": "Continue",
+    "verifyCode": "Insert your code",
+    "verifyCodeInfo": "Check your email and insert the six-digits alfanumeric code we sent you to confirm your email.",
+    "signupInformations": "Complete the signup",
+    "emptyField": "This field can't be empty",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "rollNoPlaceholder": "University registration number",
+    "university": "University:",
+    "cpasswordPlaceholder": "Repeat the password",
+    "isDisabled": "Are you a disabled student?",
+    "passwordNotMatched": "Passwords doesn't match",
+    "signupSuccess": "You have successfully registered!",
+    "signupSuccessButton": "Start!",
+
+    "sessionExpired": "Your session has expired, please login again.",
 
     "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} 3 {SETTINGS}}",
     "@homeTitles": {
