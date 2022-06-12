@@ -20,6 +20,7 @@ jobs:
 
       - run: flutter pub get
       # - run: flutter test
+      - run: flutter pub run build_runner build
       - run: flutter build apk --flavor githubDebug
 
       - uses: actions/upload-artifact@v3
