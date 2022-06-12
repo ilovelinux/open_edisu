@@ -24,8 +24,9 @@ class SigninResponse with _$SigninResponse {
 }
 
 @JsonSerializable()
-class SigninDataResponse extends GenericDataResponse<User> {
-  const SigninDataResponse(data) : super(data: data);
+class SigninDataResponse {
+  final User data;
+  const SigninDataResponse({required final this.data});
 
   factory SigninDataResponse.fromJson(Map<String, dynamic> json) =>
       _$SigninDataResponseFromJson(json);
