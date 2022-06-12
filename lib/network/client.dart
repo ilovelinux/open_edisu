@@ -20,6 +20,47 @@ class Client {
     return response.result!.data;
   }
 
+  Future<String> initialSignup(final String email) async {
+    final response = await _api.initialSignup(email);
+    return response.message;
+  }
+
+  Future<String> verifyCode(final String email, final String token) async {
+    final response = await _api.verifyCode(email, token);
+    return response.message;
+  }
+
+  Future<Universities> master() async {
+    final response = await _api.master();
+    return response.result.universities;
+  }
+
+  Future<User> signup({
+    required final String email,
+    required final String token,
+    required final String firstName,
+    required final String lastName,
+    required final String rollNo,
+    required final int universityId,
+    required final String password,
+    required final String cpassword,
+    required final bool isDisabled,
+  }) async {
+    final response = await _api.signup(
+      email: email,
+      token: token,
+      firstName: firstName,
+      lastName: lastName,
+      rollNo: rollNo,
+      universityId: universityId.toString(),
+      password: password,
+      cpassword: cpassword,
+      isDisabled: isDisabled ? "1" : "0",
+    );
+
+    return response.result.data;
+  }
+
   Future<User> me() async {
     final response = await _api.me();
     return response.result.data;
@@ -111,5 +152,7 @@ class ApiException implements Exception {
   final String? error;
 
   @override
-  String toString() => kDebugMode ? "$status: $message : $error" : message;
+  String toString() => kDebugMode
+      ? ["$status: $message", if (error != null) error].join(":")
+      : message;
 }

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:open_edisu/network/custombooking/custombooking_request.dart';
+import 'package:open_edisu/network/generic_response.dart';
+import 'package:open_edisu/network/master/master_response.dart';
 import 'package:open_edisu/network/signin/signin_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -28,6 +30,35 @@ abstract class RestClient {
     @Field("email") final String email,
     @Field("password") final String password,
   );
+
+  @POST("/web/initial_signup")
+  @FormUrlEncoded()
+  Future<GenericResponse> initialSignup(@Field("email") final String email);
+
+  @POST("/web/verify_code")
+  @FormUrlEncoded()
+  Future<GenericResponse> verifyCode(
+    @Field("email") final String email,
+    @Field("token") final String token,
+  );
+
+  @POST("/web/master")
+  @NoBody()
+  Future<MasterDataResponse> master();
+
+  @POST("/web/signup")
+  @FormUrlEncoded()
+  Future<MeResponse> signup({
+    @Field("email") required final String email,
+    @Field("token") required final String token,
+    @Field("first_name") required final String firstName,
+    @Field("last_name") required final String lastName,
+    @Field("roll_no") required final String rollNo,
+    @Field("university_id") required final String universityId,
+    @Field("password") required final String password,
+    @Field("cpassword") required final String cpassword,
+    @Field("is_disabled") required final String isDisabled,
+  });
 
   @POST("/web/me")
   @NoBody()
