@@ -17,6 +17,7 @@ import 'me/me_response.dart';
 import 'seats/seats_response.dart';
 import 'slots/slots_response.dart';
 import 'studentbookinglist/studentbookinglist_response.dart';
+import 'verifycode/verifycode_response.dart';
 
 part 'api.g.dart';
 
@@ -37,7 +38,7 @@ abstract class RestClient {
 
   @POST("/web/verify_code")
   @FormUrlEncoded()
-  Future<GenericResponse> verifyCode(
+  Future<VerifyCodeResponse> verifyCode(
     @Field("email") final String email,
     @Field("token") final String token,
   );
@@ -48,7 +49,7 @@ abstract class RestClient {
 
   @POST("/web/signup")
   @FormUrlEncoded()
-  Future<MeResponse> signup({
+  Future<SigninResponse> signup({
     @Field("email") required final String email,
     @Field("token") required final String token,
     @Field("first_name") required final String firstName,
@@ -57,7 +58,7 @@ abstract class RestClient {
     @Field("university_id") required final String universityId,
     @Field("password") required final String password,
     @Field("cpassword") required final String cpassword,
-    @Field("is_disabled") required final String isDisabled,
+    @Field("is_disable") required final String isDisabled,
   });
 
   @POST("/web/me")

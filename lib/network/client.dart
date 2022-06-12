@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/network/signin/signin_response.dart';
+import 'package:open_edisu/network/verifycode/verifycode_response.dart';
 
 import 'api.dart';
 import 'bookingcancel/bookingcancel_request.dart';
@@ -25,10 +27,11 @@ class Client {
     return response.message;
   }
 
-  Future<String> verifyCode(final String email, final String token) async {
-    final response = await _api.verifyCode(email, token);
-    return response.message;
-  }
+  Future<VerifyCodeResponse> verifyCode(
+    final String email,
+    final String token,
+  ) =>
+      _api.verifyCode(email, token);
 
   Future<Universities> master() async {
     final response = await _api.master();
@@ -58,7 +61,8 @@ class Client {
       isDisabled: isDisabled ? "1" : "0",
     );
 
-    return response.result.data;
+    await flutterSecureStorage.write(key: 'token', value: response.token);
+    return response.result!.data;
   }
 
   Future<User> me() async {
