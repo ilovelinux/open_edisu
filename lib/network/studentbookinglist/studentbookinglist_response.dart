@@ -21,6 +21,7 @@ class StudentBookingListResponse with _$StudentBookingListResponse {
 
 @JsonSerializable()
 class StudentBookingListDataResponse {
+  @JsonKey(defaultValue: [])
   final Bookings slots;
 
   const StudentBookingListDataResponse({required final this.slots});
