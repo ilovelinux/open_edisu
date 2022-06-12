@@ -6,15 +6,18 @@ part 'generic_response.g.dart';
 @freezed
 class GenericResponse with _$GenericResponse {
   const factory GenericResponse({
-    required final String timestamp,
+    required final Object? timestamp,
     required final int status,
-    required final String message,
+    @JsonKey(readValue: _readMessage) required final String message,
+    final String? error,
     final Object? result,
   }) = _GenericResponse;
 
   factory GenericResponse.fromJson(Map<String, dynamic> json) =>
       _$GenericResponseFromJson(json);
 }
+
+String _readMessage(json, key) => json[key] ?? json["messsage"];
 
 abstract class GenericDataResponse<T> {
   final T data;
