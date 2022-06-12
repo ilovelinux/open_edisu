@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:open_edisu/utilities/dio.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/edisu.dart';
 import '../utilities/inceptor.dart';
@@ -19,7 +22,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.authenticated(
             await client.signin(event.username, event.password)));
       } catch (e) {
-        emit(AuthState.unauthenticated(e.toString()));
+        emit(AuthState.unauthenticated(message: getErrorString(e)));
+
+        if (kDebugMode) {
+          rethrow;
+        }
       }
     });
 
@@ -33,8 +40,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         emit(AuthState.authenticated(await client.me()));
       } catch (e) {
-        emit(AuthState.unauthenticated(e.toString()));
-        rethrow;
+        bool sessionExpired = false;
+        String? message;
+        if (e is DioError &&
+            e.type == DioErrorType.response &&
+            e.response?.statusCode == 403) {
+          if (await flutterSecureStorage.containsKey(key: 'token')) {
+            await flutterSecureStorage.delete(key: 'token');
+            sessionExpired = true;
+          }
+        } else {
+          message = getErrorString(e);
+        }
+
+        emit(AuthState.unauthenticated(
+          sessionExpired: sessionExpired,
+          message: message,
+        ));
+
+        if (kDebugMode) {
+          rethrow;
+        }
       }
     });
   }

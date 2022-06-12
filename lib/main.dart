@@ -56,14 +56,22 @@ class MyApp extends StatelessWidget {
                 ),
             );
           },
-          child: BlocBuilder<AuthBloc, AuthState>(
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) => state.whenOrNull(
+              unauthenticated: (final sessionExpired, final message) {
+                final error = sessionExpired
+                    ? AppLocalizations.of(context)!.sessionExpired
+                    : message;
+
+                if (error != null) {
+                  context.read<ErrorCubit>().showInSnackBar(error);
+                }
+              },
+            ),
             builder: (context, state) {
               return state.when(
                 authenticated: (user) => const HomePage(),
-                unauthenticated: (String? e) {
-                  if (e != null) context.read<ErrorCubit>().showInSnackBar(e);
-                  return const LoginPage();
-                },
+                unauthenticated: (_, __) => const LoginPage(),
                 unknown: () => const LoadingWidget(),
               );
             },
