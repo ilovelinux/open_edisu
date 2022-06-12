@@ -7,7 +7,7 @@ part 'generic_response.g.dart';
 class GenericResponse with _$GenericResponse {
   const factory GenericResponse({
     required final Object? timestamp,
-    required final int status,
+    @JsonKey(readValue: _readStatus) required final int status,
     @JsonKey(readValue: _readMessage) required final String message,
     final String? error,
     final Object? result,
@@ -17,6 +17,7 @@ class GenericResponse with _$GenericResponse {
       _$GenericResponseFromJson(json);
 }
 
+int _readStatus(json, key) => json[key] ?? json["code"];
 String _readMessage(json, key) => json[key] ?? json["messsage"];
 
 abstract class GenericDataResponse<T> {
