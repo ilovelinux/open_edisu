@@ -29,7 +29,7 @@ void initInceptor() {
         handler.next(options);
       },
       onResponse: (response, handler) {
-        final genericResponse = GenericResponse.fromJson(response.data);
+        final genericResponse = Result.fromJson(response.data, (_) => null);
         if (genericResponse.status >= 400) {
           response.statusCode = genericResponse.status;
           throw DioError(
@@ -43,7 +43,7 @@ void initInceptor() {
       onError: (error, handler) {
         if (error.type == DioErrorType.response) {
           final genericResponse =
-              GenericResponse.fromJson(error.response!.data);
+              Result.fromJson(error.response!.data, (_) => null);
 
           final status = genericResponse.status;
           final errormsg = genericResponse.error;

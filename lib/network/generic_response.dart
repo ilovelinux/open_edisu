@@ -1,35 +1,57 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'generic_response.freezed.dart';
 part 'generic_response.g.dart';
 
-@freezed
-class GenericResponse with _$GenericResponse {
-  const factory GenericResponse({
-    required final Object? timestamp,
-    @JsonKey(readValue: _readStatus) required final int status,
-    @JsonKey(readValue: _readMessage) required final String message,
-    final String? error,
-    final Object? result,
-  }) = _GenericResponse;
+@JsonSerializable(genericArgumentFactories: true)
+class Result<T> {
+  final Object? timestamp;
+  @JsonKey(readValue: _readStatus)
+  final int status;
+  @JsonKey(readValue: _readMessage)
+  final String message;
+  final String? error;
+  final T result;
 
-  factory GenericResponse.fromJson(Map<String, dynamic> json) =>
-      _$GenericResponseFromJson(json);
+  const Result({
+    this.timestamp,
+    required this.status,
+    required this.message,
+    this.error,
+    required this.result,
+  });
+
+  factory Result.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$ResultFromJson<T>(json, fromJsonT);
 }
 
 int _readStatus(json, key) => json[key] ?? json["code"];
 String _readMessage(json, key) => json[key] ?? json["messsage"];
 
-abstract class GenericDataResponse<T> {
+@JsonSerializable(genericArgumentFactories: true)
+class DataResponse<T> {
   final T data;
 
-  const GenericDataResponse({required final this.data});
+  const DataResponse({required final this.data});
 
-  static Type typeOf<T>() => T;
+  factory DataResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$DataResponseFromJson<T>(json, fromJsonT);
 }
 
-abstract class GenericListResponse<T> {
+@JsonSerializable(genericArgumentFactories: true)
+class ListResponse<T> {
   final T list;
 
-  const GenericListResponse({required final this.list});
+  const ListResponse({required final this.list});
+
+  factory ListResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) =>
+      _$ListResponseFromJson<T>(json, fromJsonT);
 }

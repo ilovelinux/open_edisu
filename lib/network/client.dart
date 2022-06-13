@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:open_edisu/network/signin/signin_response.dart';
 import 'package:open_edisu/network/verifycode/verifycode_response.dart';
 
 import 'api.dart';
@@ -19,7 +18,7 @@ class Client {
     final response = await _api.signin(email, password);
 
     await flutterSecureStorage.write(key: 'token', value: response.token);
-    return response.result!.data;
+    return response.result.data;
   }
 
   Future<String> initialSignup(final String email) async {
@@ -62,7 +61,7 @@ class Client {
     );
 
     await flutterSecureStorage.write(key: 'token', value: response.token);
-    return response.result!.data;
+    return response.result.data;
   }
 
   Future<User> me() async {
@@ -82,29 +81,29 @@ class Client {
   Future<Halls> getHalls({final String type = "0"}) async {
     var response = await _api.hallList(type: type);
 
-    return response.result!.data.list;
+    return response.result.data.list;
   }
 
   Future<Slots> getSlots(final Hall hall, {DateTime? date}) async {
     date ??= DateTime.now();
 
     final response = await _api.slots(
-      DateFormat.yMd().format(date),
+      DateFormat('dd-MM-y').format(date),
       "${hall.hname} (${hall.id})",
     );
 
-    return response.result!.data.list;
+    return response.result.data.list;
   }
 
   Future<SeatsList> getSeats(final Hall hall, {DateTime? date}) async {
     date ??= DateTime.now();
 
     final response = await _api.seats(
-      DateFormat.yMd().format(date),
+      DateFormat('dd-MM-y').format(date),
       "${hall.hname} (${hall.id})",
     );
 
-    return response.result!.seats;
+    return response.result.seats;
   }
 
   Future<BookingsPerSeats> getBookingsPerSeat(
@@ -117,9 +116,8 @@ class Client {
       BookingsPerSeatsRequest(date: date, hallId: hall.id.toString()),
     );
 
-    final message = response.message ?? response.messsage;
-    if (message != "success") {
-      throw ApiException(response.status, message!, response.error);
+    if (response.message != "success") {
+      throw ApiException(response.status, response.message, response.error);
     }
 
     return response.result..date = date;

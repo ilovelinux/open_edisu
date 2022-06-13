@@ -18,6 +18,7 @@ import 'seats/seats_response.dart';
 import 'slots/slots_response.dart';
 import 'studentbookinglist/studentbookinglist_response.dart';
 import 'verifycode/verifycode_response.dart';
+import '../models/edisu.dart';
 
 part 'api.g.dart';
 
@@ -34,7 +35,7 @@ abstract class RestClient {
 
   @POST("/web/initial_signup")
   @FormUrlEncoded()
-  Future<GenericResponse> initialSignup(@Field("email") final String email);
+  Future<Result> initialSignup(@Field("email") final String email);
 
   @POST("/web/verify_code")
   @FormUrlEncoded()
