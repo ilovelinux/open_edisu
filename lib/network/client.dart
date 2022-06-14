@@ -152,6 +152,6 @@ class ApiException implements Exception {
 
   @override
   String toString() => kDebugMode
-      ? ["$status: $message", if (error != null) error].join(":")
+      ? ["$status: $message", if (error != null) error].join(" : ")
       : message;
 }
