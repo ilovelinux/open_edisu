@@ -87,14 +87,19 @@ class BookingListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      tileColor: booking.bookingStatus.isPending() ? Colors.amber : null,
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text("${booking.seatNo}")],
       ),
       title: Text(booking.hallName),
       subtitle: Text(
+        [
           DateFormat.yMEd(Localizations.localeOf(context).toLanguageTag())
-              .format(booking.date)),
+              .format(booking.date),
+          if (kDebugMode) booking.bookingStatus.toString()
+        ].join(" "),
+      ),
       trailing: Text(
         "${booking.startTime.format(context)} - ${booking.endTime.format(context)}",
       ),

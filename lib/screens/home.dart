@@ -44,7 +44,20 @@ class HomePage extends StatelessWidget {
         builder: (context, index) {
           return Scaffold(
             appBar: AppBar(
-                title: Text(AppLocalizations.of(context)!.homeTitles(index))),
+              title: Text(AppLocalizations.of(context)!.homeTitles(index)),
+              actions: [
+                if (index == 1)
+                  TextButton(
+                    onPressed: () => context
+                        .read<BookingsBloc>()
+                        .add(const BookingsEvent.update()),
+                    child: const Icon(
+                      Icons.replay,
+                      color: Colors.white,
+                    ),
+                  ),
+              ],
+            ),
             body: IndexedStack(
               index: index,
               children: _pages,
