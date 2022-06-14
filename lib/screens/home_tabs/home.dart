@@ -20,8 +20,7 @@ class _UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (context.read<AuthBloc>().state as AuthStateAuthenticated).user;
+    final user = GetIt.I<User>();
 
     return Card(
       margin: const EdgeInsets.all(16.0),
@@ -106,13 +105,11 @@ class _WeeklyStatisticsCard extends StatelessWidget {
             margin: const EdgeInsets.all(16.0),
             height: 150,
             child: BlocBuilder<BookingsBloc, BookingsState>(
-              builder: (context, state) {
-                return state.when(
-                  (bookings) => _WeeklyChartbar(bookings),
-                  loading: () => const LoadingWidget(),
-                  error: (e) => CenteredText(e),
-                );
-              },
+              builder: (context, state) => state.when(
+                success: (bookings) => _WeeklyChartbar(bookings),
+                loading: () => const LoadingWidget(),
+                error: (e) => CenteredText(e),
+              ),
             ),
           ),
         ],

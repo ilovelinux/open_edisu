@@ -6,10 +6,10 @@ class _HallsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HallsBloc()..add(const HallsUpdateRequested()),
+      create: (context) => HallsBloc()..add(const HallsEvent.update()),
       child: BlocBuilder<HallsBloc, HallsState>(
         builder: (context, state) => state.when(
-          (halls) => Column(
+          success: (halls) => Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: halls.map((hall) => _HallCard(hall: hall)).toList(),
           ),

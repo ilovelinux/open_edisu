@@ -2,10 +2,9 @@ part of 'signup_bloc.dart';
 
 @freezed
 class SignupEvent with _$SignupEvent {
-  const factory SignupEvent.initialSignup(final String email) =
-      _SignupEventInitialSignup;
+  const factory SignupEvent.initialSignup(final String email) = _InitialSignup;
   const factory SignupEvent.verifyCode(final String email, final String token) =
-      _SignupEventVerifyCode;
+      _VerifyCode;
 
   const factory SignupEvent.signup({
     required final Universities universities,
@@ -18,7 +17,5 @@ class SignupEvent with _$SignupEvent {
     required final String password,
     required final String cpassword,
     required final bool isDisabled,
-  }) = _SignupEventSignup;
-
-  const factory SignupEvent.emitSuccess() = _SignupEventSuccess;
+  }) = _Signup;
 }

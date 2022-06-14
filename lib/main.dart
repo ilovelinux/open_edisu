@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'bloc/auth_bloc.dart';
 import 'cubit/error_cubit.dart';
+import 'models/edisu.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/signup.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ErrorCubit()),
-        BlocProvider(create: (_) => AuthBloc()..add(const RestoreRequested())),
+        BlocProvider(create: (_) => AuthBloc()..add(const AuthEvent.restore())),
       ],
       child: MaterialApp(
         title: 'Open Edisu',
@@ -47,8 +49,7 @@ class MyApp extends StatelessWidget {
           'signup': (_) => const SignupPage(),
         },
         home: BlocListener<ErrorCubit, ErrorState>(
-          listener: (context, state) => state.when(
-            () => null,
+          listener: (context, state) => state.whenOrNull(
             dialogError: (final String? message) => showDialog(
               context: context,
               builder: (_) => ErrorDialog(message ?? "UNKNOWN ERROR"),
@@ -62,7 +63,10 @@ class MyApp extends StatelessWidget {
           ),
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) => state.whenOrNull<void>(
+              authenticated: (user) => GetIt.I.registerSingleton(user),
               unauthenticated: (final sessionExpired, final message) {
+                GetIt.I.unregister<User>();
+
                 final error = sessionExpired
                     ? AppLocalizations.of(context)!.sessionExpired
                     : message;

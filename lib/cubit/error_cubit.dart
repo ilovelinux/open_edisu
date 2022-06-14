@@ -6,7 +6,7 @@ part 'error_state.dart';
 part 'error_cubit.freezed.dart';
 
 class ErrorCubit extends Cubit<ErrorState> {
-  ErrorCubit() : super(const ErrorState());
+  ErrorCubit() : super(const ErrorState.initial());
 
   void showInSnackBar(String? error) => emit(ErrorState.snackBarError(error));
   void showInDialog(String? error) => emit(ErrorState.dialogError(error));

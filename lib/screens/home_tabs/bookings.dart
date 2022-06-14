@@ -8,7 +8,7 @@ class _BookingsView extends StatelessWidget {
     return BlocBuilder<BookingsBloc, BookingsState>(
       builder: (context, state) {
         return state.when(
-          (bookings) => _buildBookingView(context, bookings),
+          success: (bookings) => _buildBookingView(context, bookings),
           loading: () => const LoadingWidget(),
           error: (e) => CenteredText(e),
         );

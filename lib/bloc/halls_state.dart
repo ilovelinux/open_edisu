@@ -2,7 +2,7 @@ part of 'halls_bloc.dart';
 
 @freezed
 class HallsState with _$HallsState {
-  const factory HallsState(Halls halls) = Showing;
-  const factory HallsState.loading() = Loading;
-  const factory HallsState.error(String message) = ErrorDetails;
+  const factory HallsState.loading() = _Loading;
+  const factory HallsState.success(final Halls halls) = _Showing;
+  const factory HallsState.error(final String message) = _Error;
 }

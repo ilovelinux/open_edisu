@@ -7,12 +7,11 @@ class _BookingTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<bookings.BookingsBloc, bookings.BookingsState>(
-      listenWhen: (_, current) => current is bookings.Showing,
+    return BlocListener<BookingsBloc, BookingsState>(
       listener: (context, state) => state.whenOrNull<void>(
-        (_) {
+        success: (_) {
           final bloc = context.read<BookingInfoBloc>();
-          bloc.add(DateChangeRequested(bloc.date));
+          bloc.add(BookingInfoEvent.changeDate(bloc.date));
 
           showDialog(
             context: context,
@@ -31,7 +30,7 @@ class _BookingTable extends StatelessWidget {
         },
       ),
       child: BlocProvider(
-        create: (context) => BookingTableBloc(),
+        create: (context) => BookingTableCubit(),
         child: Column(
           children: [
             Expanded(child: _TimeTable(bookingsPerSeats)),
@@ -110,15 +109,16 @@ class _TableRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookingTableBloc, BookingTableState>(
+    return BlocBuilder<BookingTableCubit, BookingTableState>(
       // Build only if it's the selected row or the previously selected row
       buildWhen: (previous, current) => previous.when(
-        (previousSeat, _) => current.when(
-          (currentSeat, _) => previousSeat == seat || currentSeat == seat,
+        selected: (previousSeat, _) => current.when(
+          selected: (currentSeat, _) =>
+              previousSeat == seat || currentSeat == seat,
           unselected: () => previousSeat == seat,
         ),
         unselected: () => current.when(
-          (currentSeat, _) => currentSeat == seat,
+          selected: (currentSeat, _) => currentSeat == seat,
           unselected: () => false,
         ),
       ),
@@ -146,7 +146,7 @@ class _TableRow extends StatelessWidget {
     }
 
     return state.when(
-      (selectedSeat, selectedSlot) =>
+      selected: (selectedSeat, selectedSlot) =>
           selectedSeat.id == seat.id && slot.isAtTheSameMomentAs(selectedSlot)
               ? conflict
               : available,
@@ -170,8 +170,7 @@ class _TableCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          context.read<BookingTableBloc>().add(BookingTableEvent(seat, slot)),
+      onTap: () => context.read<BookingTableCubit>().select(seat, slot),
       child: Container(
         width: _width - _margin * 2,
         height: _height - _margin * 2,
@@ -188,7 +187,7 @@ class _TableCell extends StatelessWidget {
 class _BookingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookingTableBloc, BookingTableState>(
+    return BlocBuilder<BookingTableCubit, BookingTableState>(
       builder: (context, state) {
         return SizedBox(
           width: double.infinity,
@@ -206,14 +205,14 @@ class _BookingButton extends StatelessWidget {
 
   Function()? _book(BuildContext context, BookingTableState state) {
     return state.when(
-      (seat, slot) => () {
+      selected: (seat, slot) => () {
         final bookingInfoBloc = context.read<BookingInfoBloc>();
         showDialog(
           context: context,
           builder: (_) => BlocProvider.value(
             value: context.read<BookingInfoBloc>(),
             child: BlocProvider.value(
-              value: context.read<bookings.BookingsBloc>(),
+              value: context.read<BookingsBloc>(),
               child: BookingDialog(
                 hall: bookingInfoBloc.hall,
                 seat: seat,

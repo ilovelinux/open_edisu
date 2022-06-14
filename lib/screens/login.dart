@@ -84,7 +84,7 @@ class _LoginForm extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       var email = _emailController.text.trim();
       var password = _passwordController.text;
-      context.read<AuthBloc>().add(LoginRequested(email, password));
+      context.read<AuthBloc>().add(AuthEvent.login(email, password));
     }
   }
 }

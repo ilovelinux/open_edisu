@@ -1,18 +1,8 @@
 part of 'booking_info_bloc.dart';
 
-@immutable
+@Freezed(equal: false)
 abstract class BookingInfoEvent {
-  const BookingInfoEvent();
-}
-
-class DateChangeRequested extends BookingInfoEvent {
-  const DateChangeRequested(this.date);
-
-  final DateTime date;
-}
-
-class DateChangeRequestedAlternative extends BookingInfoEvent {
-  const DateChangeRequestedAlternative(this.date);
-
-  final DateTime date;
+  const factory BookingInfoEvent.changeDate(final DateTime date) = _ChangeDate;
+  const factory BookingInfoEvent.changeAlternativeDate(final DateTime date) =
+      _ChangeAlternativeDate;
 }

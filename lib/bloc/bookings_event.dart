@@ -2,5 +2,5 @@ part of 'bookings_bloc.dart';
 
 @freezed
 class BookingsEvent with _$BookingsEvent {
-  const factory BookingsEvent.update() = UpdateRequested;
+  const factory BookingsEvent.update() = _Update;
 }

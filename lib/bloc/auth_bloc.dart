@@ -15,7 +15,7 @@ part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(const AuthState.unknown()) {
-    on<LoginRequested>((event, emit) async {
+    on<_AuthLogin>((event, emit) async {
       emit(const AuthState.unknown());
       try {
         emit(AuthState.authenticated(
@@ -29,12 +29,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
-    on<LogoutRequested>((event, emit) async {
+    on<_AuthLogout>((event, emit) async {
       await client.logout();
       emit(const AuthState.unauthenticated());
     });
 
-    on<RestoreRequested>((event, emit) async {
+    on<_AuthRestore>((event, emit) async {
       emit(const AuthState.unknown());
       try {
         emit(AuthState.authenticated(await client.me()));

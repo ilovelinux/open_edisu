@@ -12,7 +12,7 @@ part 'signup_bloc.freezed.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc() : super(const SignupState.initial()) {
-    on<_SignupEventInitialSignup>((event, emit) async {
+    on<_InitialSignup>((event, emit) async {
       final email = event.email;
 
       try {
@@ -30,7 +30,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         }
       }
     });
-    on<_SignupEventVerifyCode>((event, emit) async {
+    on<_VerifyCode>((event, emit) async {
       final email = event.email;
       final token = event.token;
 
@@ -58,7 +58,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         }
       }
     });
-    on<_SignupEventSignup>((event, emit) async {
+    on<_Signup>((event, emit) async {
       try {
         await client.signup(
           email: event.email,
@@ -79,6 +79,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           event.universities,
           error: getErrorString(e),
         ));
+
+        if (kDebugMode) {
+          rethrow;
+        }
       }
     });
   }

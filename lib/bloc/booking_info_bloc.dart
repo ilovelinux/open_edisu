@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
 import '../models/edisu.dart';
+import '../utilities/dio.dart';
 import '../utilities/inceptor.dart';
 
 part 'booking_info_event.dart';
@@ -14,7 +15,7 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
   DateTime date = DateTime.now();
 
   BookingInfoBloc(this.hall) : super(const BookingInfoState.loading()) {
-    on<DateChangeRequested>((event, emit) async {
+    on<_ChangeDate>((event, emit) async {
       date = event.date;
       emit(const BookingInfoState.update());
       emit(const BookingInfoState.loading());
@@ -25,31 +26,41 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
         // Check that date hasn't changed. If it has changed, another
         //  event has been emitted before the end of this.
         if (date == event.date) {
-          emit(BookingInfoState(result));
+          emit(BookingInfoState.success(result));
         }
       } catch (e) {
-        emit(BookingInfoState.error(e.toString()));
-        rethrow;
+        emit(BookingInfoState.error(getErrorString(e)));
+
+        if (kDebugMode) {
+          rethrow;
+        }
       }
     });
-    on<DateChangeRequestedAlternative>((event, emit) async {
+    on<_ChangeAlternativeDate>((event, emit) async {
       date = event.date;
       emit(const BookingInfoState.update());
       emit(const BookingInfoState.loading());
 
       try {
-        final results = await Future.wait(<Future>[
-          client.getSlots(hall, date: event.date),
-          client.getSeats(hall, date: event.date),
-        ]); // TODO: Cancel this when date changes
+        final results = await Future.wait(
+          <Future>[
+            client.getSlots(hall, date: event.date),
+            client.getSeats(hall, date: event.date),
+          ],
+          eagerError: true,
+        ); // TODO: Cancel this when date changes
 
         // Check that date hasn't changed. If it has changed, another
         //  event has been emitted before the end of this.
         if (date == event.date) {
-          emit(BookingInfoState.alternative(results[0], results[1]));
+          emit(BookingInfoState.alternativeSuccess(results[0], results[1]));
         }
       } catch (e) {
-        emit(BookingInfoState.error(e.toString()));
+        emit(BookingInfoState.error(getErrorString(e)));
+
+        if (kDebugMode) {
+          rethrow;
+        }
       }
     });
   }

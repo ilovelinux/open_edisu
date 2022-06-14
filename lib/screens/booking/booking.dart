@@ -7,12 +7,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../bloc/booking_info_bloc.dart';
 import '../../bloc/booking_table_alternative_bloc.dart';
-import '../../bloc/bookings_bloc.dart' as bookings;
 import '../../bloc/bookings_bloc.dart';
+import '../../cubit/booking_table_cubit.dart';
 import '../../models/edisu.dart';
 import '../../widgets/commons.dart';
 import '../../widgets/dialogs/booking_dialog.dart';
-import '../../bloc/booking_table_bloc.dart';
 import '../../utilities/extensions/time.dart';
 import '../../utilities/extensions/date.dart';
 
@@ -52,20 +51,23 @@ class BookingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          BookingInfoBloc(hall)..add(DateChangeRequested(DateTime.now())),
+      create: (context) => BookingInfoBloc(hall)
+        ..add(BookingInfoEvent.changeDate(DateTime.now())),
       child: Column(
         children: [
           BlocBuilder<BookingInfoBloc, BookingInfoState>(
-            buildWhen: (_, current) => current is Update,
+            buildWhen: (_, current) => current.maybeWhen(
+              update: () => true,
+              orElse: () => false,
+            ),
             builder: (context, _) =>
                 _DateSelector(date: context.read<BookingInfoBloc>().date),
           ),
           Expanded(
             child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
               builder: (context, state) => state.when(
-                (bookingsPerSeat) => _BookingTable(bookingsPerSeat),
-                alternative: (slots, seats) =>
+                success: (bookingsPerSeat) => _BookingTable(bookingsPerSeat),
+                alternativeSuccess: (slots, seats) =>
                     _TimeTable2(slots: slots, seats: seats),
                 loading: () => const LoadingWidget(),
                 update: () => const LoadingWidget(),
@@ -139,5 +141,5 @@ class _DateSelector extends StatelessWidget {
   }
 
   void changeDate(BuildContext context, DateTime date) =>
-      context.read<BookingInfoBloc>().add(DateChangeRequested(date));
+      context.read<BookingInfoBloc>().add(BookingInfoEvent.changeDate(date));
 }
