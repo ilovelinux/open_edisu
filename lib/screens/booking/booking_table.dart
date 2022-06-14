@@ -70,7 +70,8 @@ class _TimeTable extends StatelessWidget {
     return HorizontalDataTable(
       isFixedHeader: true,
       leftHandSideColumnWidth: 40,
-      rightHandSideColumnWidth: _width * slots.length,
+      rightHandSideColumnWidth: _width * slots.length -
+          slots.separatorsCount * (_width - _separatorWidth),
       headerWidgets: _getHeaderWidgets(slots),
       itemCount: bookingsPerSeats.seats.length,
       leftSideItemBuilder: (BuildContext context, int index) => Container(

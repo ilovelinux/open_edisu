@@ -271,4 +271,6 @@ extension SlotsExtension on Slots {
 
     return slots;
   }
+
+  int get separatorsCount => where((s) => s == slotSeparator).length;
 }
