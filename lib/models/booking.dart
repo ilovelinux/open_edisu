@@ -156,8 +156,9 @@ typedef SeatsList = List<Seats>;
 
 @JsonSerializable(converters: [TimeOfDayConverter()])
 class BookingsPerSeats {
-  final TimeOfDay timeStart;
-  final TimeOfDay timeEnd;
+  final TimeOfDay? timeStart;
+  final TimeOfDay? timeEnd;
+  @JsonKey(defaultValue: [])
   final BookedSeatList seats;
   @JsonKey(ignore: true)
   late final DateTime date; // Not given by api
@@ -168,7 +169,8 @@ class BookingsPerSeats {
     required this.seats,
   });
 
-  TimeRange get timeRange => TimeRange(timeStart: timeStart, timeEnd: timeEnd);
+  TimeRange get timeRange =>
+      TimeRange(timeStart: timeStart!, timeEnd: timeEnd!);
 
   factory BookingsPerSeats.fromJson(Map<String, dynamic> json) =>
       _$BookingsPerSeatsFromJson(json);
