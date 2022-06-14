@@ -141,26 +141,20 @@ class _WeeklyChartbar extends StatelessWidget {
         DateFormat.EEEE(Localizations.localeOf(context).toLanguageTag())
             .dateSymbols
             .SHORTWEEKDAYS;
-    final counterPerWeek = List.filled(shortWeekDays.length, 0);
 
-    final completedBookings =
-        bookings.where((e) => e.bookingStatus.isCompleted());
-
-    for (final booking in completedBookings) {
-      counterPerWeek[booking.date.weekday - 1]++;
-    }
+    final bookingsPerWeekDay = groupBy(
+      bookings.where((final e) => e.bookingStatus.isCompleted()),
+      (final Booking e) => e.date.weekday,
+    );
 
     return charts.BarChart(
       [
-        charts.Series<MapEntry<int, int>, String>(
+        charts.Series<int, String>(
           id: 'Bookings',
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (MapEntry<int, int> v, _) => shortWeekDays[(v.key + 1) % 7],
-          measureFn: (MapEntry<int, int> v, _) => v.value,
-          data: (counterPerWeek.sublist(1)..add(counterPerWeek[0]))
-              .asMap()
-              .entries
-              .toList(),
+          domainFn: (int v, _) => shortWeekDays[v],
+          measureFn: (int v, _) => bookingsPerWeekDay[v]?.length ?? 0,
+          data: List.generate(7, (index) => (index + 1) % 7, growable: false),
         )
       ],
       animate: true,
