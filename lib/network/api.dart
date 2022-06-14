@@ -1,24 +1,10 @@
 import 'dart:io';
 
-import 'package:open_edisu/network/custombooking/custombooking_request.dart';
-import 'package:open_edisu/network/generic_response.dart';
-import 'package:open_edisu/network/master/master_response.dart';
-import 'package:open_edisu/network/signin/signin_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 
-import 'bookingcancel/bookingcancel_request.dart';
-import 'bookingsperseat/bookingsperseats_request.dart';
-import 'bookingsperseat/bookingsperseats_response.dart';
-import 'halllist/halllist_response.dart';
-import 'halllistmobile/halllistmobile_request.dart';
-import 'halllistmobile/halllistmobile_response.dart';
-import 'me/me_response.dart';
-import 'seats/seats_response.dart';
-import 'slots/slots_response.dart';
-import 'studentbookinglist/studentbookinglist_response.dart';
-import 'verifycode/verifycode_response.dart';
 import '../models/edisu.dart';
+import 'models.dart';
 
 part 'api.g.dart';
 

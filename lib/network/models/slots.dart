@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-import '../../models/edisu.dart';
-import '../generic_response.dart';
+part of '../models.dart';
 
 typedef SlotsResponse = Result<DataResponse<SlotsListResponse>>;
 

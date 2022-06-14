@@ -1,4 +1,3 @@
-import '../../models/edisu.dart';
-import '../generic_response.dart';
+part of '../models.dart';
 
 typedef HallListResponse = Result<DataResponse<ListResponse<Halls>>>;

@@ -1,9 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:open_edisu/network/generic_response.dart';
-
-import '../../models/edisu.dart';
-
-part 'seats_response.g.dart';
+part of '../models.dart';
 
 typedef SeatsResponse = Result<SeatsListResponse>;
 

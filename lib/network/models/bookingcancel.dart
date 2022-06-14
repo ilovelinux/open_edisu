@@ -1,7 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'bookingcancel_request.freezed.dart';
-part 'bookingcancel_request.g.dart';
+part of '../models.dart';
 
 @Freezed(toJson: true)
 class BookingCancelRequest with _$BookingCancelRequest {

@@ -1,7 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'halllistmobile_request.freezed.dart';
-part 'halllistmobile_request.g.dart';
+part of '../models.dart';
 
 @Freezed(toJson: true)
 class HallListMobileRequest with _$HallListMobileRequest {
@@ -9,3 +6,6 @@ class HallListMobileRequest with _$HallListMobileRequest {
     @Default('1') final String cityId,
   }) = _HallListMobileRequest;
 }
+
+typedef HallListMobileResponse
+    = Result<DataResponse<ListResponse<HallsMobile>>>;

@@ -1,13 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:open_edisu/network/verifycode/verifycode_response.dart';
 
 import 'api.dart';
-import 'bookingcancel/bookingcancel_request.dart';
-import 'bookingsperseat/bookingsperseats_request.dart';
-import 'custombooking/custombooking_request.dart';
 import '../utilities/inceptor.dart';
 import '../models/edisu.dart';
+import 'models.dart';
 
 class Client {
   const Client(this._api);

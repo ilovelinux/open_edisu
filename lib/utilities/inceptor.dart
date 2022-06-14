@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_edisu/network/client.dart';
-import 'package:open_edisu/network/generic_response.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../network/api.dart';
+import '../network/models.dart';
 
 void initInceptor() {
   final dio = Dio(BaseOptions(receiveDataWhenStatusError: true));

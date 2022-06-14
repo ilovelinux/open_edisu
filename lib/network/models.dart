@@ -1,6 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
-part 'generic_response.g.dart';
+import '../models/edisu.dart';
+import '../utilities/json/converters.dart';
+
+part 'models/bookingcancel.dart';
+part 'models/bookingsperseats.dart';
+part 'models/custombooking.dart';
+part 'models/halllist.dart';
+part 'models/halllistmobile.dart';
+part 'models/master.dart';
+part 'models/me.dart';
+part 'models/seats.dart';
+part 'models/signin.dart';
+part 'models/slots.dart';
+part 'models/studentbookinglist.dart';
+part 'models/verifycode.dart';
+
+part 'models.freezed.dart';
+part 'models.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class Result<T> {

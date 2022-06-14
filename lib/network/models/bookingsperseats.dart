@@ -1,8 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:open_edisu/utilities/json/converters.dart';
-
-part 'bookingsperseats_request.freezed.dart';
-part 'bookingsperseats_request.g.dart';
+part of '../models.dart';
 
 @Freezed(toJson: true)
 class BookingsPerSeatsRequest with _$BookingsPerSeatsRequest {
@@ -11,3 +7,5 @@ class BookingsPerSeatsRequest with _$BookingsPerSeatsRequest {
     required final String hallId,
   }) = _BookingsPerSeatsRequest;
 }
+
+typedef BookingsPerSeatsResponse = Result<BookingsPerSeats>;

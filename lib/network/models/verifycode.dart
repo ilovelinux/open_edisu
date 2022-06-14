@@ -1,7 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'verifycode_response.freezed.dart';
-part 'verifycode_response.g.dart';
+part of '../models.dart';
 
 @freezed
 class VerifyCodeResponse with _$VerifyCodeResponse {

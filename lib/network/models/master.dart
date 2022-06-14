@@ -1,9 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../models/edisu.dart';
-
-part 'master_response.freezed.dart';
-part 'master_response.g.dart';
+part of '../models.dart';
 
 @freezed
 class MasterResponse with _$MasterResponse {

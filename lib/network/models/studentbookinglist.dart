@@ -1,9 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../models/edisu.dart';
-
-part 'studentbookinglist_response.freezed.dart';
-part 'studentbookinglist_response.g.dart';
+part of '../models.dart';
 
 @freezed
 class StudentBookingListResponse with _$StudentBookingListResponse {

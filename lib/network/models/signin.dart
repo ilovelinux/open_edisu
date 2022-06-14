@@ -1,10 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../models/edisu.dart';
-import '../generic_response.dart';
-
-part 'signin_response.freezed.dart';
-part 'signin_response.g.dart';
+part of '../models.dart';
 
 @freezed
 class SigninResponse with _$SigninResponse {
