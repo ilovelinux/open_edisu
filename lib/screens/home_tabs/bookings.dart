@@ -96,9 +96,7 @@ class BookingListTile extends StatelessWidget {
           if (kDebugMode) booking.bookingStatus.toString()
         ].join(" "),
       ),
-      trailing: Text(
-        "${booking.startTime.format(context)} - ${booking.endTime.format(context)}",
-      ),
+      trailing: Text(booking.timeRange.format(context, " - ")),
       onTap: () => showDialog(
         context: context,
         builder: (_) => BlocProvider.value(
