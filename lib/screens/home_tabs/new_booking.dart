@@ -8,16 +8,14 @@ class _HallsView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HallsBloc()..add(const HallsUpdateRequested()),
       child: BlocBuilder<HallsBloc, HallsState>(
-        builder: (context, state) {
-          return state.when(
-            (halls) => Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: halls.map((hall) => _HallCard(hall: hall)).toList(),
-            ),
-            loading: () => const LoadingWidget(),
-            error: (e) => CenteredText(e),
-          );
-        },
+        builder: (context, state) => state.when(
+          (halls) => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: halls.map((hall) => _HallCard(hall: hall)).toList(),
+          ),
+          loading: () => const LoadingWidget(),
+          error: (final e) => CenteredText(e),
+        ),
       ),
     );
   }

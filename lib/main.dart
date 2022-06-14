@@ -47,20 +47,19 @@ class MyApp extends StatelessWidget {
           'signup': (_) => const SignupPage(),
         },
         home: BlocListener<ErrorCubit, ErrorState>(
-          listener: (context, state) {
-            state.when(
-              () => null,
-              dialogError: (String? message) => showDialog(
-                context: context,
-                builder: (_) => ErrorDialog(message ?? "UNKNOWN ERROR"),
-              ),
-              snackBarError: (String? message) => ScaffoldMessenger.of(context)
-                ..clearSnackBars()
-                ..showSnackBar(
-                  SnackBar(content: Text(message ?? "UNKNOWN ERROR")),
-                ),
-            );
-          },
+          listener: (context, state) => state.when(
+            () => null,
+            dialogError: (final String? message) => showDialog(
+              context: context,
+              builder: (_) => ErrorDialog(message ?? "UNKNOWN ERROR"),
+            ),
+            snackBarError: (final String? message) =>
+                ScaffoldMessenger.of(context)
+                  ..clearSnackBars()
+                  ..showSnackBar(
+                    SnackBar(content: Text(message ?? "UNKNOWN ERROR")),
+                  ),
+          ),
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) => state.whenOrNull<void>(
               unauthenticated: (final sessionExpired, final message) {
@@ -73,13 +72,11 @@ class MyApp extends StatelessWidget {
                 }
               },
             ),
-            builder: (context, state) {
-              return state.when(
-                authenticated: (user) => const HomePage(),
-                unauthenticated: (_, __) => const LoginPage(),
-                unknown: () => const LoadingWidget(),
-              );
-            },
+            builder: (context, state) => state.when(
+              authenticated: (_) => const HomePage(),
+              unauthenticated: (_, __) => const LoginPage(),
+              unknown: () => const LoadingWidget(),
+            ),
           ),
         ),
       ),

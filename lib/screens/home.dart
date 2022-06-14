@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,53 +42,45 @@ class HomePage extends StatelessWidget {
         ),
       ],
       child: BlocBuilder<PageCubit, int>(
-        builder: (context, index) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(AppLocalizations.of(context)!.homeTitles(index)),
-              actions: [
-                if (index == 1)
-                  TextButton(
-                    onPressed: () => context
-                        .read<BookingsBloc>()
-                        .add(const BookingsEvent.update()),
-                    child: const Icon(
-                      Icons.replay,
-                      color: Colors.white,
-                    ),
-                  ),
-              ],
-            ),
-            body: IndexedStack(
-              index: index,
-              children: _pages,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: index,
-              onTap: (i) => context.read<PageCubit>().change(i),
-              items: [
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.home),
-                  label: AppLocalizations.of(context)!.homeBottom,
+        builder: (context, index) => Scaffold(
+          appBar: AppBar(
+            title: Text(AppLocalizations.of(context)!.homeTitles(index)),
+            actions: [
+              if (index == 1)
+                TextButton(
+                  onPressed: () => context
+                      .read<BookingsBloc>()
+                      .add(const BookingsEvent.update()),
+                  child: const Icon(Icons.replay, color: Colors.white),
                 ),
+            ],
+          ),
+          body: IndexedStack(index: index, children: _pages),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: index,
+            onTap: (i) => context.read<PageCubit>().change(i),
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                label: AppLocalizations.of(context)!.homeBottom,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.library_books),
+                label: AppLocalizations.of(context)!.bookingsBottom,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.plus_one),
+                label: AppLocalizations.of(context)!.newBookingBottom,
+              ),
+              if (kDebugMode)
                 BottomNavigationBarItem(
-                  icon: const Icon(Icons.library_books),
-                  label: AppLocalizations.of(context)!.bookingsBottom,
+                  icon: const Icon(Icons.settings),
+                  label: AppLocalizations.of(context)!.settingsBottom,
                 ),
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.plus_one),
-                  label: AppLocalizations.of(context)!.newBookingBottom,
-                ),
-                if (kDebugMode)
-                  BottomNavigationBarItem(
-                    icon: const Icon(Icons.settings),
-                    label: AppLocalizations.of(context)!.settingsBottom,
-                  ),
-              ],
-            ),
-          );
-        },
+            ],
+          ),
+        ),
       ),
     );
   }
