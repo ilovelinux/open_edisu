@@ -243,12 +243,30 @@ class TimeRange {
           normalizedTimeEnd >= slot.normalizedTimeEnd);
 }
 
-@JsonSerializable(converters: [TimeOfDayConverter()])
-class Slot {
-  final TimeOfDay begin;
-  final TimeOfDay end;
+class Slot extends TimeRange {
+  TimeOfDay get begin => timeStart;
+  TimeOfDay get end => timeEnd;
 
-  Slot(this.begin, this.end);
+  const Slot(begin, end) : super(timeStart: begin, timeEnd: end);
 }
 
 typedef Slots = List<Slot>;
+
+const slotSeparator = Slot(
+  TimeOfDay(hour: 99, minute: 99),
+  TimeOfDay(hour: 99, minute: 99),
+);
+
+extension SlotsExtension on Slots {
+  Slots get withSeparators {
+    final Slots slots = Slots.from(this);
+
+    for (int i = 1; i < slots.length; i++) {
+      if (slots[i - 1].end != slots[i].begin) {
+        slots.insert(i++, slotSeparator);
+      }
+    }
+
+    return slots;
+  }
+}

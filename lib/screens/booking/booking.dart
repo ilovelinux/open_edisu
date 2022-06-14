@@ -26,6 +26,7 @@ const Color conflict = Color(0xFFEBD671);
 
 // Table sizes
 const double _width = 60;
+const double _separatorWidth = 20;
 const double _height = 60;
 const double _margin = 6;
 

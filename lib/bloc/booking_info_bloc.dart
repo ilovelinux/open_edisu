@@ -21,12 +21,18 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
       emit(const BookingInfoState.loading());
 
       try {
-        final result = await client.getBookingsPerSeat(hall, date: date);
+        final results = await Future.wait<dynamic>(
+          [
+            client.getSlots(hall, date: date),
+            client.getBookingsPerSeat(hall, date: date),
+          ],
+          eagerError: true,
+        );
 
         // Check that date hasn't changed. If it has changed, another
         //  event has been emitted before the end of this.
         if (date == event.date) {
-          emit(BookingInfoState.success(result));
+          emit(BookingInfoState(results[0], results[1]));
         }
       } catch (e) {
         emit(BookingInfoState.error(getErrorString(e)));

@@ -1,8 +1,13 @@
 part of 'booking.dart';
 
 class _BookingTable extends StatelessWidget {
-  const _BookingTable(this.bookingsPerSeats, {Key? key}) : super(key: key);
+  const _BookingTable(
+    this.slots,
+    this.bookingsPerSeats, {
+    Key? key,
+  }) : super(key: key);
 
+  final Slots slots;
   final BookingsPerSeats bookingsPerSeats;
 
   @override
@@ -33,7 +38,7 @@ class _BookingTable extends StatelessWidget {
         create: (context) => BookingTableCubit(),
         child: Column(
           children: [
-            Expanded(child: _TimeTable(bookingsPerSeats)),
+            Expanded(child: _TimeTable(slots.withSeparators, bookingsPerSeats)),
             _BookingButton(),
           ],
         ),
@@ -43,13 +48,18 @@ class _BookingTable extends StatelessWidget {
 }
 
 class _TimeTable extends StatelessWidget {
-  const _TimeTable(this.bookingsPerSeats, {Key? key}) : super(key: key);
+  const _TimeTable(
+    this.slots,
+    this.bookingsPerSeats, {
+    Key? key,
+  }) : super(key: key);
 
+  final Slots slots;
   final BookingsPerSeats bookingsPerSeats;
 
   @override
   Widget build(BuildContext context) {
-    final slots = bookingsPerSeats.futureSlots;
+    // final slots = bookingsPerSeats.futureSlots;
     final bookingsOfTheDay = groupBy(
       context.read<BookingsBloc>().bookings.where((booking) =>
           booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
@@ -78,16 +88,16 @@ class _TimeTable extends StatelessWidget {
     );
   }
 
-  List<Widget> _getHeaderWidgets(List<TimeRange> slots) => <Widget>[
+  List<Widget> _getHeaderWidgets(Slots slots) => <Widget>[
         const SizedBox(width: _width, height: 25),
         ...slots
             .map(
               (e) => Container(
-                width: _width,
+                width: e == slotSeparator ? _separatorWidth : _width,
                 height: 25,
                 // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
-                child: Text(e.timeStart.to24hours()),
+                child: Text(e == slotSeparator ? "" : e.begin.to24hours()),
               ),
             )
             .toList(),
@@ -103,7 +113,7 @@ class _TableRow extends StatelessWidget {
   })  : bookedSlots = bookedSlots ?? const [],
         super(key: key);
 
-  final List<TimeRange> slots;
+  final Slots slots;
   final BookedSeat seat;
   final Bookings bookedSlots;
 
@@ -132,7 +142,11 @@ class _TableRow extends StatelessWidget {
     );
   }
 
-  Color _getCellColor(BookingTableState state, TimeRange slot) {
+  Color _getCellColor(BookingTableState state, Slot slot) {
+    if (slot == slotSeparator) {
+      return unavailable;
+    }
+
     for (final booking in bookedSlots) {
       if (slot.isAtTheSameMomentAs(
         TimeRange(timeStart: booking.startTime, timeEnd: booking.endTime),
@@ -172,7 +186,7 @@ class _TableCell extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.read<BookingTableCubit>().select(seat, slot),
       child: Container(
-        width: _width - _margin * 2,
+        width: (slot == slotSeparator ? _separatorWidth : _width) - _margin * 2,
         height: _height - _margin * 2,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
