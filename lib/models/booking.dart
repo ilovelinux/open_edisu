@@ -14,7 +14,7 @@ class Booking {
   final String hallName;
   final int hallId;
   final String floorNo;
-  final int bookingStatus; // 0 = Deleted; 1 = Coming(?); 2 = Confirmed
+  final BookingStatus bookingStatus;
   final int seatStatus;
 
   const Booking({
@@ -40,12 +40,30 @@ class Booking {
       date.add(Duration(hours: startTime.hour, minutes: startTime.minute));
 
   bool isComing() =>
-      DateTime.now().isBefore(toDateTime()) && bookingStatus == 1;
+      DateTime.now().isBefore(toDateTime()) && bookingStatus.isUpcoming();
 
   bool isOnDay(DateTime day) => date.isBefore(day) && isComing();
 }
 
 typedef Bookings = List<Booking>;
+
+enum BookingStatus {
+  @JsonValue(0)
+  cancelled,
+  @JsonValue(1)
+  upcoming,
+  @JsonValue(2)
+  completed,
+  @JsonValue(3)
+  pending,
+}
+
+extension BookingStatusExtension on BookingStatus {
+  bool isCancelled() => this == BookingStatus.cancelled;
+  bool isUpcoming() => this == BookingStatus.upcoming;
+  bool isCompleted() => this == BookingStatus.completed;
+  bool isPending() => this == BookingStatus.pending;
+}
 
 @JsonSerializable()
 class Hall {
