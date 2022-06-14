@@ -65,11 +65,11 @@ class _TimeTable extends StatelessWidget {
       headerWidgets: _getHeaderWidgets(slots),
       itemCount: bookingsPerSeats.seats.length,
       leftSideItemBuilder: (BuildContext context, int index) => Container(
-        child: Text(bookingsPerSeats.seats[index].seatNo),
         width: 40,
         height: _height,
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
         alignment: Alignment.center,
+        child: Text(bookingsPerSeats.seats[index].seatNo),
       ),
       rightSideItemBuilder: (_, int index) => _TableRow(
         slots: slots,
@@ -86,9 +86,9 @@ class _TimeTable extends StatelessWidget {
               (e) => Container(
                 width: _width,
                 height: 25,
-                child: Text(e.timeStart.to24hours()),
                 // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
+                child: Text(e.timeStart.to24hours()),
               ),
             )
             .toList(),

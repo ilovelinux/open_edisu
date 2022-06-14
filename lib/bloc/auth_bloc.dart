@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:open_edisu/utilities/dio.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/edisu.dart';
 import '../utilities/inceptor.dart';

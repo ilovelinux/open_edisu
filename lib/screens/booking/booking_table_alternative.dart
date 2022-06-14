@@ -18,11 +18,11 @@ class _TimeTable2 extends StatelessWidget {
         headerWidgets: _getHeaderWidgets(context),
         itemCount: seats.length,
         leftSideItemBuilder: (BuildContext context, int index) => Container(
-          child: Text("${index + 1}"),
           width: 40,
           height: _height,
           padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
           alignment: Alignment.center,
+          child: Text("${index + 1}"),
         ),
         rightSideItemBuilder: (BuildContext context, int index) => _TableRow2(
           seatno: index + 1,
@@ -40,14 +40,14 @@ class _TimeTable2 extends StatelessWidget {
               (e) => Container(
                 width: _width,
                 height: 25,
+                // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                alignment: Alignment.center,
                 child: Text(
                   MaterialLocalizations.of(context).formatTimeOfDay(
                     e.begin,
                     alwaysUse24HourFormat: true,
                   ),
                 ),
-                // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.center,
               ),
             )
             .toList(),

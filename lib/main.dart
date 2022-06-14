@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             );
           },
           child: BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) => state.whenOrNull(
+            listener: (context, state) => state.whenOrNull<void>(
               unauthenticated: (final sessionExpired, final message) {
                 final error = sessionExpired
                     ? AppLocalizations.of(context)!.sessionExpired

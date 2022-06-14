@@ -22,7 +22,7 @@ class _VerifyCodeFormState extends State<_VerifyCodeForm> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignupBloc, SignupState>(
-      listener: (context, state) => state.whenOrNull(
+      listener: (context, state) => state.whenOrNull<void>(
         requestVerifyCode: (email, wrongCode, error) {
           if (wrongCode) {
             _codeController.clear();

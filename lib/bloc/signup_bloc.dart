@@ -60,7 +60,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     });
     on<_SignupEventSignup>((event, emit) async {
       try {
-        final user = await client.signup(
+        await client.signup(
           email: event.email,
           token: event.token,
           firstName: event.firstName,
