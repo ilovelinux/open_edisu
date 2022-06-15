@@ -1,4 +1,4 @@
-part of 'booking_table_bloc.dart';
+part of 'booking_table_cubit.dart';
 
 @freezed
 class BookingTableState with _$BookingTableState {
