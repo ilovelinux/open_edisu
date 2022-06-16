@@ -1,6 +1,6 @@
 {
     "login": "Accedi",
-    "emailPlaceholder": "Inserire l'email",
+    "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "invalidEmail": "L'email inserita non è un'email valida.",
     "invalidPassword": "La password è troppo corta.",

@@ -1,6 +1,6 @@
 {
     "login": "Login",
-    "emailPlaceholder": "Insert your email",
+    "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "invalidEmail": "The email is not a valid email.",
     "invalidPassword": "The password is too short.",
