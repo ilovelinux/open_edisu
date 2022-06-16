@@ -16,6 +16,7 @@ part 'models/seats.dart';
 part 'models/signin.dart';
 part 'models/slots.dart';
 part 'models/studentbookinglist.dart';
+part 'models/updatepassword.dart';
 part 'models/verifycode.dart';
 
 part 'models.freezed.dart';
