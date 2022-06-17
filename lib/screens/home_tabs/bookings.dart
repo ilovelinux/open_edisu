@@ -32,17 +32,14 @@ class _BookingsView extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TabBar(
-                tabs: [
-                  Tab(text: AppLocalizations.of(context)!.upcomingBookings),
-                  Tab(text: AppLocalizations.of(context)!.pastBookings),
-                ],
-              )
-            ],
+          flexibleSpace: Align(
+            alignment: Alignment.bottomCenter,
+            child: TabBar(
+              tabs: [
+                Tab(text: AppLocalizations.of(context)!.upcomingBookings),
+                Tab(text: AppLocalizations.of(context)!.pastBookings),
+              ],
+            ),
           ),
         ),
         body: TabBarView(
