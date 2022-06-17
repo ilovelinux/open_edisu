@@ -59,13 +59,13 @@ class _TimeTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final slots = allSlots
-        .skipWhile(
-          (slot) =>
-              slot.timeStart !=
-              bookingsPerSeats.futureSlots.firstOrNull?.timeStart,
-        )
-        .toList();
+    final Slots slots = bookingsPerSeats.futureSlots.isNotEmpty
+        ? allSlots
+            .skipWhile((slot) =>
+                slot == slotSeparator ||
+                slot.timeStart < bookingsPerSeats.futureSlots.first.timeStart)
+            .toList()
+        : const [];
 
     if (slots.isEmpty) {
       return CenteredText(AppLocalizations.of(context)!.noSlotsAvailable);
