@@ -4,8 +4,7 @@ part of 'edisu.dart';
 class Booking {
   final int id;
   final String bookingId;
-  @JsonKey(fromJson: int.parse)
-  final int seatNo;
+  final String seatNo;
   final String location;
   final DateTime date;
   final TimeOfDay startTime;
