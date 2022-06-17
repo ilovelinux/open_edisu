@@ -52,8 +52,8 @@
     "weeklyStatisticsTitle": "Statistiche settimanali",
     "weeklyStatisticsDescription": "Il grafico raffigura quante volte sei andato in sala studio, diviso in giorni della settimana.\n\nSolo le prenotazioni confermate vengono prese in considerazione.",
 
-    "comingBookings": "Future",
-    "oldBookings": "Vecchie",
+    "upcomingBookings": "Future",
+    "pastBookings": "Vecchie",
     "noBookings": "Non ci sono prenotazioni al momento",
 
     "bookingButton": "PRENOTA",

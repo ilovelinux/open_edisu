@@ -52,8 +52,8 @@
     "weeklyStatisticsTitle": "Weekly Statistics",
     "weeklyStatisticsDescription": "This chart represents how many times you went to the study room, divided by weekdays.\n\nOnly confirmed bookings are taken into consideration.",
 
-    "comingBookings": "Coming",
-    "oldBookings": "Old",
+    "upcomingBookings": "Upcoming",
+    "pastBookings": "Past",
     "noBookings": "There are no bookings right now",
 
     "bookingButton": "BOOK",

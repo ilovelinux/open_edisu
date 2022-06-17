@@ -42,10 +42,11 @@ class _BookingsView extends StatelessWidget {
                     onRefresh: () async => context
                         .read<BookingsBloc>()
                         .add(const BookingsEvent.update()),
-                    child:
-                        Tab(text: AppLocalizations.of(context)!.comingBookings),
+                    child: Tab(
+                      text: AppLocalizations.of(context)!.upcomingBookings,
+                    ),
                   ),
-                  Tab(text: AppLocalizations.of(context)!.oldBookings),
+                  Tab(text: AppLocalizations.of(context)!.pastBookings),
                 ],
               )
             ],
