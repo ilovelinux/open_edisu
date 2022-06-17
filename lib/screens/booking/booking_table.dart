@@ -133,13 +133,11 @@ class _TableRow extends StatelessWidget {
           unselected: () => false,
         ),
       ),
-      builder: (context, state) {
-        return Row(
-          children: slots
-              .map((e) => _TableCell(seat, e, color: _getCellColor(state, e)))
-              .toList(),
-        );
-      },
+      builder: (context, state) => Row(
+        children: slots
+            .map((e) => _TableCell(seat, e, color: _getCellColor(state, e)))
+            .toList(),
+      ),
     );
   }
 
@@ -148,12 +146,8 @@ class _TableRow extends StatelessWidget {
       return unavailable;
     }
 
-    for (final booking in bookedSlots) {
-      if (slot.isAtTheSameMomentAs(
-        TimeRange(timeStart: booking.startTime, timeEnd: booking.endTime),
-      )) {
-        return booked;
-      }
+    if (bookedSlots.any((b) => slot.isAtTheSameMomentAs(b.timeRange))) {
+      return booked;
     }
 
     if (seat.isBusy(slot)) {
@@ -223,7 +217,7 @@ class _BookingButton extends StatelessWidget {
         showDialog(
           context: context,
           builder: (_) => BlocProvider.value(
-            value: context.read<BookingInfoBloc>(),
+            value: bookingInfoBloc,
             child: BlocProvider.value(
               value: context.read<BookingsBloc>(),
               child: BookingDialog(
