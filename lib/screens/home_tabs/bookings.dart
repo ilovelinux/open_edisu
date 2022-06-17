@@ -8,15 +8,22 @@ class _BookingsView extends StatelessWidget {
     return BlocBuilder<BookingsBloc, BookingsState>(
       builder: (context, state) {
         return state.when(
-          success: (bookings) => _buildBookingView(context, bookings),
+          success: (bookings) => _BookingViewBody(bookings),
           loading: () => const LoadingWidget(),
           error: (e) => CenteredText(e),
         );
       },
     );
   }
+}
 
-  Widget _buildBookingView(BuildContext context, Bookings bookings) {
+class _BookingViewBody extends StatelessWidget {
+  const _BookingViewBody(this.bookings, {Key? key}) : super(key: key);
+
+  final Bookings bookings;
+
+  @override
+  Widget build(BuildContext context) {
     Bookings coming = [];
     Bookings old = [];
 
