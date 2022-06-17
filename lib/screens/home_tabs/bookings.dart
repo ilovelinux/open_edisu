@@ -6,13 +6,11 @@ class _BookingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingsBloc, BookingsState>(
-      builder: (context, state) {
-        return state.when(
-          success: (bookings) => _BookingViewBody(bookings),
-          loading: () => const LoadingWidget(),
-          error: (e) => CenteredText(e),
-        );
-      },
+      builder: (context, state) => state.when(
+        success: (bookings) => _BookingViewBody(bookings),
+        loading: () => const LoadingWidget(),
+        error: (e) => CenteredText(e),
+      ),
     );
   }
 }
@@ -24,14 +22,14 @@ class _BookingViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Bookings coming = [];
-    Bookings old = [];
+    Bookings upcoming = [];
+    Bookings past = [];
 
     for (final booking in bookings) {
       if (booking.isComing()) {
-        coming.add(booking);
+        upcoming.add(booking);
       } else {
-        old.add(booking);
+        past.add(booking);
       }
     }
 
@@ -51,8 +49,8 @@ class _BookingViewBody extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            BookingList(bookings: coming),
-            BookingList(bookings: old),
+            BookingList(bookings: upcoming),
+            BookingList(bookings: past),
           ],
         ),
       ),
