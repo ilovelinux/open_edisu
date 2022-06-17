@@ -85,7 +85,7 @@ class Client {
     date ??= DateTime.now();
 
     final response = await _api.slots(
-      DateFormat('dd-MM-y').format(date),
+      DateFormat('y-MM-dd').format(date),
       "${hall.hname} (${hall.id})",
     );
 
@@ -96,7 +96,7 @@ class Client {
     date ??= DateTime.now();
 
     final response = await _api.seats(
-      DateFormat('dd-MM-y').format(date),
+      DateFormat('y-MM-dd').format(date),
       "${hall.hname} (${hall.id})",
     );
 
