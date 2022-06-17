@@ -94,4 +94,12 @@ abstract class RestClient {
   @POST("/booking/bookingcancel")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"})
   Future bookingcancel(@Body() BookingCancelRequest body);
+
+  @POST('/users/updateuser')
+  @Headers({HttpHeaders.acceptLanguageHeader: "it"})
+  Future<Result> updateuser(@Body() UserBase body);
+
+  @POST('/users/updatepassword')
+  @Headers({HttpHeaders.acceptLanguageHeader: "it"})
+  Future<Result> updatepassword(@Body() UpdatePasswordRequest body);
 }

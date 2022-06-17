@@ -137,6 +137,15 @@ class Client {
   Future bookingCancel(final int bookingID) =>
       _api.bookingcancel(BookingCancelRequest(bookingId: bookingID));
 
+  Future updateUser(final UserBase user) => _api.updateuser(user);
+
+  Future updatePassword(final String oldPassword, final String newPassword) =>
+      _api.updatepassword(UpdatePasswordRequest(
+        oldPassword: oldPassword,
+        password: newPassword,
+        confirmPassword: newPassword,
+      ));
+
   Future logout() => flutterSecureStorage.delete(key: 'token');
 }
 
