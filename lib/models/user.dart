@@ -1,37 +1,68 @@
 part of 'edisu.dart';
 
 @JsonSerializable(fieldRename: FieldRename.none)
-class User {
-  final String name;
-  final String surname;
-  final String email;
-  final String creationDate;
+class UserBase {
+  String name;
+  String surname;
+  String email;
   @JsonKey(fromJson: intToBool)
-  final bool newsletter;
+  bool newsletter;
   @JsonKey(fromJson: intToBool)
-  final bool notifications;
-  final String userType;
-  final String studentCode;
-  final int studentType;
-  @JsonKey(fromJson: intToBool)
-  final bool studentDisabled;
-  final int uniID;
-  final int id;
+  bool notifications;
+  String userType;
+  String studentCode;
+  int studentType;
+  int uniID;
 
-  const User({
+  UserBase({
     required this.name,
     required this.surname,
     required this.email,
-    required this.creationDate,
     required this.newsletter,
     required this.notifications,
     required this.userType,
     required this.studentCode,
     required this.studentType,
-    required this.studentDisabled,
     required this.uniID,
-    required this.id,
   });
+
+  factory UserBase.fromJson(Map<String, dynamic> json) =>
+      _$UserBaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserBaseToJson(this);
+}
+
+@JsonSerializable(fieldRename: FieldRename.none)
+class User extends UserBase {
+  final int id;
+  final String creationDate;
+  @JsonKey(fromJson: intToBool)
+  final bool studentDisabled;
+
+  User({
+    required name,
+    required surname,
+    required email,
+    required this.creationDate,
+    required newsletter,
+    required notifications,
+    required userType,
+    required studentCode,
+    required studentType,
+    required this.studentDisabled,
+    required uniID,
+    required this.id,
+  }) : super(
+          name: name,
+          surname: surname,
+          email: email,
+          newsletter: newsletter,
+          notifications: notifications,
+          userType: userType,
+          studentCode: studentCode,
+          studentType: studentType,
+          uniID: uniID,
+        );
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
