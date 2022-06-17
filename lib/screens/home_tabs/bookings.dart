@@ -26,7 +26,7 @@ class _BookingViewBody extends StatelessWidget {
     Bookings past = [];
 
     for (final booking in bookings) {
-      if (booking.isComing()) {
+      if (booking.isUpcoming()) {
         upcoming.add(booking);
       } else {
         past.add(booking);
@@ -146,7 +146,7 @@ class _BookingDialog extends StatelessWidget {
           child: const Text("Ok"),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        if (booking.isComing())
+        if (booking.isUpcoming())
           TextButton(
             child: const Text("Cancella"),
             onPressed: () async {

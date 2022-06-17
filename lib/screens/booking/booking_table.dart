@@ -53,7 +53,7 @@ class _TimeTable extends StatelessWidget {
     final bookingsOfTheDay = groupBy(
       context.read<BookingsBloc>().bookings.where((booking) =>
           booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
-          booking.isComing()),
+          booking.isUpcoming()),
       (Booking booking) => booking.seatNo,
     );
 

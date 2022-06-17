@@ -39,7 +39,7 @@ class Booking {
   DateTime toDateTime() =>
       date.add(Duration(hours: startTime.hour, minutes: startTime.minute));
 
-  bool isComing() => bookingStatus.isUpcoming() || bookingStatus.isPending();
+  bool isUpcoming() => bookingStatus.isUpcoming() || bookingStatus.isPending();
 }
 
 typedef Bookings = List<Booking>;
