@@ -67,6 +67,10 @@ class _TimeTable extends StatelessWidget {
         )
         .toList();
 
+    if (slots.isEmpty) {
+      return CenteredText(AppLocalizations.of(context)!.noSlotsAvailable);
+    }
+
     final bookingsOfTheDay = groupBy(
       context.read<BookingsBloc>().bookings.where((booking) =>
           booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
