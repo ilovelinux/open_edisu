@@ -49,17 +49,24 @@ class _BookingTable extends StatelessWidget {
 
 class _TimeTable extends StatelessWidget {
   const _TimeTable(
-    this.slots,
+    this.allSlots,
     this.bookingsPerSeats, {
     Key? key,
   }) : super(key: key);
 
-  final Slots slots;
+  final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
 
   @override
   Widget build(BuildContext context) {
-    // final slots = bookingsPerSeats.futureSlots;
+    final slots = allSlots
+        .skipWhile(
+          (slot) =>
+              slot.timeStart !=
+              bookingsPerSeats.futureSlots.firstOrNull?.timeStart,
+        )
+        .toList();
+
     final bookingsOfTheDay = groupBy(
       context.read<BookingsBloc>().bookings.where((booking) =>
           booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
