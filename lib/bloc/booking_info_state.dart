@@ -5,6 +5,7 @@ class BookingInfoState with _$BookingInfoState {
   const factory BookingInfoState.update() = _Update;
   const factory BookingInfoState.loading() = _Loading;
   const factory BookingInfoState.success(
+    final Slots slots,
     final BookingsPerSeats bookingsPerSeat,
   ) = _Success;
   const factory BookingInfoState.alternativeSuccess(

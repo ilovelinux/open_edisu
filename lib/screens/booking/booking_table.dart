@@ -218,7 +218,7 @@ class _BookingButton extends StatelessWidget {
 
   Function()? _book(BuildContext context, BookingTableState state) {
     return state.whenOrNull(
-      (seat, slot) => () {
+      selected: (seat, slot) => () {
         final bookingInfoBloc = context.read<BookingInfoBloc>();
         showDialog(
           context: context,

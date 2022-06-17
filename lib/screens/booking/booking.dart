@@ -67,7 +67,8 @@ class BookingView extends StatelessWidget {
           Expanded(
             child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
               builder: (context, state) => state.when(
-                success: (bookingsPerSeat) => _BookingTable(bookingsPerSeat),
+                success: (slots, bookingsPerSeat) =>
+                    _BookingTable(slots, bookingsPerSeat),
                 alternativeSuccess: (slots, seats) =>
                     _TimeTable2(slots: slots, seats: seats),
                 loading: () => const LoadingWidget(),

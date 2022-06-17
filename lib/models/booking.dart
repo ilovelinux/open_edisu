@@ -41,7 +41,7 @@ class Booking {
 
   bool isUpcoming() => bookingStatus.isUpcoming() || bookingStatus.isPending();
 
-  bool isOnDay(DateTime day) => date.isBefore(day) && isComing();
+  bool isOnDay(DateTime day) => date.isBefore(day) && isUpcoming();
 
   TimeRange get timeRange => TimeRange(timeStart: startTime, timeEnd: endTime);
 }
