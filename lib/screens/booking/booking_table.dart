@@ -203,24 +203,22 @@ class _BookingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingTableCubit, BookingTableState>(
-      builder: (context, state) {
-        return SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            onPressed: _book(context, state),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(AppLocalizations.of(context)!.bookingButton),
-            ),
+      builder: (context, state) => SizedBox(
+        width: double.infinity,
+        child: OutlinedButton(
+          onPressed: _book(context, state),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(AppLocalizations.of(context)!.bookingButton),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   Function()? _book(BuildContext context, BookingTableState state) {
-    return state.when(
-      selected: (seat, slot) => () {
+    return state.whenOrNull(
+      (seat, slot) => () {
         final bookingInfoBloc = context.read<BookingInfoBloc>();
         showDialog(
           context: context,
@@ -238,7 +236,6 @@ class _BookingButton extends StatelessWidget {
           ),
         );
       },
-      unselected: () => null,
     );
   }
 }
