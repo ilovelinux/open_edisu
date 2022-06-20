@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
             listener: (context, state) => state.whenOrNull<void>(
               authenticated: (user) => GetIt.I.registerSingleton(user),
               unauthenticated: (final sessionExpired, final message) {
-                GetIt.I.unregister<User>();
+                if (GetIt.I.isRegistered<User>()) {
+                  GetIt.I.unregister<User>();
+                }
 
                 final error = sessionExpired
                     ? AppLocalizations.of(context)!.sessionExpired
