@@ -21,7 +21,6 @@ void initInceptor() {
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) async {
-        print(options.data);
         final token = await flutterSecureStorage.read(key: 'token');
         if (token != null) {
           options.headers[HttpHeaders.authorizationHeader] = "Bearer $token";
