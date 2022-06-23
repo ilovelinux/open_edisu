@@ -247,7 +247,7 @@ class TimeRange {
       (timeStart <= slot.timeStart &&
           normalizedTimeEnd >= slot.normalizedTimeEnd);
 
-  String format(final context, [final String separator = ""]) =>
+  String format(final context, [final String separator = " "]) =>
       [timeStart.format(context), timeEnd.format(context)].join(separator);
 }
 
