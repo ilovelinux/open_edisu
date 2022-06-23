@@ -12,4 +12,9 @@ extension TimeOfDayExtension on TimeOfDay {
     final m = minute.toString().padLeft(2, "0");
     return "$h:$m";
   }
+
+  TimeOfDay step({int steps = 1}) => TimeOfDay(
+        hour: hour + (minute + 30 * steps) ~/ 60,
+        minute: (minute + 30 * steps) % 60,
+      );
 }

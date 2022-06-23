@@ -9,13 +9,6 @@ part 'user.dart';
 part 'edisu.g.dart';
 part 'booking.dart';
 
-extension on TimeOfDay {
-  TimeOfDay step({int steps = 1}) => TimeOfDay(
-        hour: hour + (minute + 30 * steps) ~/ 60,
-        minute: (minute + 30 * steps) % 60,
-      );
-}
-
 @JsonSerializable()
 class University {
   final String name;
