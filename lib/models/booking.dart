@@ -229,6 +229,15 @@ class TimeRange {
 
   const TimeRange({required this.timeStart, required this.timeEnd});
 
+  @override
+  bool operator ==(other) =>
+      other is TimeRange &&
+      other.timeStart == timeStart &&
+      other.timeEnd == timeEnd;
+
+  @override
+  int get hashCode => timeStart.hashCode ^ timeEnd.hashCode;
+
   factory TimeRange.fromJson(Map<String, dynamic> json) =>
       _$TimeRangeFromJson(json);
 
