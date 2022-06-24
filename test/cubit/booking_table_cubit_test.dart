@@ -88,6 +88,19 @@ void main() {
     );
 
     blocTest<BookingTableCubit, BookingTableState>(
+      'deselect slots when tapped again',
+      setUp: () => slot1 = generateSlot(const TimeOfDay(hour: 11, minute: 30)),
+      build: () => BookingTableCubit(),
+      act: (cubit) => cubit
+        ..select(A123, slot1)
+        ..select(A123, slot1),
+      expect: () => [
+        BookingTableState.selected(A123, slot1),
+        const BookingTableState.unselected(),
+      ],
+    );
+
+    blocTest<BookingTableCubit, BookingTableState>(
       'emits selected slot with multiple slots',
       setUp: () {
         slot1 = generateSlot(const TimeOfDay(hour: 10, minute: 30));
@@ -124,6 +137,22 @@ void main() {
         slot1 = generateSlot(const TimeOfDay(hour: 10, minute: 30));
         // Busy slot at 12:30 - 13:00
         slot2 = generateSlot(const TimeOfDay(hour: 13, minute: 30));
+      },
+      build: () => BookingTableCubit(),
+      act: (cubit) => cubit
+        ..select(A123, slot1)
+        ..select(A123, slot2),
+      expect: () => [
+        BookingTableState.selected(A123, slot1),
+        BookingTableState.selected(A123, slot2),
+      ],
+    );
+
+    blocTest<BookingTableCubit, BookingTableState>(
+      'select only the second slot if this is before the selected slot',
+      setUp: () {
+        slot1 = generateSlot(const TimeOfDay(hour: 11, minute: 00));
+        slot2 = generateSlot(const TimeOfDay(hour: 10, minute: 30));
       },
       build: () => BookingTableCubit(),
       act: (cubit) => cubit
