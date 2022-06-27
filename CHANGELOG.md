@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Add dialog to show what's new after an update
+
 ## [0.1.5] - 2022-06-23
 
 - Fix bug on booking table that didn't allow to select more than a slot at once

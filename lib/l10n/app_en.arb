@@ -38,6 +38,11 @@
     "newBookingBottom": "New",
     "settingsBottom": "Settings",
 
+    "whatsnew": "What's new?",
+    "changelog": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Donec gravida vel odio sit amet eleifend.",
+    "great": "Great!",
+    "dontshowagain": "Don't show again",
+
     "welcome": "Welcome, {firstName} {lastName}",
     "@welcome" : {
         "placeholders": {
