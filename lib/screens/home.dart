@@ -13,7 +13,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/halls_bloc.dart';
 import '../cubit/error_cubit.dart';
-import '../cubit/page_cubit.dart';
 import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
 import '../utilities/inceptor.dart';
@@ -25,7 +24,7 @@ part 'home_tabs/bookings.dart';
 part 'home_tabs/new_booking.dart';
 part 'home_tabs/settings.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   final _pages = const [
@@ -36,55 +35,55 @@ class HomePage extends StatelessWidget {
   ];
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int index = 0;
+
+  @override
   Widget build(BuildContext context) {
     _showChangelogOnUpdate(context);
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => PageCubit()),
-        BlocProvider(
-          create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
+    return BlocProvider(
+      create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)!.homeTitles(index)),
+          actions: [
+            if (index == 1)
+              TextButton(
+                onPressed: () => context
+                    .read<BookingsBloc>()
+                    .add(const BookingsEvent.update()),
+                child: const Icon(Icons.replay, color: Colors.white),
+              ),
+          ],
         ),
-      ],
-      child: BlocBuilder<PageCubit, int>(
-        builder: (context, index) => Scaffold(
-          appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.homeTitles(index)),
-            actions: [
-              if (index == 1)
-                TextButton(
-                  onPressed: () => context
-                      .read<BookingsBloc>()
-                      .add(const BookingsEvent.update()),
-                  child: const Icon(Icons.replay, color: Colors.white),
-                ),
-            ],
-          ),
-          body: IndexedStack(index: index, children: _pages),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: index,
-            onTap: (i) => context.read<PageCubit>().change(i),
-            items: [
+        body: IndexedStack(index: index, children: widget._pages),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: index,
+          onTap: (i) => setState(() => index = i),
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.home),
+              label: AppLocalizations.of(context)!.homeBottom,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.library_books),
+              label: AppLocalizations.of(context)!.bookingsBottom,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.plus_one),
+              label: AppLocalizations.of(context)!.newBookingBottom,
+            ),
+            if (kDebugMode)
               BottomNavigationBarItem(
-                icon: const Icon(Icons.home),
-                label: AppLocalizations.of(context)!.homeBottom,
+                icon: const Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.settingsBottom,
               ),
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.library_books),
-                label: AppLocalizations.of(context)!.bookingsBottom,
-              ),
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.plus_one),
-                label: AppLocalizations.of(context)!.newBookingBottom,
-              ),
-              if (kDebugMode)
-                BottomNavigationBarItem(
-                  icon: const Icon(Icons.settings),
-                  label: AppLocalizations.of(context)!.settingsBottom,
-                ),
-            ],
-          ),
+          ],
         ),
       ),
     );
