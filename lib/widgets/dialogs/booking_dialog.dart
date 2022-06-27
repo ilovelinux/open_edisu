@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:open_edisu/utilities/errors.dart';
 
 import '../../bloc/bookings_bloc.dart';
-import '../../cubit/error_cubit.dart';
 import '../../models/edisu.dart';
 import '../../utilities/extensions/time.dart';
 import '../../utilities/inceptor.dart';
@@ -46,7 +46,7 @@ class BookingDialog extends StatelessWidget {
               );
               context.read<BookingsBloc>().add(const BookingsEvent.update());
             } catch (e) {
-              context.read<ErrorCubit>().showInDialog(e.toString());
+              showErrorInDialog(context, e.toString());
             }
             Navigator.of(context).pop();
           },

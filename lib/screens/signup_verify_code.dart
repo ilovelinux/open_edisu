@@ -27,7 +27,7 @@ class _VerifyCodeFormState extends State<_VerifyCodeForm> {
           if (wrongCode) {
             _codeController.clear();
           } else {
-            context.read<ErrorCubit>().showInSnackBar(error);
+            showErrorInSnackbar(context, error);
           }
           verifying = false;
         },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/utilities/errors.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,7 +13,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/halls_bloc.dart';
-import '../cubit/error_cubit.dart';
 import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
 import '../utilities/inceptor.dart';

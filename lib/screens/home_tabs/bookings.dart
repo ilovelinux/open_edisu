@@ -152,7 +152,7 @@ class _BookingDialog extends StatelessWidget {
                 await client.bookingCancel(booking.id);
                 context.read<BookingsBloc>().add(const BookingsEvent.update());
               } catch (e) {
-                context.read<ErrorCubit>().showInDialog(e.toString());
+                showErrorInDialog(context, e.toString());
               }
               Navigator.of(context).pop();
             },

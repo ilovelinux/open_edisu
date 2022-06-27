@@ -6,8 +6,8 @@ import 'package:open_edisu/bloc/signup_bloc.dart';
 import 'package:open_edisu/widgets/login_signup.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../cubit/error_cubit.dart';
 import '../models/edisu.dart';
+import '../utilities/errors.dart';
 
 part 'signup_initial.dart';
 part 'signup_verify_code.dart';
@@ -35,7 +35,7 @@ class SignupPage extends StatelessWidget {
                   );
 
                   if (error != null) {
-                    context.read<ErrorCubit>().showInSnackBar(error);
+                    showErrorInSnackbar(context, error);
                   }
                 },
                 builder: (context, state) => state.when(

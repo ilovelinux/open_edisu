@@ -2,18 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:open_edisu/utilities/errors.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'bloc/auth_bloc.dart';
-import 'cubit/error_cubit.dart';
 import 'models/edisu.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/signup.dart';
 import 'utilities/inceptor.dart';
 import 'widgets/commons.dart';
-import 'widgets/dialogs/error_dialog.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,11 +29,8 @@ class MyApp extends StatelessWidget {
       windowManager.setSize(const Size(414, 736)); // To simulate phone screen
     }
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => ErrorCubit()),
-        BlocProvider(create: (_) => AuthBloc()..add(const AuthEvent.restore())),
-      ],
+    return BlocProvider(
+      create: (_) => AuthBloc()..add(const AuthEvent.restore()),
       child: MaterialApp(
         title: 'Open Edisu',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -48,41 +44,27 @@ class MyApp extends StatelessWidget {
           'login': (_) => const LoginPage(),
           'signup': (_) => const SignupPage(),
         },
-        home: BlocListener<ErrorCubit, ErrorState>(
-          listener: (context, state) => state.whenOrNull(
-            dialogError: (final String? message) => showDialog(
-              context: context,
-              builder: (_) => ErrorDialog(message ?? "UNKNOWN ERROR"),
-            ),
-            snackBarError: (final String? message) =>
-                ScaffoldMessenger.of(context)
-                  ..clearSnackBars()
-                  ..showSnackBar(
-                    SnackBar(content: Text(message ?? "UNKNOWN ERROR")),
-                  ),
+        home: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) => state.whenOrNull<void>(
+            authenticated: (user) => GetIt.I.registerSingleton(user),
+            unauthenticated: (final sessionExpired, final message) {
+              if (GetIt.I.isRegistered<User>()) {
+                GetIt.I.unregister<User>();
+              }
+
+              final error = sessionExpired
+                  ? AppLocalizations.of(context)!.sessionExpired
+                  : message;
+
+              if (error != null) {
+                showErrorInSnackbar(context, error);
+              }
+            },
           ),
-          child: BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) => state.whenOrNull<void>(
-              authenticated: (user) => GetIt.I.registerSingleton(user),
-              unauthenticated: (final sessionExpired, final message) {
-                if (GetIt.I.isRegistered<User>()) {
-                  GetIt.I.unregister<User>();
-                }
-
-                final error = sessionExpired
-                    ? AppLocalizations.of(context)!.sessionExpired
-                    : message;
-
-                if (error != null) {
-                  context.read<ErrorCubit>().showInSnackBar(error);
-                }
-              },
-            ),
-            builder: (context, state) => state.when(
-              authenticated: (_) => const HomePage(),
-              unauthenticated: (_, __) => const LoginPage(),
-              unknown: () => const LoadingWidget(),
-            ),
+          builder: (context, state) => state.when(
+            authenticated: (_) => const HomePage(),
+            unauthenticated: (_, __) => const LoginPage(),
+            unknown: () => const LoadingWidget(),
           ),
         ),
       ),
