@@ -108,7 +108,9 @@ class _WeeklyStatisticsCard extends StatelessWidget {
               builder: (context, state) => state.when(
                 success: (bookings) => _WeeklyChartbar(bookings),
                 loading: () => const LoadingWidget(),
-                error: (e) => CenteredText(e),
+                error: (e) => CenteredText(
+                  kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+                ),
               ),
             ),
           ),

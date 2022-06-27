@@ -17,7 +17,7 @@ class CenteredText extends Text {
     Key? key,
     style,
     strutStyle,
-    textAlign,
+    textAlign = TextAlign.center,
     textDirection,
     locale,
     softWrap,

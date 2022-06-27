@@ -75,5 +75,6 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
-    "errorTitle": "Errore"
+    "errorTitle": "Errore",
+    "genericError": "Errore sconosciuto, riprovare più tardi."
 }

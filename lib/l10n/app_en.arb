@@ -75,5 +75,6 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
-    "errorTitle": "Error"
+    "errorTitle": "Error",
+    "genericError": "An unknown error occurred, try again later."
 }
