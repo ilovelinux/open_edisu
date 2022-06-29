@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add dialog to show what's new after an update
+- Set custom user-agent since Edisu banned requests without it
 
 ## [0.1.5] - 2022-06-23
 
