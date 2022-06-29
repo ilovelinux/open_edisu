@@ -21,6 +21,7 @@ void initInceptor() {
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) async {
+        options.headers[HttpHeaders.userAgentHeader] = "Open Edisu";
         final token = await flutterSecureStorage.read(key: 'token');
         if (token != null) {
           options.headers[HttpHeaders.authorizationHeader] = "Bearer $token";
