@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Add dialog to show what's new after an update
 - Set custom user-agent since Edisu banned requests without it
 - Add support for offline usage - now you can see your past bookings even without internet!
+- Sort bookings newest to oldest
 
 ## [0.1.5] - 2022-06-23
 
