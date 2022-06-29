@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Donec gravida vel odio sit amet eleifend.",
+    "changelog": "- Added this dialog to show what's new after an update\n- Fixed a connection issue to Edisu\n- Add support for offline usage - now you can see your past bookings even without internet!\n- Sort bookings by date",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 

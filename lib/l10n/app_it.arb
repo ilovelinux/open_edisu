@@ -41,7 +41,7 @@
     "settingsBottom": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Donec gravida vel odio sit amet eleifend.",
+    "changelog": "- Aggiunto questo popup per mostrare le novità dopo un aggiornamento\n- Risolto un problema di connessione con i server Edisu\n- Aggiunto il supporto per l'uso offline - ora potrai vedere le tue prenotazioni anche senza internet!\n- Ordinate le prenotazioni per data",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 

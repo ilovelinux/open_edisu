@@ -3,10 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.6] - 2022-06-29
+
 - Add dialog to show what's new after an update
 - Set custom user-agent since Edisu banned requests without it
 - Add support for offline usage - now you can see your past bookings even without internet!
-- Sort bookings newest to oldest
+- Sort bookings by date
 
 ## [0.1.5] - 2022-06-23
 
@@ -47,7 +49,8 @@ The app actually allows you to:
 
 Further improvements and minor bugs are known and will be fixed in next releases.
 
-[unreleased]: https://github.com/ilovelinux/open_edisu/compare/v0.1.5...HEAD
+[unreleased]: https://github.com/ilovelinux/open_edisu/compare/v0.1.6...HEAD
+[0.1.6]: https://github.com/ilovelinux/open_edisu/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/ilovelinux/open_edisu/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/ilovelinux/open_edisu/compare/0.1.3...v0.1.4
 [0.1.3]: https://github.com/ilovelinux/open_edisu/compare/0.1.2...0.1.3
