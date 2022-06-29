@@ -14,9 +14,9 @@ import 'screens/signup.dart';
 import 'utilities/inceptor.dart';
 import 'widgets/commons.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initInceptor();
+  await initInceptor();
   runApp(const MyApp());
 }
 
@@ -47,14 +47,20 @@ class MyApp extends StatelessWidget {
         home: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) => state.whenOrNull<void>(
             authenticated: (user) => GetIt.I.registerSingleton(user),
-            unauthenticated: (final sessionExpired, final message) {
+            unauthenticated: (
+              final sessionExpired,
+              final connectionError,
+              final message,
+            ) {
               if (GetIt.I.isRegistered<User>()) {
                 GetIt.I.unregister<User>();
               }
 
-              final error = sessionExpired
-                  ? AppLocalizations.of(context)!.sessionExpired
-                  : message;
+              final error = connectionError
+                  ? AppLocalizations.of(context)!.connectionError
+                  : sessionExpired
+                      ? AppLocalizations.of(context)!.sessionExpired
+                      : message;
 
               if (error != null) {
                 showErrorInSnackbar(context, error);
@@ -63,7 +69,7 @@ class MyApp extends StatelessWidget {
           ),
           builder: (context, state) => state.when(
             authenticated: (_) => const HomePage(),
-            unauthenticated: (_, __) => const LoginPage(),
+            unauthenticated: (_, __, ___) => const LoginPage(),
             unknown: () => const LoadingWidget(),
           ),
         ),

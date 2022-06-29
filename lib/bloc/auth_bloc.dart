@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,12 +20,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthState.unknown());
       try {
         emit(AuthState.authenticated(
-            await client.signin(event.username, event.password)));
+          await client.signin(event.username, event.password),
+        ));
       } catch (e) {
-        emit(AuthState.unauthenticated(message: getErrorString(e)));
+        if (e is DioError &&
+            e.type == DioErrorType.other &&
+            e.error is SocketException) {
+          emit(const AuthState.unauthenticated(connectionError: true));
+        } else {
+          emit(AuthState.unauthenticated(message: getErrorString(e)));
 
-        if (kDebugMode) {
-          rethrow;
+          if (kDebugMode) {
+            rethrow;
+          }
         }
       }
     });
@@ -40,20 +48,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.authenticated(await client.me()));
       } catch (e) {
         bool sessionExpired = false;
+        bool connectionError = false;
         String? message;
-        if (e is DioError &&
-            e.type == DioErrorType.response &&
-            e.response?.statusCode == 403) {
-          if (await flutterSecureStorage.containsKey(key: 'token')) {
-            await flutterSecureStorage.delete(key: 'token');
-            sessionExpired = true;
+        if (e is DioError) {
+          if (e.type == DioErrorType.other && e.error is SocketException) {
+            connectionError = true;
+          } else if (e.type == DioErrorType.response &&
+              e.response?.statusCode == 403) {
+            if (await flutterSecureStorage.containsKey(key: 'token')) {
+              await flutterSecureStorage.delete(key: 'token');
+              sessionExpired = true;
+            }
+          } else {
+            message = getErrorString(e);
           }
-        } else {
-          message = getErrorString(e);
         }
 
         emit(AuthState.unauthenticated(
           sessionExpired: sessionExpired,
+          connectionError: connectionError,
           message: message,
         ));
 

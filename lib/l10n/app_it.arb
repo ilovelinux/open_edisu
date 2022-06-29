@@ -8,6 +8,8 @@
     "or": "OPPURE",
     "signupButton": "Non sei ancora registrato? Registrati!",
 
+    "connectionError": "Errore di rete: controllare la connessione e riprovare",
+
     "signup": "Registrati",
     "continueSignup": "Continua",
     "verifyCode": "Inserisci il codice",

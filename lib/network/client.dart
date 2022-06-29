@@ -1,3 +1,4 @@
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
@@ -62,7 +63,11 @@ class Client {
   }
 
   Future<User> me() async {
-    final response = await _api.me();
+    final response = await _api.me(
+      (await defaultCacheOptions)
+          .copyWith(policy: CachePolicy.forceCache)
+          .toOptions(),
+    );
     return response.result.data;
   }
 
@@ -70,13 +75,24 @@ class Client {
     final String date = "",
     final String filter = "-1",
   }) async {
-    final response = await _api.studentBookingList(date: date, filter: filter);
+    final response = await _api.studentBookingList(
+      date: date,
+      filter: filter,
+      options: (await defaultCacheOptions)
+          .copyWith(policy: CachePolicy.forceCache)
+          .toOptions(),
+    );
 
     return response.result!.slots;
   }
 
   Future<Halls> getHalls({final String type = "0"}) async {
-    var response = await _api.hallList(type: type);
+    var response = await _api.hallList(
+      type: type,
+      options: (await defaultCacheOptions)
+          .copyWith(policy: CachePolicy.forceCache)
+          .toOptions(),
+    );
 
     return response.result.data.list;
   }

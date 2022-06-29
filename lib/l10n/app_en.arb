@@ -8,6 +8,8 @@
     "or": "OR",
     "signupButton": "Not yet registered? Sign up!",
 
+    "connectionError": "Connection error: check your internet connection and retry",
+
     "signup": "Signup",
     "continueSignup": "Continue",
     "verifyCode": "Insert your code",

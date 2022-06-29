@@ -1,22 +1,34 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_edisu/network/client.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../network/api.dart';
 import '../network/models.dart';
 
-void initInceptor() {
+Future<CacheOptions> get defaultCacheOptions async => CacheOptions(
+      store: HiveCacheStore((await getTemporaryDirectory()).absolute.path),
+      // Cache policy will be overriden on requests that needs to be cached.
+      policy: CachePolicy.noCache,
+      allowPostMethod: true,
+    );
+
+Future<void> initInceptor() async {
   final dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
 
   if (kDebugMode) {
     dio.interceptors
         .add(PrettyDioLogger(requestBody: true, responseBody: true));
   }
+
+  dio.interceptors.add(DioCacheInterceptor(options: await defaultCacheOptions));
 
   dio.interceptors.add(
     InterceptorsWrapper(
