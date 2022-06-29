@@ -15,6 +15,7 @@ import '../network/models.dart';
 
 Future<CacheOptions> get defaultCacheOptions async => CacheOptions(
       store: HiveCacheStore((await getTemporaryDirectory()).absolute.path),
+      hitCacheOnErrorExcept: [401, 403],
       // Cache policy will be overriden on requests that needs to be cached.
       policy: CachePolicy.noCache,
       allowPostMethod: true,

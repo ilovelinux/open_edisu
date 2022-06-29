@@ -65,7 +65,7 @@ class Client {
   Future<User> me() async {
     final response = await _api.me(
       (await defaultCacheOptions)
-          .copyWith(policy: CachePolicy.forceCache)
+          .copyWith(policy: CachePolicy.refreshForceCache)
           .toOptions(),
     );
     return response.result.data;
@@ -79,7 +79,7 @@ class Client {
       date: date,
       filter: filter,
       options: (await defaultCacheOptions)
-          .copyWith(policy: CachePolicy.forceCache)
+          .copyWith(policy: CachePolicy.refreshForceCache)
           .toOptions(),
     );
 
@@ -90,7 +90,7 @@ class Client {
     var response = await _api.hallList(
       type: type,
       options: (await defaultCacheOptions)
-          .copyWith(policy: CachePolicy.forceCache)
+          .copyWith(policy: CachePolicy.refreshForceCache)
           .toOptions(),
     );
 
