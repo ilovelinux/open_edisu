@@ -59,6 +59,7 @@ dev_dependencies:
   json_serializable: ^6.2.0
   retrofit_generator: ^4.0.1
   pretty_dio_logger: ^1.2.0-beta-1
+  msix: ^3.6.2
 
 flutter:
   uses-material-design: true
@@ -70,3 +71,13 @@ flutter_icons:
   adaptive_icon_foreground: "assets/icon/foreground.png"
   android: true
   ios: true
+
+msix_config:
+  display_name: Open Edisu
+  publisher_display_name: Antonio Spadaro
+  identity_name: 56649AntonioSpadaro.OpenEdisu
+  publisher: CN=15FA372E-AC50-4E12-AFBB-C963287752A5
+  msix_version: 1.1.6.0
+  logo_path: .\assets\icon\icon.png
+  capabilities: internetClient
+  languages: en, it
