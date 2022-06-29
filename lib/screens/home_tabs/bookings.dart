@@ -35,8 +35,8 @@ class _BookingViewBody extends StatelessWidget {
       }
     }
 
-    upcoming.sort((a, b) => a.date.compareTo(b.date));
-    past.sort((a, b) => b.date.compareTo(a.date));
+    upcoming.sort((a, b) => a.toDateTime().compareTo(b.toDateTime()));
+    past.sort((a, b) => b.toDateTime().compareTo(a.toDateTime()));
 
     return DefaultTabController(
       length: 2,
