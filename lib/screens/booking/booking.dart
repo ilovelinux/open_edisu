@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +32,14 @@ const double _width = 60;
 const double _separatorWidth = 20;
 const double _height = 60;
 const double _margin = 6;
+
+class DragWithTouchAndMouse extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
+}
 
 class BookingPage extends StatelessWidget {
   final Hall hall;

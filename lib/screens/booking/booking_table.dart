@@ -36,11 +36,15 @@ class _BookingTable extends StatelessWidget {
       ),
       child: BlocProvider(
         create: (context) => BookingTableCubit(),
-        child: Column(
-          children: [
-            Expanded(child: _TimeTable(slots.withSeparators, bookingsPerSeats)),
-            _BookingButton(),
-          ],
+        child: ScrollConfiguration(
+          behavior: DragWithTouchAndMouse(),
+          child: Column(
+            children: [
+              Expanded(
+                  child: _TimeTable(slots.withSeparators, bookingsPerSeats)),
+              _BookingButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -97,6 +101,8 @@ class _TimeTable extends StatelessWidget {
         seat: bookingsPerSeats.seats[index],
         bookedSlots: bookingsOfTheDay[index + 1],
       ),
+      horizontalScrollbarStyle:
+          Platform.isWindows ? const ScrollbarStyle(isAlwaysShown: true) : null,
     );
   }
 
