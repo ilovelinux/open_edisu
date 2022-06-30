@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 - Add settings page
 - Review layout of booking dialog
 - Fix background color of loading screen
+- Add notice about the non-official status of Open Edisu app
 
 ## [0.1.7] - 2022-06-30
 
