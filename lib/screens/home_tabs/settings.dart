@@ -9,6 +9,7 @@ class _SettingsView extends StatefulWidget {
 
 class _SettingsViewState extends State<_SettingsView> {
   late final User user;
+  String version = "";
 
   @override
   void initState() {
@@ -16,62 +17,72 @@ class _SettingsViewState extends State<_SettingsView> {
         .read<AuthBloc>()
         .state
         .whenOrNull(authenticated: (user) => user)!;
+    PackageInfo.fromPlatform().then(
+      (packageInfo) => setState(() => version = packageInfo.version),
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // final kDebugMode = false;
-
     return ListView(
       children: [
         ListTile(
           title: Text(
-            "User",
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-        ),
-        ListTile(
-          leading: const Icon(Icons.person),
-          title: const Text("Account"),
-          trailing: const Icon(Icons.arrow_forward_ios),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AccountView(),
-            ),
-          ),
-        ),
-        ListTile(
-          leading: const Icon(Icons.notifications),
-          title: const Text("Notifications"),
-          trailing: const Icon(Icons.arrow_forward_ios),
-        ),
-        const Divider(),
-        ListTile(
-          leading: const Icon(Icons.exit_to_app),
-          title: const Text("Logout"),
-          onTap: () => context.read<AuthBloc>().add(const AuthEvent.logout()),
-        ),
-        const Divider(),
-        ListTile(
-          title: Text(
-            "Other",
+            AppLocalizations.of(context)!.user,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),
           ),
         ),
+        ListTile(
+          leading: const Icon(Icons.person),
+          title: Text(AppLocalizations.of(context)!.firstName),
+          trailing: Text(user.name),
+        ),
+        ListTile(
+          leading: const Icon(Icons.person),
+          title: Text(AppLocalizations.of(context)!.lastName),
+          trailing: Text(user.surname),
+        ),
+        ListTile(
+          leading: const Icon(Icons.numbers),
+          title: Text(AppLocalizations.of(context)!.studentId),
+          trailing: Text(user.studentCode),
+        ),
+        const Divider(),
+        ListTile(
+          leading: const Icon(Icons.exit_to_app),
+          title: Text(AppLocalizations.of(context)!.logout),
+          onTap: () => context.read<AuthBloc>().add(const AuthEvent.logout()),
+        ),
+        const Divider(),
+        ListTile(
+          title: Text(
+            AppLocalizations.of(context)!.other,
+            style: TextStyle(color: Theme.of(context).primaryColor),
+          ),
+        ),
         AboutListTile(
           applicationIcon: Image.asset(
             'assets/icon/icon.png',
-            scale: 40,
+            scale: 50,
           ),
           applicationName: "Open Edisu",
-          applicationVersion: "0.1.2",
-          applicationLegalese: "Released under GPLv3",
+          applicationVersion: version,
+          applicationLegalese: [
+            AppLocalizations.of(context)!.unofficialWarning,
+            AppLocalizations.of(context)!.license,
+          ].join("\n\n"),
           icon: const Icon(Icons.info),
           child: const Text("About"),
-        )
+        ),
+        ListTile(
+          leading: const Icon(Icons.code),
+          title: const Text("GitHub"),
+          onTap: () =>
+              launchUrl(Uri.https('github.com', '/ilovelinux/open_edisu')),
+        ),
       ],
     );
   }
