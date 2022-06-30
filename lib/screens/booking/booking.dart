@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,8 +29,17 @@ const Color conflict = Color(0xFFEBD671);
 
 // Table sizes
 const double _width = 60;
+const double _separatorWidth = 20;
 const double _height = 60;
 const double _margin = 6;
+
+class DragWithTouchAndMouse extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
+}
 
 class BookingPage extends StatelessWidget {
   final Hall hall;
@@ -66,7 +78,8 @@ class BookingView extends StatelessWidget {
           Expanded(
             child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
               builder: (context, state) => state.when(
-                success: (bookingsPerSeat) => _BookingTable(bookingsPerSeat),
+                success: (slots, bookingsPerSeat) =>
+                    _BookingTable(slots, bookingsPerSeat),
                 alternativeSuccess: (slots, seats) =>
                     _TimeTable2(slots: slots, seats: seats),
                 loading: () => const LoadingWidget(),

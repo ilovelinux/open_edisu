@@ -1,8 +1,13 @@
 part of 'booking.dart';
 
 class _BookingTable extends StatelessWidget {
-  const _BookingTable(this.bookingsPerSeats, {Key? key}) : super(key: key);
+  const _BookingTable(
+    this.slots,
+    this.bookingsPerSeats, {
+    Key? key,
+  }) : super(key: key);
 
+  final Slots slots;
   final BookingsPerSeats bookingsPerSeats;
 
   @override
@@ -31,11 +36,15 @@ class _BookingTable extends StatelessWidget {
       ),
       child: BlocProvider(
         create: (context) => BookingTableCubit(),
-        child: Column(
-          children: [
-            Expanded(child: _TimeTable(bookingsPerSeats)),
-            _BookingButton(),
-          ],
+        child: ScrollConfiguration(
+          behavior: DragWithTouchAndMouse(),
+          child: Column(
+            children: [
+              Expanded(
+                  child: _TimeTable(slots.withSeparators, bookingsPerSeats)),
+              _BookingButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -43,24 +52,41 @@ class _BookingTable extends StatelessWidget {
 }
 
 class _TimeTable extends StatelessWidget {
-  const _TimeTable(this.bookingsPerSeats, {Key? key}) : super(key: key);
+  const _TimeTable(
+    this.allSlots,
+    this.bookingsPerSeats, {
+    Key? key,
+  }) : super(key: key);
 
+  final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
 
   @override
   Widget build(BuildContext context) {
-    final slots = bookingsPerSeats.futureSlots;
+    final Slots slots = bookingsPerSeats.futureSlots.isNotEmpty
+        ? allSlots
+            .skipWhile((slot) =>
+                slot == slotSeparator ||
+                slot.timeStart < bookingsPerSeats.futureSlots.first.timeStart)
+            .toList()
+        : const [];
+
+    if (slots.isEmpty) {
+      return CenteredText(AppLocalizations.of(context)!.noSlotsAvailable);
+    }
+
     final bookingsOfTheDay = groupBy(
       context.read<BookingsBloc>().bookings.where((booking) =>
           booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
-          booking.isComing()),
+          booking.isUpcoming()),
       (Booking booking) => booking.seatNo,
     );
 
     return HorizontalDataTable(
       isFixedHeader: true,
       leftHandSideColumnWidth: 40,
-      rightHandSideColumnWidth: _width * slots.length,
+      rightHandSideColumnWidth: _width * slots.length -
+          slots.separatorsCount * (_width - _separatorWidth),
       headerWidgets: _getHeaderWidgets(slots),
       itemCount: bookingsPerSeats.seats.length,
       leftSideItemBuilder: (BuildContext context, int index) => Container(
@@ -75,19 +101,21 @@ class _TimeTable extends StatelessWidget {
         seat: bookingsPerSeats.seats[index],
         bookedSlots: bookingsOfTheDay[index + 1],
       ),
+      horizontalScrollbarStyle:
+          Platform.isWindows ? const ScrollbarStyle(isAlwaysShown: true) : null,
     );
   }
 
-  List<Widget> _getHeaderWidgets(List<TimeRange> slots) => <Widget>[
+  List<Widget> _getHeaderWidgets(Slots slots) => <Widget>[
         const SizedBox(width: _width, height: 25),
         ...slots
             .map(
               (e) => Container(
-                width: _width,
+                width: e == slotSeparator ? _separatorWidth : _width,
                 height: 25,
                 // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
-                child: Text(e.timeStart.to24hours()),
+                child: Text(e == slotSeparator ? "" : e.begin.to24hours()),
               ),
             )
             .toList(),
@@ -103,7 +131,7 @@ class _TableRow extends StatelessWidget {
   })  : bookedSlots = bookedSlots ?? const [],
         super(key: key);
 
-  final List<TimeRange> slots;
+  final Slots slots;
   final BookedSeat seat;
   final Bookings bookedSlots;
 
@@ -122,23 +150,21 @@ class _TableRow extends StatelessWidget {
           unselected: () => false,
         ),
       ),
-      builder: (context, state) {
-        return Row(
-          children: slots
-              .map((e) => _TableCell(seat, e, color: _getCellColor(state, e)))
-              .toList(),
-        );
-      },
+      builder: (context, state) => Row(
+        children: slots
+            .map((e) => _TableCell(seat, e, color: _getCellColor(state, e)))
+            .toList(),
+      ),
     );
   }
 
-  Color _getCellColor(BookingTableState state, TimeRange slot) {
-    for (final booking in bookedSlots) {
-      if (slot.isAtTheSameMomentAs(
-        TimeRange(timeStart: booking.startTime, timeEnd: booking.endTime),
-      )) {
-        return booked;
-      }
+  Color _getCellColor(BookingTableState state, Slot slot) {
+    if (slot == slotSeparator) {
+      return unavailable;
+    }
+
+    if (bookedSlots.any((b) => slot.isAtTheSameMomentAs(b.timeRange))) {
+      return booked;
     }
 
     if (seat.isBusy(slot)) {
@@ -172,7 +198,7 @@ class _TableCell extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.read<BookingTableCubit>().select(seat, slot),
       child: Container(
-        width: _width - _margin * 2,
+        width: (slot == slotSeparator ? _separatorWidth : _width) - _margin * 2,
         height: _height - _margin * 2,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -188,29 +214,27 @@ class _BookingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingTableCubit, BookingTableState>(
-      builder: (context, state) {
-        return SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            onPressed: _book(context, state),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(AppLocalizations.of(context)!.bookingButton),
-            ),
+      builder: (context, state) => SizedBox(
+        width: double.infinity,
+        child: OutlinedButton(
+          onPressed: _book(context, state),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(AppLocalizations.of(context)!.bookingButton),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   Function()? _book(BuildContext context, BookingTableState state) {
-    return state.when(
+    return state.whenOrNull(
       selected: (seat, slot) => () {
         final bookingInfoBloc = context.read<BookingInfoBloc>();
         showDialog(
           context: context,
           builder: (_) => BlocProvider.value(
-            value: context.read<BookingInfoBloc>(),
+            value: bookingInfoBloc,
             child: BlocProvider.value(
               value: context.read<BookingsBloc>(),
               child: BookingDialog(
@@ -223,7 +247,6 @@ class _BookingButton extends StatelessWidget {
           ),
         );
       },
-      unselected: () => null,
     );
   }
 }

@@ -4,8 +4,7 @@ part of 'edisu.dart';
 class Booking {
   final int id;
   final String bookingId;
-  @JsonKey(fromJson: int.parse)
-  final int seatNo;
+  final String seatNo;
   final String location;
   final DateTime date;
   final TimeOfDay startTime;
@@ -39,7 +38,11 @@ class Booking {
   DateTime toDateTime() =>
       date.add(Duration(hours: startTime.hour, minutes: startTime.minute));
 
-  bool isComing() => bookingStatus.isUpcoming() || bookingStatus.isPending();
+  bool isUpcoming() => bookingStatus.isUpcoming() || bookingStatus.isPending();
+
+  bool isOnDay(DateTime day) => date.isBefore(day) && isUpcoming();
+
+  TimeRange get timeRange => TimeRange(timeStart: startTime, timeEnd: endTime);
 }
 
 typedef Bookings = List<Booking>;
@@ -156,8 +159,9 @@ typedef SeatsList = List<Seats>;
 
 @JsonSerializable(converters: [TimeOfDayConverter()])
 class BookingsPerSeats {
-  final TimeOfDay timeStart;
-  final TimeOfDay timeEnd;
+  final TimeOfDay? timeStart;
+  final TimeOfDay? timeEnd;
+  @JsonKey(defaultValue: [])
   final BookedSeatList seats;
   @JsonKey(ignore: true)
   late final DateTime date; // Not given by api
@@ -168,7 +172,8 @@ class BookingsPerSeats {
     required this.seats,
   });
 
-  TimeRange get timeRange => TimeRange(timeStart: timeStart, timeEnd: timeEnd);
+  TimeRange get timeRange =>
+      TimeRange(timeStart: timeStart!, timeEnd: timeEnd!);
 
   factory BookingsPerSeats.fromJson(Map<String, dynamic> json) =>
       _$BookingsPerSeatsFromJson(json);
@@ -224,6 +229,15 @@ class TimeRange {
 
   const TimeRange({required this.timeStart, required this.timeEnd});
 
+  @override
+  bool operator ==(other) =>
+      other is TimeRange &&
+      other.timeStart == timeStart &&
+      other.timeEnd == timeEnd;
+
+  @override
+  int get hashCode => timeStart.hashCode ^ timeEnd.hashCode;
+
   factory TimeRange.fromJson(Map<String, dynamic> json) =>
       _$TimeRangeFromJson(json);
 
@@ -241,14 +255,37 @@ class TimeRange {
           slot.normalizedTimeEnd >= normalizedTimeEnd) ||
       (timeStart <= slot.timeStart &&
           normalizedTimeEnd >= slot.normalizedTimeEnd);
+
+  String format(final context, [final String separator = " "]) =>
+      [timeStart.format(context), timeEnd.format(context)].join(separator);
 }
 
-@JsonSerializable(converters: [TimeOfDayConverter()])
-class Slot {
-  final TimeOfDay begin;
-  final TimeOfDay end;
+class Slot extends TimeRange {
+  TimeOfDay get begin => timeStart;
+  TimeOfDay get end => timeEnd;
 
-  Slot(this.begin, this.end);
+  const Slot(begin, end) : super(timeStart: begin, timeEnd: end);
 }
 
 typedef Slots = List<Slot>;
+
+const slotSeparator = Slot(
+  TimeOfDay(hour: 99, minute: 99),
+  TimeOfDay(hour: 99, minute: 99),
+);
+
+extension SlotsExtension on Slots {
+  Slots get withSeparators {
+    final Slots slots = Slots.from(this);
+
+    for (int i = 1; i < slots.length; i++) {
+      if (slots[i - 1].end != slots[i].begin) {
+        slots.insert(i++, slotSeparator);
+      }
+    }
+
+    return slots;
+  }
+
+  int get separatorsCount => where((s) => s == slotSeparator).length;
+}

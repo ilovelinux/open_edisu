@@ -6,55 +6,56 @@ class _BookingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingsBloc, BookingsState>(
-      builder: (context, state) {
-        return state.when(
-          success: (bookings) => _buildBookingView(context, bookings),
-          loading: () => const LoadingWidget(),
-          error: (e) => CenteredText(e),
-        );
-      },
+      builder: (context, state) => state.when(
+        success: (bookings) => _BookingViewBody(bookings),
+        loading: () => const LoadingWidget(),
+        error: (e) => CenteredText(
+          kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+        ),
+      ),
     );
   }
+}
 
-  Widget _buildBookingView(BuildContext context, Bookings bookings) {
-    Bookings coming = [];
-    Bookings old = [];
+class _BookingViewBody extends StatelessWidget {
+  const _BookingViewBody(this.bookings, {Key? key}) : super(key: key);
+
+  final Bookings bookings;
+
+  @override
+  Widget build(BuildContext context) {
+    Bookings upcoming = [];
+    Bookings past = [];
 
     for (final booking in bookings) {
-      if (booking.isComing()) {
-        coming.add(booking);
+      if (booking.isUpcoming()) {
+        upcoming.add(booking);
       } else {
-        old.add(booking);
+        past.add(booking);
       }
     }
+
+    upcoming.sort((a, b) => a.toDateTime().compareTo(b.toDateTime()));
+    past.sort((a, b) => b.toDateTime().compareTo(a.toDateTime()));
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TabBar(
-                tabs: [
-                  RefreshIndicator(
-                    onRefresh: () async => context
-                        .read<BookingsBloc>()
-                        .add(const BookingsEvent.update()),
-                    child:
-                        Tab(text: AppLocalizations.of(context)!.comingBookings),
-                  ),
-                  Tab(text: AppLocalizations.of(context)!.oldBookings),
-                ],
-              )
-            ],
+          flexibleSpace: Align(
+            alignment: Alignment.bottomCenter,
+            child: TabBar(
+              tabs: [
+                Tab(text: AppLocalizations.of(context)!.upcomingBookings),
+                Tab(text: AppLocalizations.of(context)!.pastBookings),
+              ],
+            ),
           ),
         ),
         body: TabBarView(
           children: [
-            BookingList(bookings: coming),
-            BookingList(bookings: old),
+            BookingList(bookings: upcoming),
+            BookingList(bookings: past),
           ],
         ),
       ),
@@ -100,9 +101,7 @@ class BookingListTile extends StatelessWidget {
           if (kDebugMode) booking.bookingStatus.toString()
         ].join(" "),
       ),
-      trailing: Text(
-        "${booking.startTime.format(context)} - ${booking.endTime.format(context)}",
-      ),
+      trailing: Text(booking.timeRange.format(context, " - ")),
       onTap: () => showDialog(
         context: context,
         builder: (_) => BlocProvider.value(
@@ -150,7 +149,7 @@ class _BookingDialog extends StatelessWidget {
           child: const Text("Ok"),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        if (booking.isComing())
+        if (booking.isUpcoming())
           TextButton(
             child: const Text("Cancella"),
             onPressed: () async {
@@ -158,7 +157,7 @@ class _BookingDialog extends StatelessWidget {
                 await client.bookingCancel(booking.id);
                 context.read<BookingsBloc>().add(const BookingsEvent.update());
               } catch (e) {
-                context.read<ErrorCubit>().showInDialog(e.toString());
+                showErrorInDialog(context, e.toString());
               }
               Navigator.of(context).pop();
             },

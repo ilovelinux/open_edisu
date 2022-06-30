@@ -1,12 +1,14 @@
 {
     "login": "Accedi",
-    "emailPlaceholder": "Inserire l'email",
+    "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "invalidEmail": "L'email inserita non è un'email valida.",
     "invalidPassword": "La password è troppo corta.",
     "submit": "Entra",
     "or": "OPPURE",
     "signupButton": "Non sei ancora registrato? Registrati!",
+
+    "connectionError": "Errore di rete: controllare la connessione e riprovare",
 
     "signup": "Registrati",
     "continueSignup": "Continua",
@@ -38,6 +40,11 @@
     "newBookingBottom": "Nuova",
     "settingsBottom": "Impostazioni",
 
+    "whatsnew": "Novità!",
+    "changelog": "- Aggiunto questo popup per mostrare le novità dopo un aggiornamento\n- Risolto un problema di connessione con i server Edisu\n- Aggiunto il supporto per l'uso offline - ora potrai vedere le tue prenotazioni anche senza internet!\n- Ordinate le prenotazioni per data",
+    "great": "Ottimo!",
+    "dontshowagain": "Non mostrare di nuovo",
+
     "welcome": "Benvenuto, {firstName} {lastName}",
     "@welcome" : {
         "placeholders": {
@@ -52,10 +59,11 @@
     "weeklyStatisticsTitle": "Statistiche settimanali",
     "weeklyStatisticsDescription": "Il grafico raffigura quante volte sei andato in sala studio, diviso in giorni della settimana.\n\nSolo le prenotazioni confermate vengono prese in considerazione.",
 
-    "comingBookings": "Future",
-    "oldBookings": "Vecchie",
+    "upcomingBookings": "Future",
+    "pastBookings": "Vecchie",
     "noBookings": "Non ci sono prenotazioni al momento",
 
+    "noSlotsAvailable": "Nessuno slot disponibile",
     "bookingButton": "PRENOTA",
     "bookingConfirmationTitle": "Conferma la prenotazione",
     "bookingConfirmationContent": "Vuoi prenotare il posto {seatNo} dalle {timeStart} alle {timeEnd}?",
@@ -69,5 +77,6 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
-    "errorTitle": "Errore"
+    "errorTitle": "Errore",
+    "genericError": "Errore sconosciuto, riprovare più tardi."
 }

@@ -108,7 +108,9 @@ class _WeeklyStatisticsCard extends StatelessWidget {
               builder: (context, state) => state.when(
                 success: (bookings) => _WeeklyChartbar(bookings),
                 loading: () => const LoadingWidget(),
-                error: (e) => CenteredText(e),
+                error: (e) => CenteredText(
+                  kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+                ),
               ),
             ),
           ),
@@ -149,9 +151,9 @@ class _WeeklyChartbar extends StatelessWidget {
         charts.Series<int, String>(
           id: 'Bookings',
           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (int v, _) => shortWeekDays[v],
+          domainFn: (int v, _) => shortWeekDays[v % 7],
           measureFn: (int v, _) => bookingsPerWeekDay[v]?.length ?? 0,
-          data: List.generate(7, (index) => (index + 1) % 7, growable: false),
+          data: List.generate(7, (index) => index + 1, growable: false),
         )
       ],
       animate: true,

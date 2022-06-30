@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:open_edisu/utilities/inceptor.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 
@@ -50,18 +52,22 @@ abstract class RestClient {
 
   @POST("/web/me")
   @NoBody()
-  Future<MeResponse> me();
+  Future<MeResponse> me(@DioOptions() Options options);
 
   @POST("/web/studentbookinglist")
   @FormUrlEncoded()
   Future<StudentBookingListResponse> studentBookingList({
     @Field('date') final String date = "",
     @Field("filter") final String filter = "-1",
+    @DioOptions() required Options options,
   });
 
   @POST("/web/halllist")
   @FormUrlEncoded()
-  Future<HallListResponse> hallList({@Field("type") final String type = "0"});
+  Future<HallListResponse> hallList({
+    @Field("type") final String type = "0",
+    @DioOptions() required Options options,
+  });
 
   @POST("/booking/halllist")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"}) // TODO: Make this dynamic

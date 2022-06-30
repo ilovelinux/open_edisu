@@ -14,7 +14,9 @@ class _HallsView extends StatelessWidget {
             children: halls.map((hall) => _HallCard(hall: hall)).toList(),
           ),
           loading: () => const LoadingWidget(),
-          error: (final e) => CenteredText(e),
+          error: (e) => CenteredText(
+            kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+          ),
         ),
       ),
     );

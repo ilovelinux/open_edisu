@@ -18,19 +18,21 @@ class BookingTableCubit extends Cubit<BookingTableState> {
     }
 
     state.when(
-      selected: (BookedSeat seat, TimeRange slot) {
-        if (seat.id != seat.id) {
+      selected: (BookedSeat oldSeat, TimeRange oldSlot) {
+        if (seat.id != oldSeat.id) {
           emit(BookingTableState.selected(seat, slot));
-        } else if (slot.timeStart == slot.timeStart) {
+        } else if (slot.timeStart == oldSlot.timeStart) {
           emit(const BookingTableState.unselected());
-        } else if (slot.timeEnd > slot.timeEnd) {
+        } else if (slot.timeEnd > oldSlot.timeEnd) {
           final newSlot = TimeRange(
-            timeStart: slot.timeStart,
+            timeStart: oldSlot.timeStart,
             timeEnd: slot.timeEnd,
           );
 
           if (!seat.isBusy(newSlot)) {
             emit(BookingTableState.selected(seat, newSlot));
+          } else if (!seat.isBusy(slot)) {
+            emit(BookingTableState.selected(seat, slot));
           }
         } else {
           emit(BookingTableState.selected(seat, slot));

@@ -1,12 +1,14 @@
 {
     "login": "Login",
-    "emailPlaceholder": "Insert your email",
+    "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
     "invalidEmail": "The email is not a valid email.",
     "invalidPassword": "The password is too short.",
     "submit": "Sign in",
     "or": "OR",
     "signupButton": "Not yet registered? Sign up!",
+
+    "connectionError": "Connection error: check your internet connection and retry",
 
     "signup": "Signup",
     "continueSignup": "Continue",
@@ -38,6 +40,11 @@
     "newBookingBottom": "New",
     "settingsBottom": "Settings",
 
+    "whatsnew": "What's new?",
+    "changelog": "- Added this dialog to show what's new after an update\n- Fixed a connection issue to Edisu\n- Add support for offline usage - now you can see your past bookings even without internet!\n- Sort bookings by date",
+    "great": "Great!",
+    "dontshowagain": "Don't show again",
+
     "welcome": "Welcome, {firstName} {lastName}",
     "@welcome" : {
         "placeholders": {
@@ -52,10 +59,11 @@
     "weeklyStatisticsTitle": "Weekly Statistics",
     "weeklyStatisticsDescription": "This chart represents how many times you went to the study room, divided by weekdays.\n\nOnly confirmed bookings are taken into consideration.",
 
-    "comingBookings": "Coming",
-    "oldBookings": "Old",
+    "upcomingBookings": "Upcoming",
+    "pastBookings": "Past",
     "noBookings": "There are no bookings right now",
 
+    "noSlotsAvailable": "No slots available",
     "bookingButton": "BOOK",
     "bookingConfirmationTitle": "Confirm booking",
     "bookingConfirmationContent": "Do you want to book the seat {seatNo} from {timeStart} to {timeEnd}?",
@@ -69,5 +77,6 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
-    "errorTitle": "Error"
+    "errorTitle": "Error",
+    "genericError": "An unknown error occurred, try again later."
 }

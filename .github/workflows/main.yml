@@ -25,8 +25,8 @@ jobs:
 
       - run: flutter doctor -v
       - run: flutter pub get
-      # - run: flutter test
       - run: flutter pub run build_runner build
+      - run: flutter test --coverage
       - run: flutter build apk --flavor githubDebug
 
       - uses: actions/upload-artifact@v3
@@ -34,3 +34,9 @@ jobs:
           name: github-build
           path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
           if-no-files-found: error
+
+      - name: Upload coverage reports to Codecov
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN}

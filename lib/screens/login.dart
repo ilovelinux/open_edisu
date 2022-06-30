@@ -39,7 +39,7 @@ class _LoginForm extends StatelessWidget {
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.emailPlaceholder,
+                  labelText: AppLocalizations.of(context)!.emailPlaceholder,
                 ),
                 validator: (s) => validateEmail(s)
                     ? null
@@ -48,7 +48,7 @@ class _LoginForm extends StatelessWidget {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.passwordPlaceholder,
+                  labelText: AppLocalizations.of(context)!.passwordPlaceholder,
                 ),
                 validator: (s) => validateInput(s)
                     ? null
