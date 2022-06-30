@@ -10,10 +10,12 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Fix overflow when keyboard pops up
     return Scaffold(
       appBar: AppBar(title: const Text("OPEN EDISU")),
       body: Column(
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Emulate spacing taken by footer to center LoginWidget
           Padding(
@@ -23,14 +25,13 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(color: Theme.of(context).backgroundColor),
             ),
           ),
-          Expanded(
-            child: LoginWidget(
-              title: AppLocalizations.of(context)!.login,
-              child: _LoginForm(),
-            ),
+          LoginWidget(
+            title: AppLocalizations.of(context)!.login,
+            child: _LoginForm(),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+          Container(
+            color: Theme.of(context).backgroundColor,
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Text(
               AppLocalizations.of(context)!.unofficialWarning,
               textAlign: TextAlign.center,
