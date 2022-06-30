@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:open_edisu/utilities/dio.dart';
 import 'package:open_edisu/utilities/errors.dart';
 
 import '../../bloc/bookings_bloc.dart';
@@ -36,20 +37,20 @@ class BookingDialog extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           child: Text(AppLocalizations.of(context)!.yes),
-          onPressed: () async {
-            try {
-              await client.customSlotBook(
+          onPressed: () => client
+              .customSlotBook(
                 hall: hall,
                 date: date,
                 seatID: seat.id,
                 slot: slot,
-              );
-              context.read<BookingsBloc>().add(const BookingsEvent.update());
-            } catch (e) {
-              showErrorInDialog(context, e.toString());
-            }
-            Navigator.of(context).pop();
-          },
+              )
+              .then(
+                (value) => context
+                    .read<BookingsBloc>()
+                    .add(const BookingsEvent.update()),
+              )
+              .catchError((e) => showErrorInDialog(context, getErrorString(e)))
+              .whenComplete(() => Navigator.of(context).pop()),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),

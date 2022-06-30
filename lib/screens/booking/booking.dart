@@ -111,17 +111,16 @@ class _DateSelector extends StatelessWidget {
             child: const Icon(Icons.arrow_back),
           ),
           TextButton(
-            onPressed: () async {
-              final newDate = await showDatePicker(
-                context: context,
-                initialDate: date,
-                firstDate: DateTime.now(),
-                lastDate: DateTime.now().add(const Duration(days: 7)),
-              );
+            onPressed: () => showDatePicker(
+              context: context,
+              initialDate: date,
+              firstDate: DateTime.now(),
+              lastDate: DateTime.now().add(const Duration(days: 7)),
+            ).then((newDate) {
               if (newDate != null) {
                 changeDate(context, newDate);
               }
-            },
+            }),
             child: Text(
                 DateFormat.yMEd(Localizations.localeOf(context).toLanguageTag())
                     .format(date)),

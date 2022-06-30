@@ -16,6 +16,7 @@ import '../bloc/auth_bloc.dart';
 import '../bloc/halls_bloc.dart';
 import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
+import '../utilities/dio.dart';
 import '../utilities/inceptor.dart';
 import '../widgets/commons.dart';
 import 'booking/booking.dart';

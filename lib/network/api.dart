@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:open_edisu/utilities/inceptor.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 

@@ -91,7 +91,7 @@ class BookingListTile extends StatelessWidget {
       tileColor: booking.bookingStatus.isPending() ? Colors.amber : null,
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text("${booking.seatNo}")],
+        children: [Text(booking.seatNo)],
       ),
       title: Text(booking.hallName),
       subtitle: Text(
@@ -152,15 +152,14 @@ class _BookingDialog extends StatelessWidget {
         if (booking.isUpcoming())
           TextButton(
             child: const Text("Cancella"),
-            onPressed: () async {
-              try {
-                await client.bookingCancel(booking.id);
-                context.read<BookingsBloc>().add(const BookingsEvent.update());
-              } catch (e) {
-                showErrorInDialog(context, e.toString());
-              }
-              Navigator.of(context).pop();
-            },
+            onPressed: () => client
+                .bookingCancel(booking.id)
+                .then((_) => context
+                    .read<BookingsBloc>()
+                    .add(const BookingsEvent.update()))
+                .catchError(
+                    (e) => showErrorInDialog(context, getErrorString(e)))
+                .whenComplete(() => Navigator.of(context).pop()),
           ),
       ],
     );
