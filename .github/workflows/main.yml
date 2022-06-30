@@ -26,7 +26,7 @@ jobs:
       - run: flutter doctor -v
       - run: flutter pub get
       - run: flutter pub run build_runner build
-      - run: flutter test --coverage
+      - run: flutter test --coverage --reporter expanded
       - run: flutter build apk --flavor githubDebug
 
       - uses: actions/upload-artifact@v3
