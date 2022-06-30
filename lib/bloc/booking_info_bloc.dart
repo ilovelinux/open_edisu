@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:logging/logging.dart';
 
 import '../models/edisu.dart';
 import '../utilities/dio.dart';
@@ -9,6 +10,8 @@ import '../utilities/inceptor.dart';
 part 'booking_info_event.dart';
 part 'booking_info_state.dart';
 part 'booking_info_bloc.freezed.dart';
+
+final log = Logger('BookingInfoBloc');
 
 class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
   final Hall hall;
@@ -30,12 +33,10 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
         if (date == event.date) {
           emit(BookingInfoState.success(slots, bookingsPerSeats));
         }
-      } catch (e) {
+      } catch (e, stackTrace) {
         emit(BookingInfoState.error(getErrorString(e)));
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning("Catched exception on ChangeDate", e, stackTrace);
       }
     });
     on<_ChangeAlternativeDate>((event, emit) async {
@@ -57,12 +58,11 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
         if (date == event.date) {
           emit(BookingInfoState.alternativeSuccess(results[0], results[1]));
         }
-      } catch (e) {
+      } catch (e, stackTrace) {
         emit(BookingInfoState.error(getErrorString(e)));
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning(
+            "Catched exception on ChangeAlternativeDate", e, stackTrace);
       }
     });
   }

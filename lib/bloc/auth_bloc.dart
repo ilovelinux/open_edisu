@@ -1,10 +1,10 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:logging/logging.dart';
 import 'package:open_edisu/utilities/dio.dart';
 
 import '../models/edisu.dart';
@@ -14,6 +14,8 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
 
+final log = Logger('AuthBloc');
+
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(const AuthState.unknown()) {
     on<_AuthLogin>((event, emit) async {
@@ -22,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.authenticated(
           await client.signin(event.username, event.password),
         ));
-      } catch (e) {
+      } catch (e, stackTrace) {
         if (e is DioError &&
             e.type == DioErrorType.other &&
             e.error is SocketException) {
@@ -30,9 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else {
           emit(AuthState.unauthenticated(message: getErrorString(e)));
 
-          if (kDebugMode) {
-            rethrow;
-          }
+          log.warning("Catched exception on AuthLogin", e, stackTrace);
         }
       }
     });
@@ -46,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthState.unknown());
       try {
         emit(AuthState.authenticated(await client.me()));
-      } catch (e) {
+      } catch (e, stackTrace) {
         bool sessionExpired = false;
         bool connectionError = false;
         String? message;
@@ -70,16 +70,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           message: message,
         ));
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning("Catched exception on AuthRestore", e, stackTrace);
       }
     });
   }
 
   @override
   void onChange(Change<AuthState> change) {
-    log(change.toString(), name: "AUTH");
+    log.fine(change.toString());
     super.onChange(change);
   }
 }

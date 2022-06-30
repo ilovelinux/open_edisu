@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logging/logging.dart';
 import 'package:open_edisu/models/edisu.dart';
 import 'package:open_edisu/utilities/dio.dart';
 import 'package:open_edisu/utilities/inceptor.dart';
@@ -9,6 +10,8 @@ import 'package:open_edisu/utilities/inceptor.dart';
 part 'signup_event.dart';
 part 'signup_state.dart';
 part 'signup_bloc.freezed.dart';
+
+final log = Logger('SignupBloc');
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc() : super(const SignupState.initial()) {
@@ -18,16 +21,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       try {
         await client.initialSignup(email);
         emit(SignupState.requestVerifyCode(email));
-      } catch (e) {
+      } catch (e, stackTrace) {
         if (e is DioError && e.response?.statusCode == 403) {
           emit(SignupState.requestVerifyCode(email));
         } else {
           emit(SignupState.initial(error: getErrorString(e)));
         }
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning("Catched exception on InitialSignup", e, stackTrace);
       }
     });
     on<_VerifyCode>((event, emit) async {
@@ -39,7 +40,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         final universities = await client.master();
         emit(SignupState.requestProfileDetails(
             email, response.token, universities));
-      } catch (e) {
+      } catch (e, stackTrace) {
         var wrongCode = false;
         String? error;
         if (e is DioError && e.response?.statusCode == 401) {
@@ -53,9 +54,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           error: error,
         ));
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning("Catched exception on VerifyCode", e, stackTrace);
       }
     });
     on<_Signup>((event, emit) async {
@@ -72,7 +71,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           isDisabled: event.isDisabled,
         );
         emit(const SignupState.success());
-      } catch (e) {
+      } catch (e, stackTrace) {
         emit(SignupState.requestProfileDetails(
           event.email,
           event.token,
@@ -80,9 +79,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           error: getErrorString(e),
         ));
 
-        if (kDebugMode) {
-          rethrow;
-        }
+        log.warning("Catched exception on Signup", e, stackTrace);
       }
     });
   }
