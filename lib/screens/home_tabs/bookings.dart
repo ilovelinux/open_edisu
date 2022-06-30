@@ -122,8 +122,10 @@ class _BookingDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        "${booking.hallName}: ${DateFormat.yMd().format(booking.date)} "
-        "${booking.startTime.format(context)} - ${booking.endTime.format(context)}",
+        [
+          "${booking.hallName}: ${DateFormat.yMd().format(booking.date)}",
+          booking.timeRange.format(context, " - "),
+        ].join(" "),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
