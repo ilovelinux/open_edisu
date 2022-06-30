@@ -28,7 +28,7 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} 3 {SETTINGS}}",
+    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS}}",
     "@homeTitles": {
         "description": "Homepage titles",
         "placeholders": {
@@ -77,6 +77,7 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
+    "settings": "IMPOSTAZIONI",
     "user": "User",
     "firstName": "First name",
     "lastName": "Last name",

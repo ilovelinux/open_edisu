@@ -32,7 +32,6 @@ class HomePage extends StatefulWidget {
     _Home(),
     _BookingsView(),
     _HallsView(),
-    if (kDebugMode) _SettingsView(),
   ];
 
   @override
@@ -52,6 +51,15 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.homeTitles(index)),
           actions: [
+            if (index == 0)
+              TextButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const _SettingsView(),
+                  ),
+                ),
+                child: const Icon(Icons.settings, color: Colors.white),
+              ),
             if (index == 1)
               TextButton(
                 onPressed: () => context
@@ -79,11 +87,6 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.plus_one),
               label: AppLocalizations.of(context)!.newBookingBottom,
             ),
-            if (kDebugMode)
-              BottomNavigationBarItem(
-                icon: const Icon(Icons.settings),
-                label: AppLocalizations.of(context)!.settingsBottom,
-              ),
           ],
         ),
       ),

@@ -28,7 +28,7 @@
 
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {PRENOTAZIONI} 2 {SALE STUDIO} 3 {IMPOSTAZIONI}}",
+    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {PRENOTAZIONI} 2 {SALE STUDIO}}",
     "@homeTitles": {
         "description": "Titoli dell'homepage",
         "placeholders": {
@@ -77,6 +77,7 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
+    "settings": "IMPOSTAZIONI",
     "user": "Utente",
     "firstName": "Nome",
     "lastName": "Cognome",
