@@ -77,6 +77,15 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
+    "user": "Utente",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "studentId": "Matricola",
+    "other": "Other",
+
+    "unofficialWarning": "Open Edisu è un prodotto non ufficiale. Open Edisu non è affiliato con, né approvato da, Edisu",
+    "license": "Rilasciato sotto licenza GPLv3",
+
     "errorTitle": "Errore",
     "genericError": "Errore sconosciuto, riprovare più tardi."
 }

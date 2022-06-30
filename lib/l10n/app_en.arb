@@ -77,6 +77,15 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
+    "user": "User",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "studentId": "Student ID",
+    "other": "Other",
+
+    "unofficialWarning": "Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu",
+    "license": "Released under GPLv3 license",
+
     "errorTitle": "Error",
     "genericError": "An unknown error occurred, try again later."
 }
