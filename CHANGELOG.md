@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add settings page
+- Review layout of booking dialog
 
 ## [0.1.7] - 2022-06-30
 

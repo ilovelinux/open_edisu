@@ -123,16 +123,19 @@ class _BookingDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(
         [
-          "${booking.hallName}: ${DateFormat.yMd().format(booking.date)}",
+          booking.hallName,
           booking.timeRange.format(context, " - "),
-        ].join(" "),
+          DateFormat.yMd().format(booking.date),
+        ].join("\n"),
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontWeight: FontWeight.bold, height: 1.2),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 200,
-            height: 200,
+            width: MediaQuery.of(context).size.shortestSide * 0.8,
+            height: MediaQuery.of(context).size.shortestSide * 0.8,
             child: QrImage(
               data: booking.bookingId.toUpperCase(),
             ),
