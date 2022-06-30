@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
           builder: (context, state) => state.when(
             authenticated: (_) => const HomePage(),
             unauthenticated: (_, __, ___) => const LoginPage(),
-            unknown: () => const LoadingWidget(),
+            unknown: () => const Scaffold(body: LoadingWidget()),
           ),
         ),
       ),
