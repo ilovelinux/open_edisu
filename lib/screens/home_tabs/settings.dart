@@ -41,7 +41,14 @@ class _SettingsView extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: Text(AppLocalizations.of(context)!.logout),
-            onTap: () => context.read<AuthBloc>().add(const AuthEvent.logout()),
+            onTap: () => showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext c) => BlocProvider.value(
+                value: context.read<AuthBloc>(),
+                child: const _LogoutDialog(),
+              ),
+            ),
           ),
           const Divider(),
           ListTile(
