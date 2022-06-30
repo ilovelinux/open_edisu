@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
+- Add settings page
+
 ## [0.1.7] - 2022-06-30
 
 - Set Origin since Edisu banned requests without it
