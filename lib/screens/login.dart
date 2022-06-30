@@ -12,9 +12,32 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("OPEN EDISU")),
-      body: LoginWidget(
-        title: AppLocalizations.of(context)!.login,
-        child: _LoginForm(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          // Emulate spacing taken by footer to center LoginWidget
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            child: Text(
+              AppLocalizations.of(context)!.unofficialWarning,
+              style: TextStyle(color: Theme.of(context).backgroundColor),
+            ),
+          ),
+          Expanded(
+            child: LoginWidget(
+              title: AppLocalizations.of(context)!.login,
+              child: _LoginForm(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            child: Text(
+              AppLocalizations.of(context)!.unofficialWarning,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Theme.of(context).disabledColor),
+            ),
+          )
+        ],
       ),
     );
   }
