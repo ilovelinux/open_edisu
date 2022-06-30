@@ -35,6 +35,8 @@ Future<void> initInceptor() async {
     InterceptorsWrapper(
       onRequest: (options, handler) async {
         options.headers[HttpHeaders.userAgentHeader] = "Open Edisu";
+        options.headers["Origin"] =
+            "https://edisuprenotazioni.edisu-piemonte.it";
         final token = await flutterSecureStorage.read(key: 'token');
         if (token != null) {
           options.headers[HttpHeaders.authorizationHeader] = "Bearer $token";
