@@ -35,6 +35,7 @@ dependencies:
   dio_cache_interceptor: ^3.2.7
   dio_cache_interceptor_hive_store: ^3.1.1
   path_provider: ^2.0.11
+  url_launcher: ^6.1.4
 
 dependency_overrides:
   json_serializable:
