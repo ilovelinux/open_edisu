@@ -1,16 +1,29 @@
 # Open Edisu
 
-A new Flutter project.
+![main workflow](https://github.com/ilovelinux/open_edisu/actions/workflows/main.yml/badge.svg)
+[![Coverage](https://codecov.io/gh/ilovelinux/open_edisu/branch/main/graph/badge.svg?token=dQddRHNNzZ)](https://codecov.io/gh/ilovelinux/open_edisu)
 
-## Getting Started
+#### Download from
 
-This project is a starting point for a Flutter application.
+![[Google Play](https://play.google.com/store/apps/details?id=com.ilovelinux.openedisu)](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)
 
-A few resources to get you started if this is your first Flutter project:
+Open Edisu is an unofficial open-source app created as alternative to the official Edisu app [Campus Piemonte](https://play.google.com/store/apps/details?id=it.astutesoftwares.edisu).
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+It has been created with the aim of proposing an alternative to the critical issues of the official app.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Q&A 
+#### Why did you do it?
+I lost a lot of time and fingertips scrolling through the booking view of the official app during the 2021/2022 universitary winter session. I knew the issue wasn't Edisu itself but the booking view of their official app. As soon as the session ended, I started thinking about creating an alternative client to book the Edisu study room.
+
+#### Do you earn anything from it?
+No, I don't. I developed it for myself and I'm just happy to share it.
+
+#### I would like to see XYZ feature implemented...
+Open an issue! I'll have a look asap!
+
+#### Oh no, I found a bug!
+Ugh... It happens sometimes... Open an issue and I'll fix it!
+
+---
+
+*Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu.*
