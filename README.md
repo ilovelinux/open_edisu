@@ -24,4 +24,4 @@ Ugh... It happens sometimes... Open an issue and I'll fix it!
 
 ---
 
-*Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu.*
+*Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu©.*
