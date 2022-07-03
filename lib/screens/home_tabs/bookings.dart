@@ -120,6 +120,11 @@ class _BookingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceSize = MediaQuery.of(context).size;
+    final qrCodeSize = deviceSize.width > deviceSize.height
+        ? deviceSize.height * 0.6
+        : deviceSize.width * 0.8;
+
     return AlertDialog(
       title: Text(
         [
@@ -134,8 +139,8 @@ class _BookingDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.shortestSide * 0.8,
-            height: MediaQuery.of(context).size.shortestSide * 0.8,
+            width: qrCodeSize,
+            height: qrCodeSize,
             child: QrImage(
               data: booking.bookingId.toUpperCase(),
             ),
