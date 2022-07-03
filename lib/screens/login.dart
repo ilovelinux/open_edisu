@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Emulate spacing taken by footer to center LoginWidget
+          // Emulate space taken by footer to center LoginWidget
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             child: Text(
