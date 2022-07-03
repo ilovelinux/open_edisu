@@ -81,7 +81,7 @@ msix_config:
   publisher_display_name: Antonio Spadaro
   identity_name: 56649AntonioSpadaro.OpenEdisu
   publisher: CN=15FA372E-AC50-4E12-AFBB-C963287752A5
-  msix_version: 1.1.6.0
+  msix_version: 1.1.7.0
   logo_path: .\assets\icon\icon.png
   capabilities: internetClient
   languages: en, it
