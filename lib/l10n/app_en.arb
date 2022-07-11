@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Added this dialog to show what's new after an update\n- Fixed a connection issue to Edisu\n- Add support for offline usage - now you can see your past bookings even without internet!\n- Sort bookings by date",
+    "changelog": "- Add settings page\n- Review layout of booking dialog\n- Add notice about the non-official status of Open Edisu app\n- Fix bug that didn't allow to select the last slot of the day\n- Other minor fixes and improvements",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 

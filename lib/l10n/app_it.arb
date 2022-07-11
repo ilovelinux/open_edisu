@@ -41,7 +41,7 @@
     "settingsBottom": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Aggiunto questo popup per mostrare le novità dopo un aggiornamento\n- Risolto un problema di connessione con i server Edisu\n- Aggiunto il supporto per l'uso offline - ora potrai vedere le tue prenotazioni anche senza internet!\n- Ordinate le prenotazioni per data",
+    "changelog": "- Aggiunta pagina delle impostazioni\n- Rivisto il layout del dialog delle prenotazioni\n- Aggiunto un avviso riguardante lo stato non ufficiale dell'app\n- Fixato bug che non permetteva di prenotare l'ultimo slot\n- Altre migliorie minori",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 
