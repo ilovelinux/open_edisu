@@ -14,7 +14,7 @@ extension TimeOfDayExtension on TimeOfDay {
   }
 
   TimeOfDay step({int steps = 1}) => TimeOfDay(
-        hour: hour + (minute + 30 * steps) ~/ 60,
+        hour: (hour + (minute + 30 * steps) ~/ 60) % 24,
         minute: (minute + 30 * steps) % 60,
       );
 }

@@ -23,10 +23,10 @@ class BookingTableCubit extends Cubit<BookingTableState> {
           emit(BookingTableState.selected(seat, slot));
         } else if (slot.timeStart == oldSlot.timeStart) {
           emit(const BookingTableState.unselected());
-        } else if (slot.timeEnd > oldSlot.timeEnd) {
+        } else if (slot.normalizedTimeEnd > oldSlot.timeEnd) {
           final newSlot = TimeRange(
             timeStart: oldSlot.timeStart,
-            timeEnd: slot.timeEnd,
+            timeEnd: slot.normalizedTimeEnd,
           );
 
           if (!seat.isBusy(newSlot)) {
