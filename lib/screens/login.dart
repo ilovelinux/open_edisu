@@ -10,34 +10,34 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Fix overflow when keyboard pops up
+    // TODO: Fix overflow when keyboard pops up before re-enabling warning
     return Scaffold(
       appBar: AppBar(title: const Text("OPEN EDISU")),
       body: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Emulate space taken by footer to center LoginWidget
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-            child: Text(
-              AppLocalizations.of(context)!.unofficialWarning,
-              style: TextStyle(color: Theme.of(context).backgroundColor),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+          //   child: Text(
+          //     AppLocalizations.of(context)!.unofficialWarning,
+          //     style: TextStyle(color: Theme.of(context).backgroundColor),
+          //   ),
+          // ),
           LoginWidget(
             title: AppLocalizations.of(context)!.login,
             child: _LoginForm(),
           ),
-          Container(
-            color: Theme.of(context).backgroundColor,
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            child: Text(
-              AppLocalizations.of(context)!.unofficialWarning,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Theme.of(context).disabledColor),
-            ),
-          )
+          // Container(
+          //   color: Theme.of(context).backgroundColor,
+          //   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          //   child: Text(
+          //     AppLocalizations.of(context)!.unofficialWarning,
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(color: Theme.of(context).disabledColor),
+          //   ),
+          // )
         ],
       ),
     );
