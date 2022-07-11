@@ -118,6 +118,26 @@ void main() {
     );
 
     blocTest<BookingTableCubit, BookingTableState>(
+      'emits selected slot with multiple slots when the second slot is the last slot of the day',
+      setUp: () {
+        slot1 = generateSlot(const TimeOfDay(hour: 14, minute: 30));
+        slot2 = generateSlot(const TimeOfDay(hour: 23, minute: 30));
+        slot3 = TimeRange(
+          timeStart: slot1.timeStart,
+          timeEnd: slot2.normalizedTimeEnd,
+        );
+      },
+      build: () => BookingTableCubit(),
+      act: (cubit) => cubit
+        ..select(A123, slot1)
+        ..select(A123, slot2),
+      expect: () => [
+        BookingTableState.selected(A123, slot1),
+        BookingTableState.selected(A123, slot3),
+      ],
+    );
+
+    blocTest<BookingTableCubit, BookingTableState>(
       'doesn\'t emit anything when the second slot clicked is a busy slot',
       setUp: () {
         slot1 = generateSlot(const TimeOfDay(hour: 10, minute: 30));
