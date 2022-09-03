@@ -62,6 +62,7 @@
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
     "noBookings": "There are no bookings right now",
+    "seatNo": "Seat No.",
 
     "noSlotsAvailable": "No slots available",
     "bookingButton": "BOOK",

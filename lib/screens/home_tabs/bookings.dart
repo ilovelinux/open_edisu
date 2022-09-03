@@ -42,9 +42,17 @@ class _BookingViewBody extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: const Color(0x00FFFFFF),
           flexibleSpace: Align(
             alignment: Alignment.bottomCenter,
             child: TabBar(
+              indicator: const UnderlineTabIndicator(
+                borderSide: BorderSide(
+                  color: Colors.red,
+                  width: 10,
+                ),
+                insets: EdgeInsets.symmetric(horizontal: 40),
+              ),
               tabs: [
                 Tab(text: AppLocalizations.of(context)!.upcomingBookings),
                 Tab(text: AppLocalizations.of(context)!.pastBookings),
@@ -73,9 +81,57 @@ class BookingList extends StatelessWidget {
     if (bookings.isEmpty) {
       return CenteredText("${AppLocalizations.of(context)!.noBookings} :(");
     }
-    return ListView.builder(
-      itemCount: bookings.length,
-      itemBuilder: (_, index) => BookingListTile(booking: bookings[index]),
+
+    final bookingsByDate = groupBy(bookings, (Booking booking) => booking.date);
+    return SingleChildScrollView(
+      child: Column(
+        children: bookingsByDate.entries
+            .map<Widget>(
+              (b) => StickyHeader(
+                header: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).bottomAppBarColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 2.0,
+                        offset: Offset(0.0, 2.0),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      DateFormat.yMMMMEEEEd().format(b.key),
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                content: ListView(
+                  shrinkWrap: true,
+                  children: b.value
+                      .map(
+                        (e) => BookingTicket(
+                          e,
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<BookingsBloc>(),
+                              child: _BookingDialog(booking: e),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

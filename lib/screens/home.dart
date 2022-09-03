@@ -10,6 +10,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:sticky_headers/sticky_headers/widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../bloc/auth_bloc.dart';
@@ -18,6 +19,7 @@ import '../bloc/bookings_bloc.dart';
 import '../models/edisu.dart';
 import '../utilities/dio.dart';
 import '../utilities/inceptor.dart';
+import '../widgets/booking.dart';
 import '../widgets/commons.dart';
 import 'booking/booking.dart';
 

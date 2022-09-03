@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
+- Redesign of the bookings page
 
 ## [0.1.8] - 2022-07-11
 - Add settings page

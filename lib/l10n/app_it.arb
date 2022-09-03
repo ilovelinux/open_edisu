@@ -62,6 +62,7 @@
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
     "noBookings": "Non ci sono prenotazioni al momento",
+    "seatNo": "Posto N°",
 
     "noSlotsAvailable": "Nessuno slot disponibile",
     "bookingButton": "PRENOTA",
