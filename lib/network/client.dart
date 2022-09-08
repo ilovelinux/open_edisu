@@ -97,6 +97,17 @@ class Client {
     return response.result.data.list;
   }
 
+  Future<HallsMobile> getHallsMobile({final String cityId = "1"}) async {
+    var response = await _api.hallListMobile(
+      HallListMobileRequest(cityId: cityId),
+      options: (await defaultCacheOptions)
+          .copyWith(policy: CachePolicy.refreshForceCache)
+          .toOptions(),
+    );
+
+    return response.result.data.list;
+  }
+
   Future<Slots> getSlots(final Hall hall, {DateTime? date}) async {
     date ??= DateTime.now();
 

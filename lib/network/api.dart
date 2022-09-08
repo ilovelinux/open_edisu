@@ -70,7 +70,9 @@ abstract class RestClient {
   @POST("/booking/halllist")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"}) // TODO: Make this dynamic
   Future<HallListMobileResponse> hallListMobile(
-      @Body() HallListMobileRequest body);
+    @Body() HallListMobileRequest body, {
+    @DioOptions() required Options options,
+  });
 
   @POST("/web/student/slots")
   @FormUrlEncoded()

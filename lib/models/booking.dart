@@ -123,7 +123,7 @@ class HallMobile {
       _$HallMobileFromJson(json);
 }
 
-typedef HallsMobile = List<Hall>;
+typedef HallsMobile = List<HallMobile>;
 
 @JsonSerializable()
 class Seats {
