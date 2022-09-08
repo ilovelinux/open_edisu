@@ -103,7 +103,9 @@ class BookingList extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      DateFormat.yMMMMEEEEd().format(b.key),
+                      DateFormat.yMMMMEEEEd(
+                        Localizations.localeOf(context).toLanguageTag(),
+                      ).format(b.key),
                       style: const TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -185,7 +187,9 @@ class _BookingDialog extends StatelessWidget {
         [
           booking.hallName,
           booking.timeRange.format(context, " - "),
-          DateFormat.yMd().format(booking.date),
+          DateFormat.yMd(
+            Localizations.localeOf(context).toLanguageTag(),
+          ).format(booking.date),
         ].join("\n"),
         textAlign: TextAlign.center,
         style: const TextStyle(fontWeight: FontWeight.bold, height: 1.2),
