@@ -111,8 +111,7 @@ class BookingList extends StatelessWidget {
                     ),
                   ),
                 ),
-                content: ListView(
-                  shrinkWrap: true,
+                content: Column(
                   children: b.value
                       .map(
                         (e) => BookingTicket(
