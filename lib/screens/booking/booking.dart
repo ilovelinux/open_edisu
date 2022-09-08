@@ -38,6 +38,7 @@ class DragWithTouchAndMouse extends MaterialScrollBehavior {
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
       };
 }
 
