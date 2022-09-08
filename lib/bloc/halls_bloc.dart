@@ -17,7 +17,12 @@ class HallsBloc extends Bloc<HallsEvent, HallsState> {
     on<_Update>((event, emit) async {
       emit(const HallsState.loading());
       try {
-        emit(HallsState.success(await client.getHalls()));
+        emit(
+          HallsState.success(
+            await client.getHalls(),
+            await client.getHallsMobile(),
+          ),
+        );
       } catch (e, stackTrace) {
         emit(HallsState.error(getErrorString(e)));
 
