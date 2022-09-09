@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:open_edisu/utilities/errors.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'bloc/auth_bloc.dart';
-import 'models/edisu.dart';
-import 'screens/home.dart';
-import 'screens/login.dart';
-import 'screens/signup.dart';
-import 'utilities/inceptor.dart';
-import 'widgets/commons.dart';
+import 'core/utilities/errors.dart';
+import 'core/utilities/inceptor.dart';
+import 'features/auth/logic/auth_bloc.dart';
+import 'features/auth/models/user.dart';
+import 'features/auth/ui/screens/login.dart';
+import 'features/auth/ui/screens/signup.dart';
+import 'features/home/ui/screens/home.dart';
+import 'core/widgets/commons.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
