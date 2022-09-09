@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../features/auth/models/user.dart';
 import '../../features/booking/models/booking.dart';
+import '../../features/halls/models/halls.dart';
 import '../../features/settings/models/settings.dart';
 import '../utilities/json/converters.dart';
 

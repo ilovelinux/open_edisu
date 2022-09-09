@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/utilities/errors.dart';
+import '../../../settings/models/settings.dart';
 import '../../logic/auth_bloc.dart';
 import '../../logic/signup_bloc.dart';
 import '../widgets/login_signup.dart';

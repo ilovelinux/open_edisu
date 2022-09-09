@@ -6,6 +6,7 @@ import 'package:open_edisu/core/utilities/extensions/time.dart';
 import '../../../../../core/utilities/dio.dart';
 import '../../../../../core/utilities/errors.dart';
 import '../../../../../core/utilities/inceptor.dart';
+import '../../../../halls/models/halls.dart';
 import '../../../logic/bookings_bloc.dart';
 import '../../../models/booking.dart';
 

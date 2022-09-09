@@ -7,13 +7,13 @@ import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
 
-import '../../../../core/utilities/dio.dart';
-import '../../../../core/utilities/errors.dart';
-import '../../../../core/utilities/inceptor.dart';
-import '../../../../core/widgets/commons.dart';
-import '../../logic/bookings_bloc.dart';
-import '../../models/booking.dart';
-import '../widgets/booking.dart';
+import '../../../../../core/utilities/dio.dart';
+import '../../../../../core/utilities/errors.dart';
+import '../../../../../core/utilities/inceptor.dart';
+import '../../../../../core/widgets/commons.dart';
+import '../../../logic/bookings_bloc.dart';
+import '../../../models/booking.dart';
+import '../../widgets/booking.dart';
 
 class BookingsView extends StatelessWidget {
   const BookingsView({Key? key}) : super(key: key);

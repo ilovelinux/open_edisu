@@ -11,6 +11,7 @@ import 'package:open_edisu/core/utilities/extensions/date.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
 
 import '../../../../core/widgets/commons.dart';
+import '../../../halls/models/halls.dart';
 import '../../logic/booking_info_bloc.dart';
 import '../../logic/booking_table_alternative_bloc.dart';
 import '../../logic/booking_table_cubit.dart';

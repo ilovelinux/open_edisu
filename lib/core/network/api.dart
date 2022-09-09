@@ -4,6 +4,8 @@ import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 
 import '../../features/auth/models/user.dart';
+import '../../features/booking/models/booking.dart';
+import '../../features/halls/models/halls.dart';
 import 'models.dart';
 
 part 'api.g.dart';

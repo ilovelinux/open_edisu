@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 
 import '../../../core/utilities/dio.dart';
 import '../../../core/utilities/inceptor.dart';
-import '../../booking/models/booking.dart';
+import '../models/halls.dart';
 
 part 'halls_event.dart';
 part 'halls_state.dart';

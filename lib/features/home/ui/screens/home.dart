@@ -5,10 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../booking/logic/bookings_bloc.dart';
-import '../../../booking/ui/screens/bookings.dart';
-import '../../../halls/ui/screens/halls.dart';
+import '../../../booking/ui/screens/tabs/bookings.dart';
+import '../../../halls/ui/screens/tabs/halls.dart';
 import '../../../settings/ui/screens/settings.dart';
-import 'home_tabs/home.dart';
+import 'tabs/home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

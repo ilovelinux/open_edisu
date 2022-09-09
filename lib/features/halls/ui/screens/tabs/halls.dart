@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../core/widgets/commons.dart';
-import '../../../booking/logic/bookings_bloc.dart';
-import '../../../booking/models/booking.dart';
-import '../../../booking/ui/screens/booking.dart';
-import '../../logic/halls_bloc.dart';
+import '../../../../../core/widgets/commons.dart';
+import '../../../../booking/logic/bookings_bloc.dart';
+import '../../../../booking/ui/screens/booking.dart';
+import '../../../logic/halls_bloc.dart';
+import '../../../models/halls.dart';
 
 class HallsView extends StatelessWidget {
   const HallsView({Key? key}) : super(key: key);
