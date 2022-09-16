@@ -64,6 +64,8 @@
     "noBookings": "Non ci sono prenotazioni al momento",
     "seatNo": "Posto N°",
 
+    "seats": "Posti",
+
     "noSlotsAvailable": "Nessuno slot disponibile",
     "bookingButton": "PRENOTA",
     "bookingConfirmationTitle": "Conferma la prenotazione",

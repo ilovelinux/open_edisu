@@ -64,6 +64,8 @@
     "noBookings": "There are no bookings right now",
     "seatNo": "Seat No.",
 
+    "seats": "Seats",
+
     "noSlotsAvailable": "No slots available",
     "bookingButton": "BOOK",
     "bookingConfirmationTitle": "Confirm booking",

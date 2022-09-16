@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 import '../../../../../core/widgets/commons.dart';
 import '../../../../booking/logic/bookings_bloc.dart';
@@ -63,31 +64,49 @@ class _HallCard extends StatelessWidget {
             ),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            height: 70,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  hallMobile.name,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+          constraints: const BoxConstraints(minHeight: 100),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    hallMobile.name,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    constraints: const BoxConstraints(minWidth: 85),
+                    child: Row(
+                      children: [
+                        Text(
+                          "${AppLocalizations.of(context)!.seats}:  "
+                              .toUpperCase(),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(hall.husable.toString()),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              TextButton.icon(
+                onPressed: () => MapsLauncher.launchQuery(hallMobile.location),
+                icon: const Icon(Icons.location_pin, size: 16),
+                label: Text(hallMobile.location),
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.fromLTRB(0, 2, 2, 2),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.location_pin, size: 16),
-                    Flexible(child: Text(hallMobile.location)),
-                  ],
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
