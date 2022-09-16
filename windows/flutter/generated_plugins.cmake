@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   flutter_secure_storage_windows
+  maps_launcher
   screen_retriever
   url_launcher_windows
   window_manager
