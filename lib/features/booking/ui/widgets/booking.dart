@@ -13,10 +13,15 @@ class BookingTicket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10.0,
+      elevation: 1.0,
       margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(16.0),
+      ),
       child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(16.0),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SizedBox(
