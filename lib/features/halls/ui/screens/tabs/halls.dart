@@ -53,8 +53,12 @@ class _HallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10.0,
+      elevation: 4.0,
       margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: Colors.black45),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
@@ -65,7 +69,7 @@ class _HallCard extends StatelessWidget {
           ),
         ),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
           constraints: const BoxConstraints(minHeight: 100),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
