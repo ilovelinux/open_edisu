@@ -92,11 +92,7 @@ class Seat {
   final String? bookingId;
   final TimeOfDay? slotTime;
 
-  const Seat({
-    required this.bookingStatus,
-    final this.bookingId,
-    this.slotTime,
-  });
+  const Seat({required this.bookingStatus, this.bookingId, this.slotTime});
 
   factory Seat.fromJson(Map<String, dynamic> json) => _$SeatFromJson(json);
 }

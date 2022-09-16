@@ -1,11 +1,7 @@
 part of 'booking.dart';
 
 class _BookingTable extends StatelessWidget {
-  const _BookingTable(
-    this.slots,
-    this.bookingsPerSeats, {
-    Key? key,
-  }) : super(key: key);
+  const _BookingTable(this.slots, this.bookingsPerSeats);
 
   final Slots slots;
   final BookingsPerSeats bookingsPerSeats;
@@ -52,11 +48,7 @@ class _BookingTable extends StatelessWidget {
 }
 
 class _TimeTable extends StatelessWidget {
-  const _TimeTable(
-    this.allSlots,
-    this.bookingsPerSeats, {
-    Key? key,
-  }) : super(key: key);
+  const _TimeTable(this.allSlots, this.bookingsPerSeats);
 
   final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
@@ -124,12 +116,10 @@ class _TimeTable extends StatelessWidget {
 
 class _TableRow extends StatelessWidget {
   const _TableRow({
-    Key? key,
     required this.slots,
     required this.seat,
     Bookings? bookedSlots,
-  })  : bookedSlots = bookedSlots ?? const [],
-        super(key: key);
+  }) : bookedSlots = bookedSlots ?? const [];
 
   final Slots slots;
   final BookedSeat seat;
@@ -182,12 +172,7 @@ class _TableRow extends StatelessWidget {
 }
 
 class _TableCell extends StatelessWidget {
-  const _TableCell(
-    this.seat,
-    this.slot, {
-    Key? key,
-    required this.color,
-  }) : super(key: key);
+  const _TableCell(this.seat, this.slot, {required this.color});
 
   final BookedSeat seat;
   final TimeRange slot;

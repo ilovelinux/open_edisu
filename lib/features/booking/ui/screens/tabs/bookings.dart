@@ -16,7 +16,7 @@ import '../../../models/booking.dart';
 import '../../widgets/booking.dart';
 
 class BookingsView extends StatelessWidget {
-  const BookingsView({Key? key}) : super(key: key);
+  const BookingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class BookingsView extends StatelessWidget {
 }
 
 class _BookingViewBody extends StatelessWidget {
-  const _BookingViewBody(this.bookings, {Key? key}) : super(key: key);
+  const _BookingViewBody(this.bookings);
 
   final Bookings bookings;
 
@@ -87,7 +87,7 @@ class _BookingViewBody extends StatelessWidget {
 }
 
 class BookingList extends StatelessWidget {
-  const BookingList({Key? key, required this.bookings}) : super(key: key);
+  const BookingList({super.key, required this.bookings});
 
   final Bookings bookings;
 
@@ -153,7 +153,7 @@ class BookingList extends StatelessWidget {
 }
 
 class BookingListTile extends StatelessWidget {
-  const BookingListTile({Key? key, required this.booking}) : super(key: key);
+  const BookingListTile({super.key, required this.booking});
 
   final Booking booking;
 
@@ -186,7 +186,7 @@ class BookingListTile extends StatelessWidget {
 }
 
 class _BookingDialog extends StatelessWidget {
-  const _BookingDialog({Key? key, required this.booking}) : super(key: key);
+  const _BookingDialog({required this.booking});
 
   final Booking booking;
 

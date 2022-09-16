@@ -1,14 +1,10 @@
 part of 'signup.dart';
 
 class _VerifyCodeForm extends StatefulWidget {
+  _VerifyCodeForm({required this.email, this.error = false});
+
   final String email;
   bool error;
-
-  _VerifyCodeForm({
-    Key? key,
-    required this.email,
-    this.error = false,
-  }) : super(key: key);
 
   @override
   State<_VerifyCodeForm> createState() => _VerifyCodeFormState();

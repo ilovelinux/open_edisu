@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../logic/auth_bloc.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class _LoginForm extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  _LoginForm({Key? key}) : super(key: key);
+  _LoginForm();
 
   @override
   Widget build(BuildContext context) {

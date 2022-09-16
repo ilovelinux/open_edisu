@@ -15,11 +15,10 @@ class _SignupForm extends StatelessWidget {
   final Universities universities;
 
   _SignupForm({
-    Key? key,
     required this.email,
     required this.token,
     required this.universities,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -141,11 +140,7 @@ class _SignupForm extends StatelessWidget {
 }
 
 class _SwitchFormField extends StatefulWidget {
-  const _SwitchFormField({
-    Key? key,
-    required this.text,
-    required this.onToggle,
-  }) : super(key: key);
+  const _SwitchFormField({required this.text, required this.onToggle});
 
   final String text;
   final void Function(bool) onToggle;

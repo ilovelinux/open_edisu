@@ -3,11 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class LoginWidget extends StatelessWidget {
-  const LoginWidget({
-    Key? key,
-    required this.title,
-    required this.child,
-  }) : super(key: key);
+  const LoginWidget({super.key, required this.title, required this.child});
 
   final String title;
   final Widget child;
@@ -37,7 +33,7 @@ class LoginWidget extends StatelessWidget {
 }
 
 class OrSeparator extends StatelessWidget {
-  const OrSeparator({Key? key}) : super(key: key);
+  const OrSeparator({super.key});
 
   @override
   Widget build(BuildContext context) {

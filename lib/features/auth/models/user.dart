@@ -44,29 +44,19 @@ class User extends UserBase {
   final bool studentDisabled;
 
   User({
-    required name,
-    required surname,
-    required email,
+    required super.name,
+    required super.surname,
+    required super.email,
     required this.creationDate,
-    required newsletter,
-    required notifications,
-    required userType,
-    required studentCode,
-    required studentType,
+    required super.newsletter,
+    required super.notifications,
+    required super.userType,
+    required super.studentCode,
+    required super.studentType,
     required this.studentDisabled,
-    required uniID,
+    required super.uniID,
     required this.id,
-  }) : super(
-          name: name,
-          surname: surname,
-          email: email,
-          newsletter: newsletter,
-          notifications: notifications,
-          userType: userType,
-          studentCode: studentCode,
-          studentType: studentType,
-          uniID: uniID,
-        );
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

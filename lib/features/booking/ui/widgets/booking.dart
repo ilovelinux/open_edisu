@@ -8,7 +8,7 @@ class BookingTicket extends StatelessWidget {
   final Booking booking;
   final Function()? onTap;
 
-  const BookingTicket(this.booking, {Key? key, this.onTap}) : super(key: key);
+  const BookingTicket(this.booking, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import '../../../settings/ui/screens/settings.dart';
 import 'tabs/home.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   final _pages = const [
     Home(),

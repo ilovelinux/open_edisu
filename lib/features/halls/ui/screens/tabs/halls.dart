@@ -10,7 +10,7 @@ import '../../../logic/halls_bloc.dart';
 import '../../../models/halls.dart';
 
 class HallsView extends StatelessWidget {
-  const HallsView({Key? key}) : super(key: key);
+  const HallsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +44,10 @@ class HallsView extends StatelessWidget {
 }
 
 class _HallCard extends StatelessWidget {
+  const _HallCard({required this.hall, required this.hallMobile});
+
   final Hall hall;
   final HallMobile hallMobile;
-  const _HallCard({Key? key, required this.hall, required this.hallMobile})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

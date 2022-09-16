@@ -6,7 +6,7 @@ typedef SeatsResponse = Result<SeatsListResponse>;
 class SeatsListResponse {
   final SeatsList seats;
 
-  const SeatsListResponse({required final this.seats});
+  const SeatsListResponse({required this.seats});
 
   factory SeatsListResponse.fromJson(Map<String, dynamic> json) =>
       _$SeatsListResponseFromJson(json);

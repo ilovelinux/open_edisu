@@ -46,7 +46,7 @@ class DragWithTouchAndMouse extends MaterialScrollBehavior {
 class BookingPage extends StatelessWidget {
   final Hall hall;
 
-  const BookingPage({Key? key, required this.hall}) : super(key: key);
+  const BookingPage({super.key, required this.hall});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class BookingPage extends StatelessWidget {
 class BookingView extends StatelessWidget {
   final Hall hall;
 
-  const BookingView({Key? key, required this.hall}) : super(key: key);
+  const BookingView({super.key, required this.hall});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class BookingView extends StatelessWidget {
 }
 
 class _DateSelector extends StatelessWidget {
-  const _DateSelector({Key? key, required this.date}) : super(key: key);
+  const _DateSelector({required this.date});
 
   final DateTime date;
 

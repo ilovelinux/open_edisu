@@ -15,7 +15,7 @@ import '../../../../booking/logic/bookings_bloc.dart';
 import '../../../../booking/models/booking.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
 }
 
 class _UserCard extends StatelessWidget {
-  const _UserCard({Key? key}) : super(key: key);
+  const _UserCard();
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +63,7 @@ class _UserCard extends StatelessWidget {
 }
 
 class _WeeklyStatisticsCard extends StatelessWidget {
-  const _WeeklyStatisticsCard({
-    Key? key,
-  }) : super(key: key);
+  const _WeeklyStatisticsCard();
 
   @override
   Widget build(BuildContext context) {

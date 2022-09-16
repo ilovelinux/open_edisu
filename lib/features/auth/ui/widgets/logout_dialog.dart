@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../logic/auth_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
-  const LogoutDialog({Key? key}) : super(key: key);
+  const LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ class MasterResponse with _$MasterResponse {
 class MasterDataResponse {
   final MasterUniversitiesDataResponse result;
 
-  MasterDataResponse({required final this.result});
+  MasterDataResponse({required this.result});
 
   factory MasterDataResponse.fromJson(Map<String, dynamic> json) =>
       _$MasterDataResponseFromJson(json);
@@ -26,7 +26,7 @@ class MasterDataResponse {
 class MasterUniversitiesDataResponse {
   final Universities universities;
 
-  MasterUniversitiesDataResponse({required final this.universities});
+  MasterUniversitiesDataResponse({required this.universities});
 
   factory MasterUniversitiesDataResponse.fromJson(Map<String, dynamic> json) =>
       _$MasterUniversitiesDataResponseFromJson(json);

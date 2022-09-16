@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
+  const LoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,35 +14,20 @@ class LoadingWidget extends StatelessWidget {
 class CenteredText extends Text {
   const CenteredText(
     String data, {
-    Key? key,
-    style,
-    strutStyle,
-    textAlign = TextAlign.center,
-    textDirection,
-    locale,
-    softWrap,
-    overflow,
-    textScaleFactor,
-    maxLines,
-    semanticsLabel,
-    textWidthBasis,
-    textHeightBehavior,
-  }) : super(
-          data,
-          key: key,
-          style: style,
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
-        );
+    super.key,
+    super.style,
+    super.strutStyle,
+    super.textAlign = TextAlign.center,
+    super.textDirection,
+    super.locale,
+    super.softWrap,
+    super.overflow,
+    super.textScaleFactor,
+    super.maxLines,
+    super.semanticsLabel,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+  }) : super(data);
 
   @override
   Widget build(BuildContext context) {

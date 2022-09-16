@@ -3,7 +3,7 @@ part of '../models.dart';
 typedef SlotsResponse = Result<DataResponse<SlotsListResponse>>;
 
 class SlotsListResponse extends ListResponse<Slots> {
-  SlotsListResponse({required Slots list}) : super(list: list);
+  SlotsListResponse({required super.list});
 
   static SlotsListResponse fromJson(Map<String, dynamic> json) =>
       SlotsListResponse(

@@ -12,12 +12,12 @@ import '../../../models/booking.dart';
 
 class BookingDialog extends StatelessWidget {
   const BookingDialog({
-    Key? key,
+    super.key,
     required this.hall,
     required this.seat,
     required this.date,
     required this.slot,
-  }) : super(key: key);
+  });
 
   final Hall hall;
   final BookedSeat seat;

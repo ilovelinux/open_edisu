@@ -150,7 +150,7 @@ class Client {
     return response.result..date = date;
   }
 
-  Future customSlotBook({
+  Future<void> customSlotBook({
     required final Hall hall,
     required final int seatID,
     required final DateTime date,
@@ -164,19 +164,20 @@ class Client {
         endTime: slot.timeEnd,
       ));
 
-  Future bookingCancel(final int bookingID) =>
+  Future<void> bookingCancel(final int bookingID) =>
       _api.bookingcancel(BookingCancelRequest(bookingId: bookingID));
 
-  Future updateUser(final UserBase user) => _api.updateuser(user);
+  Future<void> updateUser(final UserBase user) => _api.updateuser(user);
 
-  Future updatePassword(final String oldPassword, final String newPassword) =>
+  Future<void> updatePassword(
+          final String oldPassword, final String newPassword) =>
       _api.updatepassword(UpdatePasswordRequest(
         oldPassword: oldPassword,
         password: newPassword,
         confirmPassword: newPassword,
       ));
 
-  Future logout() => flutterSecureStorage.delete(key: 'token');
+  Future<void> logout() => flutterSecureStorage.delete(key: 'token');
 }
 
 class ApiException implements Exception {

@@ -8,7 +8,7 @@ import '../../../auth/logic/auth_bloc.dart';
 import '../../../auth/ui/widgets/logout_dialog.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {

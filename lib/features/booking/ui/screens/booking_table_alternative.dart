@@ -4,8 +4,7 @@ class _TimeTable2 extends StatelessWidget {
   final Slots slots;
   final SeatsList seats;
 
-  const _TimeTable2({Key? key, required this.slots, required this.seats})
-      : super(key: key);
+  const _TimeTable2({required this.slots, required this.seats});
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +55,10 @@ class _TimeTable2 extends StatelessWidget {
 
 class _TableRow2 extends StatelessWidget {
   const _TableRow2({
-    Key? key,
     required this.seatno,
     required this.seatd,
     required this.seat,
-  }) : super(key: key);
+  });
 
   final int seatno;
   final Seats seatd;
@@ -117,11 +115,10 @@ class _TableRow2 extends StatelessWidget {
 
 class _TableCell2 extends StatelessWidget {
   const _TableCell2({
-    Key? key,
     required this.seatno,
     required this.seat,
     required this.color,
-  }) : super(key: key);
+  });
 
   final int seatno;
   final Seat seat;

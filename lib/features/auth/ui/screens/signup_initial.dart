@@ -4,7 +4,7 @@ class _InitialForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
 
-  _InitialForm({Key? key}) : super(key: key);
+  _InitialForm();
 
   @override
   Widget build(BuildContext context) {

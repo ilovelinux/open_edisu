@@ -57,7 +57,7 @@ String _readMessage(json, key) => json[key] ?? json["messsage"];
 class DataResponse<T> {
   final T data;
 
-  const DataResponse({required final this.data});
+  const DataResponse({required this.data});
 
   factory DataResponse.fromJson(
     Map<String, dynamic> json,
@@ -70,7 +70,7 @@ class DataResponse<T> {
 class ListResponse<T> {
   final T list;
 
-  const ListResponse({required final this.list});
+  const ListResponse({required this.list});
 
   factory ListResponse.fromJson(
     Map<String, dynamic> json,
