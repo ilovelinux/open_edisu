@@ -54,7 +54,7 @@ class BookingTicket extends StatelessWidget {
                 const VerticalDivider(),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
-                  width: 60,
+                  width: 70,
                   child: Column(
                     children: [
                       Text(
