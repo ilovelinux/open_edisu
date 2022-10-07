@@ -19,12 +19,14 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        _UserCard(),
-        _WeeklyStatisticsCard(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          _UserCard(),
+          _WeeklyStatisticsCard(),
+        ],
+      ),
     );
   }
 }
