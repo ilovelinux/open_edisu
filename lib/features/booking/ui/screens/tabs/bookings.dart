@@ -107,10 +107,9 @@ class BookingList extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.indigo.shade100,
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
-                        color: Colors.black12,
+                        color: Theme.of(context).backgroundColor,
                         blurRadius: 1.0,
                         offset: Offset(0.0, 1.0),
                       ),
