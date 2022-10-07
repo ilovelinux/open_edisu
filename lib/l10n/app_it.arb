@@ -41,7 +41,7 @@
     "settingsBottom": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Aggiunta pagina delle impostazioni\n- Rivisto il layout del dialog delle prenotazioni\n- Aggiunto un avviso riguardante lo stato non ufficiale dell'app\n- Fixato bug che non permetteva di prenotare l'ultimo slot\n- Altre migliorie minori",
+    "changelog": "- Ridisegnata la pagina delle prenotazioni\n- Ridisegnata la pagina delle sale studio",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 

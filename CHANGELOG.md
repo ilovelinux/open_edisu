@@ -1,6 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
+
+## [0.1.9] - 2022-10-07
 - Redesign of the bookings page
 - Redesign of the halls page
 

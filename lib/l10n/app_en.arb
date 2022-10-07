@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Add settings page\n- Review layout of booking dialog\n- Add notice about the non-official status of Open Edisu app\n- Fix bug that didn't allow to select the last slot of the day\n- Other minor fixes and improvements",
+    "changelog": "- Redesign of the bookings page\n- Redesign of the halls page",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
