@@ -6,6 +6,7 @@
 #### Download from
 
 [![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.ilovelinux.openedisu)
+[![Microsoft](https://img.shields.io/badge/Microsoft_Store-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://www.microsoft.com/store/apps/9PGKH2H91S51)
 
 Open Edisu is an unofficial open-source app created created with the aim of proposing an alternative to the critical issues of the official Edisu app [Campus Piemonte](https://play.google.com/store/apps/details?id=it.astutesoftwares.edisu).
 
