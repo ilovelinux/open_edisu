@@ -1,4 +1,3 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -135,17 +134,6 @@ class _WeeklyChartbar extends StatelessWidget {
       (final Booking e) => e.date.weekday,
     );
 
-    return charts.BarChart(
-      [
-        charts.Series<int, String>(
-          id: 'Bookings',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (int v, _) => shortWeekDays[v % 7],
-          measureFn: (int v, _) => bookingsPerWeekDay[v]?.length ?? 0,
-          data: List.generate(7, (index) => index + 1, growable: false),
-        )
-      ],
-      animate: true,
-    );
+    return const Text("Widget not implemented yet");
   }
 }
