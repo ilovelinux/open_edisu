@@ -24,9 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await client.signin(event.username, event.password),
         ));
       } catch (e, stackTrace) {
-        if (e is DioError &&
-            e.type == DioErrorType.other &&
-            e.error is SocketException) {
+        if (e is DioError && e.error is SocketException) {
           emit(const AuthState.unauthenticated(connectionError: true));
         } else {
           emit(AuthState.unauthenticated(message: getErrorString(e)));
@@ -50,10 +48,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         bool connectionError = false;
         String? message;
         if (e is DioError) {
-          if (e.type == DioErrorType.other && e.error is SocketException) {
+          if (e.error is SocketException) {
             connectionError = true;
-          } else if (e.type == DioErrorType.response &&
-              e.response?.statusCode == 403) {
+          } else if (e.response?.statusCode == 403) {
             if (await flutterSecureStorage.containsKey(key: 'token')) {
               await flutterSecureStorage.delete(key: 'token');
               sessionExpired = true;

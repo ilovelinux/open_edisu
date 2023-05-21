@@ -109,9 +109,9 @@ class BookingList extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context).backgroundColor,
+                        color: Theme.of(context).colorScheme.background,
                         blurRadius: 1.0,
-                        offset: Offset(0.0, 1.0),
+                        offset: const Offset(0.0, 1.0),
                       ),
                     ],
                   ),
@@ -214,7 +214,7 @@ class _BookingDialog extends StatelessWidget {
           SizedBox(
             width: qrCodeSize,
             height: qrCodeSize,
-            child: QrImage(
+            child: QrImageView(
               data: booking.bookingId.toUpperCase(),
             ),
           ),

@@ -28,7 +28,7 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS}}",
+    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} other{}}",
     "@homeTitles": {
         "description": "Homepage titles",
         "placeholders": {

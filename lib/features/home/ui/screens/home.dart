@@ -34,7 +34,8 @@ class _HomePageState extends State<HomePage> {
       create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.homeTitles(index)),
+          title:
+              Text(AppLocalizations.of(context)!.homeTitles(index.toString())),
           actions: [
             if (index == 0)
               TextButton(

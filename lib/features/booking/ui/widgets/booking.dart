@@ -28,7 +28,7 @@ class BookingTicket extends StatelessWidget {
             height: 80,
             child: Row(
               children: [
-                QrImage(
+                QrImageView(
                   size: 80,
                   data: booking.bookingId.toUpperCase(),
                 ),

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         },
         home: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) => state.whenOrNull<void>(
-            authenticated: (user) => GetIt.I.registerSingleton(user),
+            authenticated: (user) => GetIt.I.registerSingleton<User>(user),
             unauthenticated: (
               final sessionExpired,
               final connectionError,

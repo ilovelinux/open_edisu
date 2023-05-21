@@ -35,8 +35,6 @@ Future<void> initInceptor() async {
     InterceptorsWrapper(
       onRequest: (options, handler) async {
         options.headers[HttpHeaders.userAgentHeader] = "Open Edisu";
-        options.headers["Origin"] =
-            "https://edisuprenotazioni.edisu-piemonte.it";
         final token = await flutterSecureStorage.read(key: 'token');
         if (token != null) {
           options.headers[HttpHeaders.authorizationHeader] = "Bearer $token";
@@ -47,16 +45,21 @@ Future<void> initInceptor() async {
         final genericResponse = Result.fromJson(response.data, (_) => null);
         if (genericResponse.status >= 400) {
           response.statusCode = genericResponse.status;
-          throw DioError(
-            requestOptions: response.requestOptions,
-            response: response,
-            type: DioErrorType.response,
+          handler.reject(
+            DioError(
+              requestOptions: response.requestOptions,
+              response: response,
+              message: genericResponse.message,
+              type: DioErrorType.badResponse,
+            ),
           );
+          return;
         }
+
         handler.next(response);
       },
       onError: (error, handler) {
-        if (error.type == DioErrorType.response) {
+        if (error.type == DioErrorType.badResponse) {
           final genericResponse =
               Result.fromJson(error.response!.data, (_) => null);
 
@@ -67,7 +70,7 @@ Future<void> initInceptor() async {
           error = DioError(
             requestOptions: error.requestOptions,
             response: error.response,
-            type: DioErrorType.response,
+            type: DioErrorType.badResponse,
             error: ApiException(
               status,
               message,

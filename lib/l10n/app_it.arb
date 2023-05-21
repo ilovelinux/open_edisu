@@ -28,7 +28,7 @@
 
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {PRENOTAZIONI} 2 {SALE STUDIO}}",
+    "homeTitles": "{page, select, 0{OPEN EDISU} 1{PRENOTAZIONI} 2{SALE STUDIO} other{}}",
     "@homeTitles": {
         "description": "Titoli dell'homepage",
         "placeholders": {
