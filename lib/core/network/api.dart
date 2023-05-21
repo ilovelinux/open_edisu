@@ -10,12 +10,12 @@ import 'models.dart';
 
 part 'api.g.dart';
 
-@RestApi(baseUrl: "https://edisuprenotazioni.edisu-piemonte.it:8443/sbs/")
+@RestApi(baseUrl: "https://api-edisuprenotazioni.edisu-piemonte.it/")
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @POST("/web/signin")
-  @FormUrlEncoded()
+  @POST("/users/signin")
+  @Headers({HttpHeaders.acceptLanguageHeader: "it"}) // TODO: Make this dynamic
   Future<SigninResponse> signin(
     @Field("email") final String email,
     @Field("password") final String password,
@@ -71,6 +71,7 @@ abstract class RestClient {
 
   @POST("/booking/halllist")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"}) // TODO: Make this dynamic
+  @Headers({HttpHeaders.contentTypeHeader: "application/json"})
   Future<HallListMobileResponse> hallListMobile(
     @Body() HallListMobileRequest body, {
     @DioOptions() required Options options,
