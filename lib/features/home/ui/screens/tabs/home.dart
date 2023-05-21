@@ -134,6 +134,6 @@ class _WeeklyChartbar extends StatelessWidget {
       (final Booking e) => e.date.weekday,
     );
 
-    return const Text("Widget not implemented yet");
+    return const Center(child: Text("Widget not implemented yet"));
   }
 }
