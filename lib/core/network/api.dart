@@ -93,6 +93,7 @@ abstract class RestClient {
 
   @POST("/booking/bookingsperseats")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"})
+  @Headers({HttpHeaders.contentTypeHeader: "application/json"})
   Future<BookingsPerSeatsResponse> bookingsperseat(
       @Body() BookingsPerSeatsRequest body);
 
