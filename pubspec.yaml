@@ -15,10 +15,6 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   intl: ^0.18.0
   qr_flutter: ^4.0.0
-    # Temporaly fix if we would want to upgrade to the latest version.
-    # See https://github.com/theyakka/qr.flutter/issues/174
-    # git:
-    #   url: https://github.com/theyakka/qr.flutter.git
   horizontal_data_table: ^4.0.0
   flutter_bloc: ^8.0.1
   collection: ^1.15.0
