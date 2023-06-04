@@ -41,7 +41,7 @@
     "settingsBottom": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Ridisegnata la pagina delle prenotazioni\n- Ridisegnata la pagina delle sale studio",
+    "changelog": "- Sistemate le chiamate con le nuove API EDISU \n- Rimosse temporaneamente le statistiche settimanali",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 

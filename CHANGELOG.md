@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
+## [0.1.10] - 2023-06-04
+- Fix API calls to work with the new Edisu API
+- Temporalily remove weekly stats
+
 ## [0.1.9] - 2022-10-07
 - Redesign of the bookings page
 - Redesign of the halls page
@@ -64,6 +68,7 @@ The app actually allows you to:
 Further improvements and minor bugs are known and will be fixed in next releases.
 
 [unreleased]: https://github.com/ilovelinux/open_edisu/compare/v0.1.9...HEAD
+[0.1.10]: https://github.com/ilovelinux/open_edisu/compare/v0.1.9...v0.1.10
 [0.1.9]: https://github.com/ilovelinux/open_edisu/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/ilovelinux/open_edisu/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/ilovelinux/open_edisu/compare/v0.1.6...v0.1.7

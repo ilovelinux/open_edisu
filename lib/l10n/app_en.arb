@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Redesign of the bookings page\n- Redesign of the halls page",
+    "changelog": "- Fix API calls to work with the new Edisu API\n- Temporalily remove weekly stats",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
