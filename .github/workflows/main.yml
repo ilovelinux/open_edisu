@@ -2,6 +2,8 @@ name: Flutter Builder for Android
 
 on:
   push:
+    branches-ignore:
+      - workflow-**
   pull_request:
   workflow_dispatch:
 
