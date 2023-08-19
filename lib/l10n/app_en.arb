@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Fix API calls to work with the new Edisu API\n- Temporalily remove weekly stats",
+    "changelog": "- Minor bug fixes",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
