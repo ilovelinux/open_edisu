@@ -1,0 +1,49 @@
+on:
+  workflow_call:
+    inputs:
+      run-tests:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.run-tests != 'false' }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - name: Run tests
+        run: flutter test --reporter expanded
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Flutter Doctor
+        run: flutter doctor -v
+
+      - name: Build APK
+        run: flutter build apk --flavor githubDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-debug-apk
+          path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
+          if-no-files-found: error

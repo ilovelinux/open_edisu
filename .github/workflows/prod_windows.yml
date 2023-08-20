@@ -1,0 +1,45 @@
+on:
+  workflow_call:
+    inputs:
+      run-tests:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  tests:
+    runs-on: windows-latest
+    if: ${{ inputs.run-tests != 'false' }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - name: Run tests
+        run: flutter test --reporter expanded
+
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - name: Build MSIX installer
+        run: dart run msix:create --store --release
+
+      - name: Upload debug symbols
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-msix-build
+          path: build\windows\runner\Release\open_edisu.msix
+          if-no-files-found: error

@@ -1,0 +1,30 @@
+name: Prod builder
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  android:
+    uses: ./.github/workflows/prod_android.yml
+    secrets: inherit
+
+  windows:
+    uses: ./.github/workflows/prod_windows.yml
+
+  output:
+    name: Job Summary
+    needs: [android, windows]
+
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+
+    steps:
+      - name: Add job summary
+        run: |
+          echo "# Production builds :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "| -------- | ------ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Android | ${{ needs.android.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Windows | ${{ needs.windows.result }} |" >> $GITHUB_STEP_SUMMARY

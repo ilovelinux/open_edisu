@@ -1,0 +1,61 @@
+on:
+  workflow_call:
+    inputs:
+      run-tests:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.run-tests != 'false' }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - name: Run tests
+        run: flutter test --reporter expanded
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Writing keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 --decode > ./android/keystore.jks
+          echo "storePassword=${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}" >> ./android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}" >> ./android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> ./android/key.properties
+          echo "storeFile=../keystore.jks" >> ./android/key.properties
+
+      - name: Build App Bundle
+        run: flutter build appbundle --release --flavor prod
+
+      - name: Upload Android Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-bundle
+          path: build/app/outputs/bundle/prodRelease/app-prod-release.aab
+          if-no-files-found: error
+
+      - name: Upload debug symbols
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-debug-symbols
+          path: build/app/intermediates/merged_native_libs/prodRelease/out/lib/*
+          if-no-files-found: error
