@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    runs-on: windows-latest
+    runs-on: macos-latest
     if: ${{ inputs.run-tests }}
 
     steps:
@@ -21,14 +21,9 @@ jobs:
         run: flutter test --reporter expanded
 
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
-      - name: Set git to use LF
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
-
       - uses: actions/checkout@v3
 
       - name: Setup Flutter
@@ -37,12 +32,12 @@ jobs:
       - name: Flutter Doctor
         run: flutter doctor -v
 
-      - name: Build Windows package
-        run: flutter build windows --debug
+      - name: Build binary
+        run: flutter build macos --debug
 
-      - name: Upload Windows package
+      - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
-          name: windows-debug
-          path: build\windows\runner\Debug
+          name: macos-debug
+          path: build/macos/Build/Products/Debug/
           if-no-files-found: error

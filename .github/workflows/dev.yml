@@ -7,6 +7,21 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
+      android:
+        description: 'Run build on Android'
+        required: false
+        default: true
+        type: boolean
+      windows:
+        description: 'Run build on Windows'
+        required: false
+        default: false
+        type: boolean
+      macos:
+        description: 'Run build on Windows'
+        required: false
+        default: false
+        type: boolean
       run-tests:
         description: 'Run tests'
         required: false
@@ -14,19 +29,34 @@ on:
         type: boolean
 
 jobs:
+  coverage:
+    uses: ./.github/workflows/dev_coverage.yml
+    if: ${{ github.event_name != 'pull_request' && inputs.run-tests }}
+
   android:
     uses: ./.github/workflows/dev_android.yml
+    if: ${{ github.event_name == 'pull_request' || inputs.android }}
     with:
-      run-tests: ${{ inputs.run-tests }}
+      # Disable tests since we already run them in coverage
+      run-tests: ${{ github.event_name == 'pull_request' }}
 
   windows:
     uses: ./.github/workflows/dev_windows.yml
+    if: ${{ github.event_name == 'pull_request' || inputs.windows }}
     with:
-      run-tests: ${{ inputs.run-tests }}
+      # We don't have windows-specific tests yet. Run only on PRs
+      run-tests: ${{ github.event_name == 'pull_request' }}
+
+  macos:
+    uses: ./.github/workflows/dev_macos.yml
+    if: ${{ github.event_name == 'pull_request' || inputs.macos }}
+    with:
+      # We don't have macos-specific tests yet. Run only on PRs
+      run-tests: ${{ github.event_name == 'pull_request' }}
 
   output:
     name: Job Summary
-    needs: [android, windows]
+    needs: [coverage, android, windows, macos]
 
     runs-on: ubuntu-latest
     if: ${{ always() }}
@@ -36,7 +66,20 @@ jobs:
         run: |
           echo "# Development builds :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo -n "![CodeCov Update](https://img.shields.io/badge/CodeCov_Update-${{ needs.coverage.result }}-" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.coverage.result }}" == "success" ]; then
+            echo -n "brightgreen" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.coverage.result }}" == "skipped" ]; then
+            echo -n "lightgrey" >> $GITHUB_STEP_SUMMARY
+          else
+            echo -n "red" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo ")" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Platform | Status |" >> $GITHUB_STEP_SUMMARY
           echo "| -------- | ------ |" >> $GITHUB_STEP_SUMMARY
-          echo "| Android | ${{ needs.android.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Windows | ${{ needs.windows.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Android  | ${{ needs.android.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Windows  | ${{ needs.windows.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Mac OS X | ${{ needs.macos.result }} |" >> $GITHUB_STEP_SUMMARY
