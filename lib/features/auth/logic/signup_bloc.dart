@@ -22,7 +22,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         await client.initialSignup(email);
         emit(SignupState.requestVerifyCode(email));
       } catch (e, stackTrace) {
-        if (e is DioError && e.response?.statusCode == 403) {
+        if (e is DioException && e.response?.statusCode == 403) {
           emit(SignupState.requestVerifyCode(email));
         } else {
           emit(SignupState.initial(error: getErrorString(e)));
@@ -43,7 +43,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       } catch (e, stackTrace) {
         var wrongCode = false;
         String? error;
-        if (e is DioError && e.response?.statusCode == 401) {
+        if (e is DioException && e.response?.statusCode == 401) {
           wrongCode = true;
         } else {
           error = getErrorString(e);

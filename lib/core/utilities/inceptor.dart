@@ -46,11 +46,11 @@ Future<void> initInceptor() async {
         if (genericResponse.status >= 400) {
           response.statusCode = genericResponse.status;
           handler.reject(
-            DioError(
+            DioException(
               requestOptions: response.requestOptions,
               response: response,
               message: genericResponse.message,
-              type: DioErrorType.badResponse,
+              type: DioExceptionType.badResponse,
             ),
           );
           return;
@@ -59,7 +59,7 @@ Future<void> initInceptor() async {
         handler.next(response);
       },
       onError: (error, handler) {
-        if (error.type == DioErrorType.badResponse) {
+        if (error.type == DioExceptionType.badResponse) {
           final genericResponse =
               Result.fromJson(error.response!.data, (_) => null);
 
@@ -67,10 +67,10 @@ Future<void> initInceptor() async {
           final errormsg = genericResponse.error;
           final message = genericResponse.message;
 
-          error = DioError(
+          error = DioException(
             requestOptions: error.requestOptions,
             response: error.response,
-            type: DioErrorType.badResponse,
+            type: DioExceptionType.badResponse,
             error: ApiException(
               status,
               message,

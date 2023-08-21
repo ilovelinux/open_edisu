@@ -24,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await client.signin(event.username, event.password),
         ));
       } catch (e, stackTrace) {
-        if (e is DioError && e.error is SocketException) {
+        if (e is DioException && e.error is SocketException) {
           emit(const AuthState.unauthenticated(connectionError: true));
         } else {
           emit(AuthState.unauthenticated(message: getErrorString(e)));
@@ -47,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         bool sessionExpired = false;
         bool connectionError = false;
         String? message;
-        if (e is DioError) {
+        if (e is DioException) {
           if (e.error is SocketException) {
             connectionError = true;
           } else if (e.response?.statusCode == 403) {
