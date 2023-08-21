@@ -6,13 +6,23 @@ on:
       - workflow-**
   pull_request:
   workflow_dispatch:
+    inputs:
+      run-tests:
+        description: 'Run tests'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   android:
     uses: ./.github/workflows/dev_android.yml
+    with:
+      run-tests: ${{ inputs.run-tests }}
 
   windows:
     uses: ./.github/workflows/dev_windows.yml
+    with:
+      run-tests: ${{ inputs.run-tests }}
 
   output:
     name: Job Summary

@@ -2,14 +2,24 @@ name: Prod builder
 
 on:
   workflow_dispatch:
+    inputs:
+      run-tests:
+        description: 'Run tests'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   android:
     uses: ./.github/workflows/prod_android.yml
     secrets: inherit
+    with:
+      run-tests: ${{ inputs.run-tests }}
 
   windows:
     uses: ./.github/workflows/prod_windows.yml
+    with:
+      run-tests: ${{ inputs.run-tests }}
 
   output:
     name: Job Summary

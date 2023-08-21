@@ -9,7 +9,7 @@ on:
 jobs:
   tests:
     runs-on: windows-latest
-    if: ${{ inputs.run-tests != 'false' }}
+    if: ${{ inputs.run-tests }}
 
     steps:
       - uses: actions/checkout@v3
