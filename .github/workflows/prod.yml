@@ -1,7 +1,6 @@
 name: Prod builder
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
