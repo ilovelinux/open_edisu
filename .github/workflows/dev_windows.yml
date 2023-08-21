@@ -38,11 +38,11 @@ jobs:
         run: flutter doctor -v
 
       - name: Build Windows package
-        run: flutter build windows --debug
+        run: flutter build windows
 
       - name: Upload Windows package
         uses: actions/upload-artifact@v3
         with:
-          name: windows-debug
-          path: build\windows\runner\Debug
+          name: windows-dev
+          path: build\windows\runner\Release
           if-no-files-found: error

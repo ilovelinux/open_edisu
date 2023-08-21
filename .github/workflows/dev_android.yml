@@ -44,6 +44,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: android-debug-apk
+          name: android-apk-dev
           path: build/app/outputs/flutter-apk/app-githubdebug-release.apk
           if-no-files-found: error
