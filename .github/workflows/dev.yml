@@ -1,9 +1,6 @@
 name: Dev builder
 
 on:
-  push:
-    branches-ignore:
-      - workflow-**
   pull_request:
   workflow_dispatch:
     inputs:
@@ -30,8 +27,8 @@ on:
 
 jobs:
   coverage:
-    uses: ./.github/workflows/dev_coverage.yml
-    if: ${{ github.event_name != 'pull_request' && inputs.run-tests }}
+    uses: ./.github/workflows/tests.yml
+    if: ${{ inputs.run-tests }}
 
   android:
     uses: ./.github/workflows/dev_android.yml

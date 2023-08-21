@@ -5,6 +5,15 @@ on:
         required: false
         type: boolean
         default: true
+    secrets:
+      ANDROID_KEYSTORE:
+        required: true
+      ANDROID_SIGNING_STORE_PASSWORD:
+        required: true
+      ANDROID_SIGNING_KEY_PASSWORD:
+        required: true
+      ANDROID_SIGNING_KEY_ALIAS:
+        required: true
 
 jobs:
   tests:

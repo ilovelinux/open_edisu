@@ -3,6 +3,16 @@ name: Prod builder
 on:
   workflow_dispatch:
     inputs:
+      android:
+        description: 'Run build on Android'
+        required: false
+        default: true
+        type: boolean
+      windows:
+        description: 'Run build on Windows'
+        required: false
+        default: true
+        type: boolean
       run-tests:
         description: 'Run tests'
         required: false
@@ -12,12 +22,14 @@ on:
 jobs:
   android:
     uses: ./.github/workflows/prod_android.yml
+    if: ${{ inputs.android }}
     secrets: inherit
     with:
       run-tests: ${{ inputs.run-tests }}
 
   windows:
     uses: ./.github/workflows/prod_windows.yml
+    if: ${{ inputs.windows }}
     with:
       run-tests: ${{ inputs.run-tests }}
 

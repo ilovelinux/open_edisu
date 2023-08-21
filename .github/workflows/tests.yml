@@ -1,0 +1,35 @@
+on:
+  push:
+    branches-ignore:
+      - workflow-**
+  pull_request:
+  workflow_call:
+    inputs:
+      update-coverage:
+        description: 'Update coverage'
+        required: false
+        default: false
+        type: boolean
+    secrets:
+      CODECOV_TOKEN:
+        description: 'Codecov token'
+        required: false
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: ./.github/actions/setup-flutter
+
+      - name: Run tests
+        run: flutter test --reporter expanded
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        if: ${{ github.event_name == 'push' || inputs.update-coverage }}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
