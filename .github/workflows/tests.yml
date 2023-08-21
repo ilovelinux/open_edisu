@@ -1,7 +1,8 @@
 on:
   push:
-    branches-ignore:
-      - workflow-**
+    paths:
+      - '**.dart'
+      - '*.yaml'
   workflow_call:
     inputs:
       update-coverage:
