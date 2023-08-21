@@ -35,9 +35,15 @@ jobs:
       - name: Build binary
         run: flutter build macos
 
+      - name: Create the DMG file
+        run: |
+          hdiutil create -format UDZO -srcfolder \
+            build/macos/Build/Products/Release/open_edisu.app \
+            build/macos/Build/Products/Release/open_edisu.dmg
+
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
           name: macos-dev
-          path: build/macos/Build/Products/Release/open_edisu.app
+          path: build/macos/Build/Products/Release/open_edisu.dmg
           if-no-files-found: error
