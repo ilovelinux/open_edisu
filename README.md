@@ -1,6 +1,7 @@
 # Open Edisu
 
-![main workflow](https://github.com/ilovelinux/open_edisu/actions/workflows/main.yml/badge.svg)
+![dev](https://github.com/ilovelinux/open_edisu/actions/workflows/dev.yml/badge.svg)
+![prod](https://github.com/ilovelinux/open_edisu/actions/workflows/prod.yml/badge.svg)
 [![Coverage](https://codecov.io/gh/ilovelinux/open_edisu/branch/main/graph/badge.svg?token=dQddRHNNzZ)](https://codecov.io/gh/ilovelinux/open_edisu)
 
 #### Download from
