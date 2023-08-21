@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'core/utilities/errors.dart';
@@ -25,10 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      windowManager.setSize(const Size(414, 736)); // To simulate phone screen
-    }
-
     return BlocProvider(
       create: (_) => AuthBloc()..add(const AuthEvent.restore()),
       child: MaterialApp(
