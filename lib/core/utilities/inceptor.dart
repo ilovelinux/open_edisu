@@ -24,11 +24,6 @@ Future<CacheOptions> get defaultCacheOptions async => CacheOptions(
 Future<void> initInceptor() async {
   final dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
 
-  if (kDebugMode) {
-    dio.interceptors
-        .add(PrettyDioLogger(requestBody: true, responseBody: true));
-  }
-
   dio.interceptors.add(DioCacheInterceptor(options: await defaultCacheOptions));
 
   dio.interceptors.add(
@@ -83,6 +78,14 @@ Future<void> initInceptor() async {
       },
     ),
   );
+
+  if (kDebugMode) {
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      requestHeader: true,
+      responseBody: true,
+    ));
+  }
 
   GetIt.I.registerLazySingleton(() => Client(RestClient(dio)));
   GetIt.I.registerLazySingleton(() => const FlutterSecureStorage());
