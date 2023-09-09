@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../../../core/widgets/commons.dart';
 import '../../../../auth/logic/auth_bloc.dart';
@@ -134,6 +135,18 @@ class _WeeklyChartbar extends StatelessWidget {
       (final Booking e) => e.date.weekday,
     );
 
-    return const Center(child: Text("Widget not implemented yet"));
+    return Center(
+      child: SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        primaryYAxis: NumericAxis(interval: 1),
+        series: <ChartSeries>[
+          ColumnSeries<String, String>(
+            dataSource: shortWeekDays,
+            xValueMapper: (String data, _) => data,
+            yValueMapper: (_, int index) => bookingsPerWeekDay[index]?.length,
+          )
+        ],
+      ),
+    );
   }
 }

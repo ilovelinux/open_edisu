@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Fix booking error
+- Re-add weekly stats
 
 ## [0.1.11] - 2023-08-19
 - Minor bug fixes
