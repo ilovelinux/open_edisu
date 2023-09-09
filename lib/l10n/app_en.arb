@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Minor bug fixes",
+    "changelog": "- Fix booking error\n- Re-add weekly stats",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
