@@ -26,3 +26,13 @@ class DateFormatConverter implements JsonConverter<DateTime, String> {
   @override
   String toJson(DateTime object) => DateFormat(pattern).format(object);
 }
+
+class IntToStringConverter implements JsonConverter<int, String> {
+  const IntToStringConverter();
+
+  @override
+  int fromJson(String json) => int.parse(json);
+
+  @override
+  String toJson(int object) => object.toString();
+}
