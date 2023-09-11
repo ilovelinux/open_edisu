@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Fix booking error\n- Re-add weekly stats",
+    "changelog": "- Fix bug that didn't allow to book a seat",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
