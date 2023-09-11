@@ -9,6 +9,8 @@ runs:
 
     - name: Get packages dependencies
       run: flutter pub get --suppress-analytics
+      shell: bash
 
     - name: Get code generation dependencies
       run: flutter pub run build_runner build
+      shell: bash
