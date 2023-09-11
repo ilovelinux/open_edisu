@@ -8,14 +8,7 @@ runs:
         cache: true
 
     - name: Get packages dependencies
-      uses: ilovelinux/flutter-cache-action/pub/get@v1
-      id: pub-cache
-      with:
-        pub-flags: --suppress-analytics
-        enableCrossOsArchive: true
+      run: flutter pub get --suppress-analytics
 
     - name: Get code generation dependencies
-      uses: ilovelinux/flutter-cache-action/build_runner/build@v1
-      id: build-cache
-      with:
-        key: build-runner-${{ runner.os }}-${{ hashFiles('pubspec.lock', '**/*.dart') }}
+      run: flutter pub run build_runner build
