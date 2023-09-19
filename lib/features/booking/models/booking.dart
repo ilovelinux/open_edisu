@@ -122,7 +122,7 @@ class BookingsPerSeats {
 
   List<TimeRange> get slots => List.unmodifiable(
         Iterable.generate(
-          (timeRange.timeEnd.hour - timeRange.timeStart.hour) * 2 +
+          (timeRange.normalizedTimeEnd.hour - timeRange.timeStart.hour) * 2 +
               (timeRange.timeEnd.minute - timeRange.timeStart.minute + 1) ~/ 30,
           (index) => TimeRange(
             timeStart: timeRange.timeStart,

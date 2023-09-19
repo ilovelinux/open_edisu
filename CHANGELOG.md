@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
+- Fix bug that didn't show seats for some study halls
 
 ## [0.1.13]
 - Fix bug that didn't allow to book a seat
