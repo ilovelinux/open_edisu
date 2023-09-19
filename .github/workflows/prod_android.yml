@@ -55,6 +55,9 @@ jobs:
       - name: Build App Bundle
         run: flutter build appbundle --release --flavor prod
 
+      - name: Build App APK
+        run: flutter build apk --release --flavor prod
+
       - name: Upload Android Bundle
         uses: actions/upload-artifact@v3
         with:
@@ -67,4 +70,11 @@ jobs:
         with:
           name: android-debug-symbols
           path: build/app/intermediates/merged_native_libs/prodRelease/out/lib/*
+          if-no-files-found: error
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-bundle
+          path: build/app/outputs/flutter-apk/app-prod-release.apk
           if-no-files-found: error
