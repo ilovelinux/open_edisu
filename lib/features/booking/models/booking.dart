@@ -105,7 +105,7 @@ class BookingsPerSeats {
   final TimeOfDay? timeEnd;
   @JsonKey(defaultValue: [])
   final BookedSeatList seats;
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   late final DateTime date; // Not given by api
 
   BookingsPerSeats({
