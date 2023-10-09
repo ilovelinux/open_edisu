@@ -48,7 +48,7 @@ dev_dependencies:
   json_serializable: ^6.2.0
   retrofit_generator: ^8.0.0
   pretty_dio_logger: ^1.2.0-beta-1
-  msix: ^3.16.3
+  msix: ^3.16.4
 
 flutter:
   uses-material-design: true
