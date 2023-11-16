@@ -17,7 +17,7 @@ dependencies:
   qr_flutter: ^4.0.0
   horizontal_data_table: ^4.0.0
   flutter_bloc: ^8.0.1
-  collection: ^1.15.0
+  collection: ^1.18.0
   freezed_annotation: ^2.0.3
   get_it: ^7.6.4
   retrofit: ^4.0.3
