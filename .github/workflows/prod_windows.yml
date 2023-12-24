@@ -41,5 +41,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: windows-msix-build
-          path: build\windows\runner\Release\open_edisu.msix
+          path: build\windows\x64\runner\Release\open_edisu.msix
           if-no-files-found: error
