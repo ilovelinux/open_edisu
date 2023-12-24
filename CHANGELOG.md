@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
+- Fix bug that didn't allow to delete a booking
 
 ## [0.1.14]
 - Fix bug that didn't show seats for some study halls

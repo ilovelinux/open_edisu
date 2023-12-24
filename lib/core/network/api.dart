@@ -104,6 +104,7 @@ abstract class RestClient {
 
   @POST("/booking/bookingcancel")
   @Headers({HttpHeaders.acceptLanguageHeader: "it"})
+  @Headers({HttpHeaders.contentTypeHeader: "application/json"})
   Future<void> bookingcancel(@Body() BookingCancelRequest body);
 
   @POST('/users/updateuser')
