@@ -139,7 +139,7 @@ class _WeeklyChartbar extends StatelessWidget {
       child: SfCartesianChart(
         primaryXAxis: CategoryAxis(),
         primaryYAxis: NumericAxis(interval: 1),
-        series: <ChartSeries>[
+        series: <CartesianSeries>[
           ColumnSeries<String, String>(
             dataSource: shortWeekDays,
             xValueMapper: (String data, _) => data,
