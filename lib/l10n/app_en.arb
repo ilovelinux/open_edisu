@@ -41,7 +41,7 @@
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Fix bug that didn't show seats for some study halls",
+    "changelog": "- Fix bug that didn't allow to delete a booking",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 

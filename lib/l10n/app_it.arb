@@ -41,7 +41,7 @@
     "settingsBottom": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Fixato un bug che non permetteva di visualizzare i posti di alcune sale studio",
+    "changelog": "- Fixato un bug che non permetteva la cancellazione delle prenotazioni",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 
