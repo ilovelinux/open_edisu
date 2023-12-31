@@ -34,22 +34,20 @@ class _TimeTable2 extends StatelessWidget {
 
   List<Widget> _getHeaderWidgets(BuildContext context) => <Widget>[
         const SizedBox(width: _width, height: 25),
-        ...slots
-            .map(
-              (e) => Container(
-                width: _width,
-                height: 25,
-                // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.center,
-                child: Text(
-                  MaterialLocalizations.of(context).formatTimeOfDay(
-                    e.begin,
-                    alwaysUse24HourFormat: true,
-                  ),
-                ),
+        ...slots.map(
+          (e) => Container(
+            width: _width,
+            height: 25,
+            // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(
+              MaterialLocalizations.of(context).formatTimeOfDay(
+                e.begin,
+                alwaysUse24HourFormat: true,
               ),
-            )
-            .toList(),
+            ),
+          ),
+        ),
       ];
 }
 

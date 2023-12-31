@@ -100,17 +100,15 @@ class _TimeTable extends StatelessWidget {
 
   List<Widget> _getHeaderWidgets(Slots slots) => <Widget>[
         const SizedBox(width: _width, height: 25),
-        ...slots
-            .map(
-              (e) => Container(
-                width: e == slotSeparator ? _separatorWidth : _width,
-                height: 25,
-                // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.center,
-                child: Text(e == slotSeparator ? "" : e.begin.to24hours()),
-              ),
-            )
-            .toList(),
+        ...slots.map(
+          (e) => Container(
+            width: e == slotSeparator ? _separatorWidth : _width,
+            height: 25,
+            // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(e == slotSeparator ? "" : e.begin.to24hours()),
+          ),
+        ),
       ];
 }
 

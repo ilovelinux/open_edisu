@@ -13,7 +13,7 @@ class LoadingWidget extends StatelessWidget {
 // insteading of creating a new one
 class CenteredText extends Text {
   const CenteredText(
-    String data, {
+    super.data, {
     super.key,
     super.style,
     super.strutStyle,
@@ -27,7 +27,7 @@ class CenteredText extends Text {
     super.semanticsLabel,
     super.textWidthBasis,
     super.textHeightBehavior,
-  }) : super(data);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -137,8 +137,8 @@ class _WeeklyChartbar extends StatelessWidget {
 
     return Center(
       child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        primaryYAxis: NumericAxis(interval: 1),
+        primaryXAxis: const CategoryAxis(),
+        primaryYAxis: const NumericAxis(interval: 1),
         series: <CartesianSeries>[
           ColumnSeries<String, String>(
             dataSource: shortWeekDays,
