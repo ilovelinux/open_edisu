@@ -33,7 +33,7 @@ dependencies:
   logging: ^1.0.2
   sticky_headers: ^0.3.0+2
   maps_launcher: ^2.0.1
-  syncfusion_flutter_charts: ^24.1.47+2
+  syncfusion_flutter_charts: ^24.2.4+2
 
 dev_dependencies:
   flutter_test:
