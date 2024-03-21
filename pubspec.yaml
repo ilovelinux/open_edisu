@@ -29,7 +29,7 @@ dependencies:
   dio_cache_interceptor: ^3.5.0
   dio_cache_interceptor_hive_store: ^3.2.2
   path_provider: ^2.1.2
-  url_launcher: ^6.2.4
+  url_launcher: ^6.2.5
   logging: ^1.0.2
   sticky_headers: ^0.3.0+2
   maps_launcher: ^2.2.1
