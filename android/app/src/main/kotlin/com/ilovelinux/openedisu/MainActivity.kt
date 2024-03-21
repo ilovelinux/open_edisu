@@ -1,4 +1,4 @@
-package com.ilovelinux.open_edisu
+package com.ilovelinux.openedisu
 
 import io.flutter.embedding.android.FlutterActivity
 
