@@ -25,7 +25,7 @@ dependencies:
   json_annotation: ^4.8.1
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.2.2
-  package_info_plus: ^5.0.1
+  package_info_plus: ^6.0.0
   dio_cache_interceptor: ^3.5.0
   dio_cache_interceptor_hive_store: ^3.2.2
   path_provider: ^2.1.2
