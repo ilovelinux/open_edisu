@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -16,7 +18,6 @@ class HomePage extends StatefulWidget {
   final _pages = const [
     Home(),
     BookingsView(),
-    HallsView(),
   ];
 
   @override
@@ -34,8 +35,24 @@ class _HomePageState extends State<HomePage> {
       create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
       child: Scaffold(
         appBar: AppBar(
-          title:
-              Text(AppLocalizations.of(context)!.homeTitles(index.toString())),
+          title: Text(
+              switch (index) {
+                0 => AppLocalizations.of(context)!
+                    .welcome(GetIt.I<User>().name, ''),
+                1 => AppLocalizations.of(context)!.bookingsBottom,
+                _ => '',
+              },
+              style: switch (index) {
+                0 => const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
+                _ => null,
+              },
+              textScaler: switch (index) {
+                0 => const TextScaler.linear(1.05),
+                _ => null,
+              }),
           actions: [
             if (index == 0)
               TextButton(
@@ -44,18 +61,28 @@ class _HomePageState extends State<HomePage> {
                     builder: (context) => const SettingsView(),
                   ),
                 ),
-                child: const Icon(Icons.settings, color: Colors.white),
+                child: const Icon(Icons.settings),
               ),
             if (index == 1)
               TextButton(
                 onPressed: () => context
                     .read<BookingsBloc>()
                     .add(const BookingsEvent.update()),
-                child: const Icon(Icons.replay, color: Colors.white),
+                child: const Icon(Icons.replay),
               ),
           ],
+          centerTitle: index == 1,
         ),
         body: IndexedStack(index: index, children: widget._pages),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const HallsView(),
+            ),
+          ),
+          icon: const Icon(Icons.add),
+          label: Text(AppLocalizations.of(context)!.newBooking),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: index,
@@ -68,10 +95,6 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.library_books),
               label: AppLocalizations.of(context)!.bookingsBottom,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.plus_one),
-              label: AppLocalizations.of(context)!.newBookingBottom,
             ),
           ],
         ),

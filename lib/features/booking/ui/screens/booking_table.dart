@@ -95,6 +95,8 @@ class _TimeTable extends StatelessWidget {
       ),
       horizontalScrollbarStyle:
           Platform.isWindows ? const ScrollbarStyle(isAlwaysShown: true) : null,
+      leftHandSideColBackgroundColor: Theme.of(context).colorScheme.background,
+      rightHandSideColBackgroundColor: Theme.of(context).colorScheme.background,
     );
   }
 
@@ -197,9 +199,10 @@ class _BookingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingTableCubit, BookingTableState>(
-      builder: (context, state) => SizedBox(
+      builder: (context, state) => Container(
         width: double.infinity,
-        child: OutlinedButton(
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+        child: FilledButton(
           onPressed: _book(context, state),
           child: Padding(
             padding: const EdgeInsets.all(16.0),

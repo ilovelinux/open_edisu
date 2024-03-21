@@ -23,42 +23,8 @@ class Home extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _UserCard(),
           _WeeklyStatisticsCard(),
         ],
-      ),
-    );
-  }
-}
-
-class _UserCard extends StatelessWidget {
-  const _UserCard();
-
-  @override
-  Widget build(BuildContext context) {
-    final user = GetIt.I<User>();
-
-    return Card(
-      margin: const EdgeInsets.all(16.0),
-      child: InkWell(
-        onTap: () => showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext c) => BlocProvider.value(
-            value: context.read<AuthBloc>(),
-            child: const LogoutDialog(),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Text(
-            AppLocalizations.of(context)!.welcome(user.name, user.surname),
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0,
-            ),
-          ),
-        ),
       ),
     );
   }

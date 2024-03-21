@@ -211,11 +211,14 @@ class _BookingDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
+          Container(
             width: qrCodeSize,
             height: qrCodeSize,
+            alignment: Alignment.center,
             child: QrImageView(
+              size: qrCodeSize,
               data: booking.bookingId.toUpperCase(),
+              backgroundColor: Colors.white,
             ),
           ),
           Text(

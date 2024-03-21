@@ -28,16 +28,9 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} other{}}",
-    "@homeTitles": {
-        "description": "Homepage titles",
-        "placeholders": {
-            "page": {}
-        }
-    },
     "homeBottom": "Home",
     "bookingsBottom": "Bookings",
-    "newBookingBottom": "New",
+    "newBooking": "New booking",
     "settingsBottom": "Settings",
 
     "whatsnew": "What's new?",
@@ -45,7 +38,7 @@
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
-    "welcome": "Welcome, {firstName} {lastName}",
+    "welcome": "Welcome, {firstName}!",
     "@welcome" : {
         "placeholders": {
             "firstName": {},

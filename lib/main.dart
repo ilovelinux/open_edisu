@@ -32,9 +32,15 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
+            surfaceTint: Colors.red,
           ),
-          useMaterial3: false,
-        ).copyWith(appBarTheme: const AppBarTheme(centerTitle: true)),
+        ),
+        darkTheme: ThemeData.from(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
+            brightness: Brightness.dark,
+          ),
+        ),
         routes: {
           'login': (_) => const LoginPage(),
           'signup': (_) => const SignupPage(),
