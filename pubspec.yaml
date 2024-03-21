@@ -40,7 +40,6 @@ dependencies:
 
   flutter_secure_storage: ^9.0.0
   intl: ^0.18.0
-  qr_flutter: ^4.0.0
   horizontal_data_table: ^4.0.0
   flutter_bloc: ^8.1.4
   collection: ^1.18.0
@@ -60,6 +59,7 @@ dependencies:
   sticky_headers: ^0.3.0+2
   maps_launcher: ^2.2.1
   syncfusion_flutter_charts: ^25.1.35
+  pretty_qr_code: ^3.3.0
 
 dev_dependencies:
   flutter_test:

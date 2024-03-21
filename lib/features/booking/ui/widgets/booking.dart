@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import '../../models/booking.dart';
 
@@ -28,8 +28,7 @@ class BookingTicket extends StatelessWidget {
             height: 80,
             child: Row(
               children: [
-                QrImageView(
-                  size: 80,
+                PrettyQrView.data(
                   data: booking.bookingId.toUpperCase(),
                 ),
                 const VerticalDivider(),
