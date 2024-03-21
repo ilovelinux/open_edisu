@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
 
 import '../../../../../core/utilities/dio.dart';
@@ -214,8 +214,13 @@ class _BookingDialog extends StatelessWidget {
           SizedBox(
             width: qrCodeSize,
             height: qrCodeSize,
-            child: QrImageView(
+            child: PrettyQrView.data(
               data: booking.bookingId.toUpperCase(),
+              decoration: const PrettyQrDecoration(
+                shape: PrettyQrRoundedSymbol(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
             ),
           ),
           Text(
