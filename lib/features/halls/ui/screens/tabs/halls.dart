@@ -15,28 +15,40 @@ class HallsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HallsBloc()..add(const HallsEvent.update()),
-      child: BlocBuilder<HallsBloc, HallsState>(
-        builder: (context, state) => state.when(
-          success: (halls, hallsMobile) => SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: halls
-                  .map(
-                    (hall) => _HallCard(
-                      hall: hall,
-                      hallMobile: hallsMobile.firstWhere(
-                        (element) => element.name == hall.hname,
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.newBooking),
+      ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => HallsBloc()..add(const HallsEvent.update()),
           ),
-          loading: () => const LoadingWidget(),
-          error: (e) => CenteredText(
-            kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+          BlocProvider(
+            create: (context) => BookingsBloc(),
+          ),
+        ],
+        child: BlocBuilder<HallsBloc, HallsState>(
+          builder: (context, state) => state.when(
+            success: (halls, hallsMobile) => SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: halls
+                    .map(
+                      (hall) => _HallCard(
+                        hall: hall,
+                        hallMobile: hallsMobile.firstWhere(
+                          (element) => element.name == hall.hname,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            loading: () => const LoadingWidget(),
+            error: (e) => CenteredText(
+              kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+            ),
           ),
         ),
       ),

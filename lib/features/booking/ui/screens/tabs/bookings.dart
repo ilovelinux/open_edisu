@@ -20,12 +20,25 @@ class BookingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookingsBloc, BookingsState>(
-      builder: (context, state) => state.when(
-        success: (bookings) => _BookingViewBody(bookings),
-        loading: () => const LoadingWidget(),
-        error: (e) => CenteredText(
-          kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.bookingsBottom),
+        actions: [
+          TextButton(
+            onPressed: () =>
+                context.read<BookingsBloc>().add(const BookingsEvent.update()),
+            child: const Icon(Icons.replay),
+          ),
+        ],
+        centerTitle: true,
+      ),
+      body: BlocBuilder<BookingsBloc, BookingsState>(
+        builder: (context, state) => state.when(
+          success: (bookings) => _BookingViewBody(bookings),
+          loading: () => const LoadingWidget(),
+          error: (e) => CenteredText(
+            kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+          ),
         ),
       ),
     );
@@ -99,53 +112,56 @@ class BookingList extends StatelessWidget {
 
     final bookingsByDate = groupBy(bookings, (Booking booking) => booking.date);
     return SingleChildScrollView(
-      child: Column(
-        children: bookingsByDate.entries
-            .map<Widget>(
-              (b) => StickyHeader(
-                header: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).colorScheme.background,
-                        blurRadius: 1.0,
-                        offset: const Offset(0.0, 1.0),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      DateFormat.yMMMMEEEEd(
-                        Localizations.localeOf(context).toLanguageTag(),
-                      ).format(b.key),
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: bookingsByDate.entries
+              .map<Widget>(
+                (b) => StickyHeader(
+                  header: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).colorScheme.background,
+                          blurRadius: 1.0,
+                          offset: const Offset(0.0, 1.0),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        DateFormat.yMMMMEEEEd(
+                          Localizations.localeOf(context).toLanguageTag(),
+                        ).format(b.key),
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                content: Column(
-                  children: b.value
-                      .map(
-                        (e) => BookingTicket(
-                          e,
-                          onTap: () => showDialog(
-                            context: context,
-                            builder: (_) => BlocProvider.value(
-                              value: context.read<BookingsBloc>(),
-                              child: _BookingDialog(booking: e),
+                  content: Column(
+                    children: b.value
+                        .map(
+                          (e) => BookingTicket(
+                            e,
+                            onTap: () => showDialog(
+                              context: context,
+                              builder: (_) => BlocProvider.value(
+                                value: context.read<BookingsBloc>(),
+                                child: _BookingDialog(booking: e),
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                      .toList(),
+                        )
+                        .toList(),
+                  ),
                 ),
-              ),
-            )
-            .toList(),
+              )
+              .toList(),
+        ),
       ),
     );
   }
@@ -214,6 +230,10 @@ class _BookingDialog extends StatelessWidget {
           Container(
             width: qrCodeSize,
             height: qrCodeSize,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.only(bottom: 20),
+            color: Colors.white,
             child: PrettyQrView.data(
               data: booking.bookingId.toUpperCase(),
               decoration: const PrettyQrDecoration(

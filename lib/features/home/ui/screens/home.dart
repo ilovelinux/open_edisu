@@ -7,25 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../booking/logic/bookings_bloc.dart';
-import '../../../booking/ui/screens/tabs/bookings.dart';
 import '../../../halls/ui/screens/tabs/halls.dart';
 import '../../../settings/ui/screens/settings.dart';
 import 'tabs/home.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  final _pages = const [
-    Home(),
-    BookingsView(),
-  ];
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,46 +21,28 @@ class _HomePageState extends State<HomePage> {
     return BlocProvider(
       create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text(
-              switch (index) {
-                0 => AppLocalizations.of(context)!
-                    .welcome(GetIt.I<User>().name, ''),
-                1 => AppLocalizations.of(context)!.bookingsBottom,
-                _ => '',
-              },
-              style: switch (index) {
-                0 => const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                  ),
-                _ => null,
-              },
-              textScaler: switch (index) {
-                0 => const TextScaler.linear(1.05),
-                _ => null,
-              }),
+            AppLocalizations.of(context)!.welcome(GetIt.I<User>().name, ''),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.5,
+            ),
+            textScaler: const TextScaler.linear(1.05),
+          ),
           actions: [
-            if (index == 0)
-              TextButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const SettingsView(),
-                  ),
+            TextButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SettingsView(),
                 ),
-                child: const Icon(Icons.settings),
               ),
-            if (index == 1)
-              TextButton(
-                onPressed: () => context
-                    .read<BookingsBloc>()
-                    .add(const BookingsEvent.update()),
-                child: const Icon(Icons.replay),
-              ),
+              child: const Icon(Icons.settings),
+            ),
           ],
-          centerTitle: index == 1,
         ),
-        body: IndexedStack(index: index, children: widget._pages),
+        body: const Home(),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => Navigator.of(context).push(
             MaterialPageRoute(
@@ -82,21 +51,6 @@ class _HomePageState extends State<HomePage> {
           ),
           icon: const Icon(Icons.add),
           label: Text(AppLocalizations.of(context)!.newBooking),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: index,
-          onTap: (i) => setState(() => index = i),
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: AppLocalizations.of(context)!.homeBottom,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.library_books),
-              label: AppLocalizations.of(context)!.bookingsBottom,
-            ),
-          ],
         ),
       ),
     );

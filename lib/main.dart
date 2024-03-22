@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,6 +16,15 @@ import 'core/widgets/commons.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initInceptor();
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Colors.transparent,
+  ));
+
   runApp(const MyApp());
 }
 
@@ -32,7 +42,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
-            surfaceTint: Colors.red,
           ),
         ),
         darkTheme: ThemeData.from(

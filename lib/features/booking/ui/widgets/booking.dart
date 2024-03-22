@@ -7,18 +7,19 @@ import '../../models/booking.dart';
 class BookingTicket extends StatelessWidget {
   final Booking booking;
   final Function()? onTap;
+  final bool showQrCode;
 
-  const BookingTicket(this.booking, {super.key, this.onTap});
+  const BookingTicket(
+    this.booking, {
+    super.key,
+    this.onTap,
+    this.showQrCode = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1.0,
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(16.0),
-      ),
+    return Card.outlined(
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16.0),
@@ -28,12 +29,21 @@ class BookingTicket extends StatelessWidget {
             height: 80,
             child: Row(
               children: [
-                PrettyQrView.data(
-                  data: booking.bookingId.toUpperCase(),
-                ),
-                const VerticalDivider(),
+                if (showQrCode)
+                  PrettyQrView.data(
+                    data: booking.bookingId.toUpperCase(),
+                    decoration: PrettyQrDecoration(
+                      shape: PrettyQrSmoothSymbol(
+                        color: Theme.of(context).colorScheme.inverseSurface,
+                      ),
+                    ),
+                  ),
+                if (showQrCode) const VerticalDivider(),
+                if (!showQrCode) const Spacer(),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: showQrCode
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.center,
                   children: [
                     Text(
                       booking.hallName,

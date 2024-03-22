@@ -2,17 +2,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../../../core/widgets/commons.dart';
-import '../../../../auth/logic/auth_bloc.dart';
-import '../../../../auth/models/user.dart';
-import '../../../../auth/ui/widgets/logout_dialog.dart';
 import '../../../../booking/logic/bookings_bloc.dart';
 import '../../../../booking/models/booking.dart';
+import '../../../../booking/ui/widgets/booking.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -23,8 +20,63 @@ class Home extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _NextBookingCard(),
           _WeeklyStatisticsCard(),
         ],
+      ),
+    );
+  }
+}
+
+class _NextBookingCard extends StatelessWidget {
+  const _NextBookingCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Next booking',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textScaler: TextScaler.linear(1.5),
+                ),
+                Spacer(),
+              ],
+            ),
+            SizedBox(height: 12.0),
+            BlocBuilder<BookingsBloc, BookingsState>(
+              builder: (context, state) => state.when(
+                success: (bookings) {
+                  final nextBooking = bookings
+                      .where((element) => element.isUpcoming())
+                      .sortedBy((element) => element.toDateTime())
+                      .firstOrNull;
+
+                  if (nextBooking == null) {
+                    return Text('No booking found');
+                  }
+
+                  return BookingTicket(nextBooking, showQrCode: false);
+                },
+                loading: () => const LoadingWidget(),
+                error: (e) => CenteredText(
+                  kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            FilledButton(onPressed: () {}, child: Text('Show all'))
+          ],
+        ),
       ),
     );
   }
