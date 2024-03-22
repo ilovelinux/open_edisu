@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## [Unreleased]
+- Minor translation fix
 
 ## [0.1.15]
 - Fix bug that didn't allow to delete a booking
