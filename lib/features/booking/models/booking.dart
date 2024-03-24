@@ -51,7 +51,7 @@ class Booking {
   TimeRange get timeRange => TimeRange(timeStart: startTime, timeEnd: endTime);
 }
 
-typedef Bookings = List<Booking>;
+typedef Bookings = Iterable<Booking>;
 
 enum BookingStatus {
   @JsonValue(0)

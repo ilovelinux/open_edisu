@@ -29,6 +29,8 @@
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
     "homeBottom": "Home",
+    "nextBooking": "Prossima prenotazione",
+    "showAll": "Mostra tutte",
     "bookingsBottom": "Prenotazioni",
     "newBooking": "Nuova prenotazione",
     "settingsBottom": "Impostazioni",

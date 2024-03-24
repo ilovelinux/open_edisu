@@ -10,6 +10,7 @@ import 'features/auth/logic/auth_bloc.dart';
 import 'features/auth/models/user.dart';
 import 'features/auth/ui/screens/login.dart';
 import 'features/auth/ui/screens/signup.dart';
+import 'features/booking/logic/bookings_bloc.dart';
 import 'features/home/ui/screens/home.dart';
 import 'core/widgets/commons.dart';
 
@@ -18,7 +19,7 @@ void main() async {
   await initInceptor();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.dark,
     statusBarColor: Colors.transparent,
@@ -33,22 +34,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AuthBloc()..add(const AuthEvent.restore()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc()..add(const AuthEvent.restore()),
+        ),
+        BlocProvider<BookingsBloc>(
+          create: (_) => BookingsBloc(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Open Edisu',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
-          ),
+        theme: ThemeData(
+          colorSchemeSeed: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
         ),
-        darkTheme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
-            brightness: Brightness.dark,
-          ),
+        darkTheme: ThemeData(
+          colorSchemeSeed: const Color.fromRGBO(0xd0, 0x36, 0x29, 1),
+          brightness: Brightness.dark,
         ),
         routes: {
           'login': (_) => const LoginPage(),
@@ -56,7 +60,10 @@ class MyApp extends StatelessWidget {
         },
         home: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) => state.whenOrNull<void>(
-            authenticated: (user) => GetIt.I.registerSingleton<User>(user),
+            authenticated: (user) {
+              GetIt.I.registerSingleton<User>(user);
+              context.read<BookingsBloc>().add(const BookingsEvent.update());
+            },
             unauthenticated: (
               final sessionExpired,
               final connectionError,

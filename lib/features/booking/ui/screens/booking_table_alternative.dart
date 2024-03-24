@@ -1,4 +1,4 @@
-part of 'booking.dart';
+part of 'book.dart';
 
 class _TimeTable2 extends StatelessWidget {
   final Slots slots;

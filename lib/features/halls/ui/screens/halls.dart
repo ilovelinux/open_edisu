@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
-import '../../../../../core/widgets/commons.dart';
-import '../../../../booking/logic/bookings_bloc.dart';
-import '../../../../booking/ui/screens/booking.dart';
-import '../../../logic/halls_bloc.dart';
-import '../../../models/halls.dart';
+import '../../../../core/widgets/commons.dart';
+import '../../../booking/logic/bookings_bloc.dart';
+import '../../../booking/ui/screens/book.dart';
+import '../../logic/halls_bloc.dart';
+import '../../models/halls.dart';
 
 class HallsView extends StatelessWidget {
   const HallsView({super.key});
@@ -19,15 +19,8 @@ class HallsView extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.newBooking),
       ),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => HallsBloc()..add(const HallsEvent.update()),
-          ),
-          BlocProvider(
-            create: (context) => BookingsBloc(),
-          ),
-        ],
+      body: BlocProvider(
+        create: (context) => HallsBloc()..add(const HallsEvent.update()),
         child: BlocBuilder<HallsBloc, HallsState>(
           builder: (context, state) => state.when(
             success: (halls, hallsMobile) => SingleChildScrollView(

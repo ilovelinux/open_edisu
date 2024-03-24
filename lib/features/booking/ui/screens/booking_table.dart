@@ -1,4 +1,4 @@
-part of 'booking.dart';
+part of 'book.dart';
 
 class _BookingTable extends StatelessWidget {
   const _BookingTable(this.slots, this.bookingsPerSeats);

@@ -29,6 +29,8 @@
     "sessionExpired": "Your session has expired, please login again.",
 
     "homeBottom": "Home",
+    "nextBooking": "Next booking",
+    "showAll": "Show all",
     "bookingsBottom": "Bookings",
     "newBooking": "New booking",
     "settingsBottom": "Settings",

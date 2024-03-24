@@ -6,8 +6,7 @@ import 'package:open_edisu/features/auth/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../booking/logic/bookings_bloc.dart';
-import '../../../halls/ui/screens/tabs/halls.dart';
+import '../../../halls/ui/screens/halls.dart';
 import '../../../settings/ui/screens/settings.dart';
 import 'tabs/home.dart';
 
@@ -18,40 +17,38 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     _showChangelogOnUpdate(context);
 
-    return BlocProvider(
-      create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.welcome(GetIt.I<User>().name, ''),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
-            ),
-            textScaler: const TextScaler.linear(1.05),
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.welcome(GetIt.I<User>().name, ''),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SettingsView(),
-                ),
+          textScaler: const TextScaler.linear(1.05),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SettingsView(),
               ),
-              child: const Icon(Icons.settings),
             ),
-          ],
-        ),
-        body: const Home(),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const HallsView(),
-            ),
+            child: const Icon(Icons.settings),
           ),
-          icon: const Icon(Icons.add),
-          label: Text(AppLocalizations.of(context)!.newBooking),
+        ],
+      ),
+      drawer: const SettingsView(),
+      body: const Home(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const HallsView(),
+          ),
         ),
+        icon: const Icon(Icons.add),
+        label: Text(AppLocalizations.of(context)!.newBooking),
       ),
     );
   }

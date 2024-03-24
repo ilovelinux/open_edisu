@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/features/booking/ui/screens/bookings.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../../../core/widgets/commons.dart';
@@ -17,8 +18,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Flex(
+        direction: Axis.vertical,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _NextBookingCard(),
           _WeeklyStatisticsCard(),
@@ -43,16 +45,16 @@ class _NextBookingCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Next booking',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.nextBooking,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
-                  textScaler: TextScaler.linear(1.5),
+                  textScaler: const TextScaler.linear(1.5),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             BlocBuilder<BookingsBloc, BookingsState>(
               builder: (context, state) => state.when(
                 success: (bookings) {
@@ -62,7 +64,14 @@ class _NextBookingCard extends StatelessWidget {
                       .firstOrNull;
 
                   if (nextBooking == null) {
-                    return Text('No booking found');
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.noBookings,
+                        ),
+                      ),
+                    );
                   }
 
                   return BookingTicket(nextBooking, showQrCode: false);
@@ -74,7 +83,16 @@ class _NextBookingCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            FilledButton(onPressed: () {}, child: Text('Show all'))
+            FilledButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const BookingsView(),
+                ),
+              ),
+              child: Text(
+                AppLocalizations.of(context)!.showAll,
+              ),
+            )
           ],
         ),
       ),
