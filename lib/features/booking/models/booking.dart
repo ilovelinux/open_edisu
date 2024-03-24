@@ -153,7 +153,7 @@ class BookedSeat {
       _$BookedSeatFromJson(json);
 
   @override
-  bool operator ==(Object? other) => other is BookedSeat && id == other.id;
+  bool operator ==(Object other) => other is BookedSeat && id == other.id;
 
   @override
   int get hashCode => id;

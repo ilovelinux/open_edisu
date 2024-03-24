@@ -10,8 +10,8 @@ import '../../../booking/ui/screens/book.dart';
 import '../../logic/halls_bloc.dart';
 import '../../models/halls.dart';
 
-class HallsView extends StatelessWidget {
-  const HallsView({super.key});
+class HallsPage extends StatelessWidget {
+  const HallsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

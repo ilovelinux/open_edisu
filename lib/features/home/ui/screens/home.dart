@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_edisu/features/auth/models/user.dart';
@@ -8,7 +7,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../halls/ui/screens/halls.dart';
 import '../../../settings/ui/screens/settings.dart';
-import 'tabs/home.dart';
+import '../widgets/chart.dart';
+import '../widgets/next_booking.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -40,11 +40,20 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: const SettingsView(),
-      body: const Home(),
+      body: const SingleChildScrollView(
+        child: Flex(
+          direction: Axis.vertical,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            NextBookingCard(),
+            WeeklyStatisticsCard(),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => const HallsView(),
+            builder: (_) => const HallsPage(),
           ),
         ),
         icon: const Icon(Icons.add),
