@@ -41,7 +41,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   intl: ^0.18.0
   horizontal_data_table: ^4.0.0
-  flutter_bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
   collection: ^1.18.0
   freezed_annotation: ^2.0.3
   get_it: ^7.6.7
