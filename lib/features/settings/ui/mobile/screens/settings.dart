@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../auth/logic/auth_bloc.dart';
-import '../../../auth/ui/widgets/logout_dialog.dart';
+import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
+import 'package:open_edisu/features/auth/ui/widgets/logout_dialog.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -21,14 +21,7 @@ class SettingsView extends StatelessWidget {
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.settings)),
       body: ListView(
         children: [
-          ListTile(
-            title: Text(
-              AppLocalizations.of(context)!.user,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
+          ListTile(title: Text(AppLocalizations.of(context)!.user)),
           ListTile(
             leading: const Icon(Icons.person),
             title: Text(AppLocalizations.of(context)!.firstName),
@@ -58,14 +51,7 @@ class SettingsView extends StatelessWidget {
             ),
           ),
           const Divider(),
-          ListTile(
-            title: Text(
-              AppLocalizations.of(context)!.other,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
+          ListTile(title: Text(AppLocalizations.of(context)!.other)),
           FutureBuilder(
             future: PackageInfo.fromPlatform(),
             builder: (context, AsyncSnapshot<PackageInfo> snapshot) =>

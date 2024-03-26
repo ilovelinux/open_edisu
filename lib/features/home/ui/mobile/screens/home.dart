@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_edisu/features/auth/models/user.dart';
+import 'package:open_edisu/features/halls/ui/mobile/screens/halls.dart';
+import 'package:open_edisu/features/home/ui/mobile/widgets/chart.dart';
+import 'package:open_edisu/features/home/ui/mobile/widgets/next_booking.dart';
+import 'package:open_edisu/features/settings/ui/mobile/screens/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-import '../../../halls/ui/screens/halls.dart';
-import '../../../settings/ui/screens/settings.dart';
-import '../widgets/chart.dart';
-import '../widgets/next_booking.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

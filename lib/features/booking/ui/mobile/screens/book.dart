@@ -1,38 +1,13 @@
-import 'dart:io';
 import 'dart:ui';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:horizontal_data_table/horizontal_data_table.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:open_edisu/core/utilities/extensions/date.dart';
-import 'package:open_edisu/core/utilities/extensions/time.dart';
-
-import '../../../../core/widgets/commons.dart';
-import '../../../halls/models/halls.dart';
-import '../../logic/booking_info_bloc.dart';
-import '../../logic/booking_table_alternative_bloc.dart';
-import '../../logic/booking_table_cubit.dart';
-import '../../logic/bookings_bloc.dart';
-import '../../models/booking.dart';
-import '../widgets/dialogs/booking_dialog.dart';
-
-part 'booking_table.dart';
-part 'booking_table_alternative.dart';
-
-// Table colors
-const Color available = Color(0xFF6FB2D2);
-const Color booked = Color(0xFF85C88A);
-const Color unavailable = Color(0xFFEEEEEE);
-const Color conflict = Color(0xFFEBD671);
-
-// Table sizes
-const double _width = 60;
-const double _separatorWidth = 20;
-const double _height = 60;
-const double _margin = 6;
+import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
+import 'package:open_edisu/features/booking/ui/mobile/screens/booking_table.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
 
 class DragWithTouchAndMouse extends MaterialScrollBehavior {
   @override
@@ -81,9 +56,7 @@ class BookingView extends StatelessWidget {
             child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
               builder: (context, state) => state.when(
                 success: (slots, bookingsPerSeat) =>
-                    _BookingTable(slots, bookingsPerSeat),
-                alternativeSuccess: (slots, seats) =>
-                    _TimeTable2(slots: slots, seats: seats),
+                    BookingTable(slots, bookingsPerSeat),
                 loading: () => const LoadingWidget(),
                 update: () => const LoadingWidget(),
                 error: (e) => CenteredText(e),

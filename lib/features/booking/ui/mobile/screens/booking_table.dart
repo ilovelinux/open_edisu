@@ -1,7 +1,23 @@
-part of 'book.dart';
+import 'dart:io';
 
-class _BookingTable extends StatelessWidget {
-  const _BookingTable(this.slots, this.bookingsPerSeats);
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
+import 'package:open_edisu/core/utilities/extensions/date.dart';
+import 'package:open_edisu/core/utilities/extensions/time.dart';
+import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
+import 'package:open_edisu/features/booking/logic/booking_table_cubit.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
+import 'package:open_edisu/features/booking/ui/config.dart';
+import 'package:open_edisu/features/booking/ui/mobile/screens/book.dart';
+import 'package:open_edisu/features/booking/ui/widgets/dialogs/booking_dialog.dart';
+
+class BookingTable extends StatelessWidget {
+  const BookingTable(this.slots, this.bookingsPerSeats, {super.key});
 
   final Slots slots;
   final BookingsPerSeats bookingsPerSeats;
@@ -37,7 +53,7 @@ class _BookingTable extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                  child: _TimeTable(slots.withSeparators, bookingsPerSeats)),
+                  child: TimeTable(slots.withSeparators, bookingsPerSeats)),
               _BookingButton(),
             ],
           ),
@@ -47,8 +63,8 @@ class _BookingTable extends StatelessWidget {
   }
 }
 
-class _TimeTable extends StatelessWidget {
-  const _TimeTable(this.allSlots, this.bookingsPerSeats);
+class TimeTable extends StatelessWidget {
+  const TimeTable(this.allSlots, this.bookingsPerSeats);
 
   final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
@@ -77,13 +93,14 @@ class _TimeTable extends StatelessWidget {
     return HorizontalDataTable(
       isFixedHeader: true,
       leftHandSideColumnWidth: 40,
-      rightHandSideColumnWidth: _width * slots.length -
-          slots.separatorsCount * (_width - _separatorWidth),
+      rightHandSideColumnWidth: tableConfig.ui.width * slots.length -
+          slots.separatorsCount *
+              (tableConfig.ui.width - tableConfig.ui.separatorWidth),
       headerWidgets: _getHeaderWidgets(slots),
       itemCount: bookingsPerSeats.seats.length,
       leftSideItemBuilder: (BuildContext context, int index) => Container(
         width: 40,
-        height: _height,
+        height: tableConfig.ui.height,
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 5),
         alignment: Alignment.center,
         child: Text(bookingsPerSeats.seats[index].seatNo),
@@ -101,10 +118,12 @@ class _TimeTable extends StatelessWidget {
   }
 
   List<Widget> _getHeaderWidgets(Slots slots) => <Widget>[
-        const SizedBox(width: _width, height: 25),
+        SizedBox(width: tableConfig.ui.width, height: 25),
         ...slots.map(
           (e) => Container(
-            width: e == slotSeparator ? _separatorWidth : _width,
+            width: e == slotSeparator
+                ? tableConfig.ui.separatorWidth
+                : tableConfig.ui.width,
             height: 25,
             // padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
@@ -150,23 +169,23 @@ class _TableRow extends StatelessWidget {
 
   Color _getCellColor(BookingTableState state, Slot slot) {
     if (slot == slotSeparator) {
-      return unavailable;
+      return tableConfig.colors.unavailable;
     }
 
     if (bookedSlots.any((b) => slot.isAtTheSameMomentAs(b.timeRange))) {
-      return booked;
+      return tableConfig.colors.booked;
     }
 
     if (seat.isBusy(slot)) {
-      return unavailable;
+      return tableConfig.colors.unavailable;
     }
 
     return state.when(
       selected: (selectedSeat, selectedSlot) =>
           selectedSeat.id == seat.id && slot.isAtTheSameMomentAs(selectedSlot)
-              ? conflict
-              : available,
-      unselected: () => available,
+              ? tableConfig.colors.conflict
+              : tableConfig.colors.available,
+      unselected: () => tableConfig.colors.available,
     );
   }
 }
@@ -183,13 +202,16 @@ class _TableCell extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.read<BookingTableCubit>().select(seat, slot),
       child: Container(
-        width: (slot == slotSeparator ? _separatorWidth : _width) - _margin * 2,
-        height: _height - _margin * 2,
+        width: (slot == slotSeparator
+                ? tableConfig.ui.separatorWidth
+                : tableConfig.ui.width) -
+            tableConfig.ui.margin * 2,
+        height: tableConfig.ui.height - tableConfig.ui.margin * 2,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           color: color,
         ),
-        margin: const EdgeInsets.all(_margin),
+        margin: EdgeInsets.all(tableConfig.ui.margin),
       ),
     );
   }

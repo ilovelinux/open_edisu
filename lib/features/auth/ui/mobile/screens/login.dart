@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_edisu/features/auth/ui/widgets/login_signup.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../logic/auth_bloc.dart';
+import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

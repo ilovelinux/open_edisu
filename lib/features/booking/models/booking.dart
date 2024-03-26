@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
-
-import '../../../core/utilities/json/converters.dart';
+import 'package:open_edisu/core/utilities/json/converters.dart';
 
 part 'booking.g.dart';
 

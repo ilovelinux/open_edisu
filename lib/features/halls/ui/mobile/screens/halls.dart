@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:maps_launcher/maps_launcher.dart';
-
-import '../../../../core/widgets/commons.dart';
-import '../../../booking/logic/bookings_bloc.dart';
-import '../../../booking/ui/screens/book.dart';
-import '../../logic/halls_bloc.dart';
-import '../../models/halls.dart';
+import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
+import 'package:open_edisu/features/booking/ui/mobile/screens/book.dart';
+import 'package:open_edisu/features/halls/logic/halls_bloc.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
 
 class HallsPage extends StatelessWidget {
   const HallsPage({super.key});

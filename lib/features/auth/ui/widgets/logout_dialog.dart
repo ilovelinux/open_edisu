@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../logic/auth_bloc.dart';
+import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});

@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
+import 'package:open_edisu/features/booking/ui/widgets/booking.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
-
-import '../../../../core/widgets/commons.dart';
-import '../../logic/bookings_bloc.dart';
-import '../../models/booking.dart';
-import '../widgets/booking.dart';
 
 class BookingsPage extends StatelessWidget {
   const BookingsPage({super.key});

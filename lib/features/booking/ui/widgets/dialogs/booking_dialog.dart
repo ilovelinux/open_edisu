@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
 
-import '../../../../../core/utilities/dio.dart';
-import '../../../../../core/utilities/errors.dart';
-import '../../../../../core/utilities/inceptor.dart';
-import '../../../../halls/models/halls.dart';
-import '../../../logic/bookings_bloc.dart';
-import '../../../models/booking.dart';
+import 'package:open_edisu/core/utilities/dio.dart';
+import 'package:open_edisu/core/utilities/errors.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
 
 class BookingDialog extends StatelessWidget {
   const BookingDialog({

@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 
-import '../../../core/utilities/dio.dart';
-import '../../../core/utilities/inceptor.dart';
-import '../../halls/models/halls.dart';
-import '../models/booking.dart';
+import 'package:open_edisu/core/utilities/dio.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
 
 part 'booking_info_event.dart';
 part 'booking_info_state.dart';
@@ -37,32 +37,6 @@ class BookingInfoBloc extends Bloc<BookingInfoEvent, BookingInfoState> {
         emit(BookingInfoState.error(getErrorString(e)));
 
         log.warning("Catched exception on ChangeDate", e, stackTrace);
-      }
-    });
-    on<_ChangeAlternativeDate>((event, emit) async {
-      date = event.date;
-      emit(const BookingInfoState.update());
-      emit(const BookingInfoState.loading());
-
-      try {
-        final results = await Future.wait(
-          <Future>[
-            client.getSlots(hall, date: event.date),
-            client.getSeats(hall, date: event.date),
-          ],
-          eagerError: true,
-        ); // TODO: Cancel this when date changes
-
-        // Check that date hasn't changed. If it has changed, another
-        //  event has been emitted before the end of this.
-        if (date == event.date) {
-          emit(BookingInfoState.alternativeSuccess(results[0], results[1]));
-        }
-      } catch (e, stackTrace) {
-        emit(BookingInfoState.error(getErrorString(e)));
-
-        log.warning(
-            "Catched exception on ChangeAlternativeDate", e, stackTrace);
       }
     });
   }

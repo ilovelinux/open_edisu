@@ -2,13 +2,13 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
-import '../../features/auth/models/user.dart';
-import '../../features/booking/models/booking.dart';
-import '../../features/halls/models/halls.dart';
-import '../../features/settings/models/settings.dart';
-import '../utilities/inceptor.dart';
-import 'api.dart';
-import 'models.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
+import 'package:open_edisu/features/settings/models/settings.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
+import 'package:open_edisu/core/network/api.dart';
+import 'package:open_edisu/core/network/models.dart';
 
 class Client {
   const Client(this._api);

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 
-import '../../../core/utilities/dio.dart';
-import '../../../core/utilities/inceptor.dart';
-import '../../settings/models/settings.dart';
+import 'package:open_edisu/core/utilities/dio.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
+import 'package:open_edisu/features/settings/models/settings.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';

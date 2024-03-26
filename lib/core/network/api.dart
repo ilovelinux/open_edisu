@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 
-import '../../features/auth/models/user.dart';
-import '../../features/booking/models/booking.dart';
-import '../../features/halls/models/halls.dart';
-import 'models.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
+import 'package:open_edisu/core/network/models.dart';
 
 part 'api.g.dart';
 
