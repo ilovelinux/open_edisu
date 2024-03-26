@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/ui/mobile/screens/bookings.dart';
-import 'package:open_edisu/features/booking/ui/widgets/booking.dart';
+import 'package:open_edisu/features/booking/ui/mobile/widgets/booking.dart';
 
 class NextBookingCard extends StatelessWidget {
   const NextBookingCard({super.key});

@@ -8,49 +8,13 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:open_edisu/core/utilities/extensions/date.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
-import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
 import 'package:open_edisu/features/booking/logic/booking_table_cubit.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/models/booking.dart';
 import 'package:open_edisu/features/booking/ui/config.dart';
 
 class BookingTable extends StatelessWidget {
-  const BookingTable(this.slots, this.bookingsPerSeats, {super.key});
-
-  final Slots slots;
-  final BookingsPerSeats bookingsPerSeats;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<BookingsBloc, BookingsState>(
-      listener: (context, state) => state.whenOrNull<void>(
-        success: (_) {
-          final bloc = context.read<BookingInfoBloc>();
-          bloc.add(BookingInfoEvent.changeDate(bloc.date));
-
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              title: Text(AppLocalizations.of(context)!.bookingSuccessTitle),
-              content:
-                  Text(AppLocalizations.of(context)!.bookingSuccessContent),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("Ok"),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-      child: TimeTable(slots.withSeparators, bookingsPerSeats),
-    );
-  }
-}
-
-class TimeTable extends StatelessWidget {
-  const TimeTable(this.allSlots, this.bookingsPerSeats, {super.key});
+  const BookingTable(this.allSlots, this.bookingsPerSeats, {super.key});
 
   final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
@@ -58,7 +22,7 @@ class TimeTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Slots slots = bookingsPerSeats.futureSlots.isNotEmpty
-        ? allSlots
+        ? allSlots.withSeparators
             .skipWhile((slot) =>
                 slot == slotSeparator ||
                 slot.timeStart < bookingsPerSeats.futureSlots.first.timeStart)

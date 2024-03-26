@@ -52,12 +52,36 @@ class BookingView extends StatelessWidget {
           builder: (context, _) =>
               _DateSelector(date: context.read<BookingInfoBloc>().date),
         ),
-        SizedBox(height: 12.0),
+        const SizedBox(height: 12.0),
         Expanded(
           child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
             builder: (context, state) => state.when(
               success: (slots, bookingsPerSeat) =>
-                  BookingTable(slots, bookingsPerSeat),
+                  BlocListener<BookingsBloc, BookingsState>(
+                listener: (context, state) => state.whenOrNull<void>(
+                  success: (_) {
+                    final bloc = context.read<BookingInfoBloc>();
+                    bloc.add(BookingInfoEvent.changeDate(bloc.date));
+
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => ContentDialog(
+                        title: Text(
+                            AppLocalizations.of(context)!.bookingSuccessTitle),
+                        content: Text(AppLocalizations.of(context)!
+                            .bookingSuccessContent),
+                        actions: [
+                          FilledButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text("Ok"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                child: BookingTable(slots, bookingsPerSeat),
+              ),
               loading: () => const LoadingWidget(),
               update: () => const LoadingWidget(),
               error: (e) => CenteredText(e),
@@ -93,6 +117,7 @@ class _DateSelector extends BaseDateSelector {
         ),
         Button(
           onPressed: increase(context),
+          style: ButtonStyle(iconSize: ButtonState.all(20)),
           child: const Icon(FluentIcons.chevron_right),
         ),
       ],
@@ -107,12 +132,12 @@ class _BookingButton extends StatelessWidget {
       builder: (context, state) => FilledButton(
         onPressed: _book(context, state),
         style: ButtonStyle(
-          padding: ButtonState.all(EdgeInsets.symmetric(vertical: 12)),
+          padding: ButtonState.all(const EdgeInsets.symmetric(vertical: 12)),
           shape: ButtonState.all<ShapeBorder>(LinearBorder.none),
         ),
-        child: const SizedBox(
+        child: SizedBox(
           width: double.infinity,
-          child: Text("Book"),
+          child: Text(AppLocalizations.of(context)!.bookingButton),
         ),
       ),
     );

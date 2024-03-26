@@ -17,27 +17,10 @@ class LoginPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Emulate space taken by footer to center LoginWidget
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-          //   child: Text(
-          //     AppLocalizations.of(context)!.unofficialWarning,
-          //     style: TextStyle(color: Theme.of(context).backgroundColor),
-          //   ),
-          // ),
           LoginWidget(
             title: "Welcome!",
             child: _LoginForm(),
           ),
-          // Container(
-          //   color: Theme.of(context).backgroundColor,
-          //   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          //   child: Text(
-          //     AppLocalizations.of(context)!.unofficialWarning,
-          //     textAlign: TextAlign.center,
-          //     style: TextStyle(color: Theme.of(context).disabledColor),
-          //   ),
-          // )
         ],
       ),
     );
@@ -71,7 +54,7 @@ class _LoginForm extends StatelessWidget {
                       : AppLocalizations.of(context)!.invalidEmail,
                   controller: _emailController,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 PasswordFormBox(
                   placeholder:
                       AppLocalizations.of(context)!.passwordPlaceholder,
@@ -91,14 +74,6 @@ class _LoginForm extends StatelessWidget {
             ),
           ),
         ),
-        // const Padding(
-        //   padding: EdgeInsets.symmetric(vertical: 32),
-        //   child: OrSeparator(),
-        // ),
-        // TextButton(
-        //   onPressed: () => Navigator.of(context).pushNamed('signup'),
-        //   child: Text(AppLocalizations.of(context)!.signupButton),
-        // ),
       ],
     );
   }

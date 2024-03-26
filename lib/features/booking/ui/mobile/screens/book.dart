@@ -69,7 +69,31 @@ class BookingView extends StatelessWidget {
           child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
             builder: (context, state) => state.when(
               success: (slots, bookingsPerSeat) =>
-                  BookingTable(slots, bookingsPerSeat),
+                  BlocListener<BookingsBloc, BookingsState>(
+                listener: (context, state) => state.whenOrNull<void>(
+                  success: (_) {
+                    final bloc = context.read<BookingInfoBloc>();
+                    bloc.add(BookingInfoEvent.changeDate(bloc.date));
+
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: Text(
+                            AppLocalizations.of(context)!.bookingSuccessTitle),
+                        content: Text(AppLocalizations.of(context)!
+                            .bookingSuccessContent),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text("Ok"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                child: BookingTable(slots, bookingsPerSeat),
+              ),
               loading: () => const LoadingWidget(),
               update: () => const LoadingWidget(),
               error: (e) => CenteredText(e),

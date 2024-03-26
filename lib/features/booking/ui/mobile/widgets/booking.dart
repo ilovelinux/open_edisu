@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
-import 'package:open_edisu/core/utilities/dio.dart';
-import 'package:open_edisu/core/utilities/errors.dart';
-import 'package:open_edisu/core/utilities/inceptor.dart';
-import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/models/booking.dart';
 
 class BookingTicket extends StatefulWidget {
   final Booking booking;
   final Function()? onTap;
   final bool minimal;
+  final Function(BuildContext, Booking)? dialogBuilder;
 
   const BookingTicket(
     this.booking, {
     super.key,
+    this.dialogBuilder,
     this.onTap,
     this.minimal = false,
   });
@@ -140,40 +137,16 @@ class _BookingTicketState extends State<BookingTicket> {
               if (show) Text("Booking id: " + widget.booking.bookingId),
               if (!widget.minimal && show)
                 TextButton(
-                  onPressed: () => _deleteBooking(context),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) =>
+                        widget.dialogBuilder!(context, widget.booking),
+                  ),
                   child: Text("Delete booking"),
                 ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  void _deleteBooking(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Delete booking"),
-        content: const Text("Are you sure you wanna delete booking"),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text("No, keep it"),
-          ),
-          TextButton(
-            child: const Text("Yes, delete!"),
-            onPressed: () => client
-                .bookingCancel(widget.booking.id)
-                .then((_) => context
-                    .read<BookingsBloc>()
-                    .add(const BookingsEvent.update()))
-                .catchError(
-                    (e) => showErrorInDialog(context, getErrorString(e)))
-                .whenComplete(() => Navigator.of(context).pop()),
-          ),
-        ],
-        actionsAlignment: MainAxisAlignment.spaceBetween,
       ),
     );
   }

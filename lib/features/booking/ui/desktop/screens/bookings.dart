@@ -4,10 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:open_edisu/core/utilities/dio.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/models/booking.dart';
-import 'package:open_edisu/features/booking/ui/widgets/booking.dart';
+import 'package:open_edisu/features/booking/ui/desktop/widgets/booking.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
 
 class BookingsPage extends StatelessWidget {
@@ -24,7 +26,7 @@ class BookingsPage extends StatelessWidget {
           icon: const Icon(FluentIcons.refresh, size: 20),
         ),
       ),
-      content: _BookingViewBody(),
+      content: const _BookingViewBody(),
     );
   }
 }
@@ -64,39 +66,69 @@ class BookingList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: bookingsByDate.length,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
       itemBuilder: (context, index) {
         final b = bookingsByDate[index];
         return StickyHeader(
-          header: Container(
-            width: double.infinity,
-            height: 50,
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.transparent,
-                  blurRadius: 1.0,
-                  offset: Offset(0.0, 1.0),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                DateFormat.yMMMMEEEEd(
-                  Localizations.localeOf(context).toLanguageTag(),
-                ).format(b.key),
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
+          header: Acrylic(
+            child: SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: Center(
+                child: Text(
+                  DateFormat.yMMMMEEEEd(
+                    Localizations.localeOf(context).toLanguageTag(),
+                  ).format(b.key),
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
-          content: Column(
-            children: b.value.map((e) => BookingTicket(e)).toList(),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: b.value
+                  .map((e) => BookingTicket(e, dialogBuilder: _dialogBuilder))
+                  .toList(),
+            ),
           ),
         );
       },
     );
   }
+
+  void _dialogBuilder(BuildContext context, Booking booking) => ContentDialog(
+        title: const Text("Delete booking"),
+        content: const Text("Are you sure you wanna delete booking"),
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("No, keep it"),
+          ),
+          Button(
+            child: const Text("Yes, delete!"),
+            onPressed: () => client
+                .bookingCancel(booking.id)
+                .then((_) => context
+                    .read<BookingsBloc>()
+                    .add(const BookingsEvent.update()))
+                .catchError(
+                  (e) => displayInfoBar(context, builder: (context, close) {
+                    return InfoBar(
+                      title: const Text('Error'),
+                      content: Text(getErrorString(e)),
+                      action: IconButton(
+                        icon: const Icon(FluentIcons.clear),
+                        onPressed: close,
+                      ),
+                      severity: InfoBarSeverity.error,
+                    );
+                  }),
+                )
+                .whenComplete(() => Navigator.of(context).pop()),
+          ),
+        ],
+      );
 }
