@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:open_edisu/core/utilities/extensions/date.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
 import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
 import 'package:open_edisu/features/booking/logic/booking_table_cubit.dart';

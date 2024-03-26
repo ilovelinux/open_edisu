@@ -39,7 +39,7 @@ class _BookingViewBody extends StatelessWidget {
     return BlocBuilder<BookingsBloc, BookingsState>(
       builder: (context, state) => state.when(
         success: (bookings) => BookingList(
-          bookings: bookings.toList()..sortBy((a) => a.toDateTime()),
+          bookings: bookings.toList().sortedBy((a) => a.toDateTime()).reversed,
         ),
         loading: () => const LoadingWidget(),
         error: (e) => CenteredText(

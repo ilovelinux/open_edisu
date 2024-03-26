@@ -2,10 +2,10 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
-import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/ui/desktop/screens/bookings.dart';
 import 'package:open_edisu/features/booking/ui/desktop/screens/book.dart';
+import 'package:open_edisu/features/home/ui/desktop/widgets/next_booking.dart';
+import 'package:open_edisu/features/home/ui/desktop/widgets/chart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -95,94 +95,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
+    return ScaffoldPage.scrollable(
       header: PageHeader(title: Text("Welcome to Open Edisu!")),
-      content: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (_, state) => state.maybeWhen(
-              unknown: () => Text("Fetching data..."),
-              orElse: () => const SizedBox(),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  const Icon(FluentIcons.accounts, size: 50),
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text("User info"),
-                  ),
-                  Center(
-                    child: BlocBuilder<AuthBloc, AuthState>(
-                      builder: (_, state) => state.when(
-                          authenticated: (_) => IconButton(
-                                icon: const Icon(FluentIcons.check_mark),
-                                onPressed: () {},
-                              ),
-                          unauthenticated: (_, __, ___) => FilledButton(
-                                child: Text("Error!"),
-                                onPressed: () {},
-                              ),
-                          unknown: () => const ProgressRing()),
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  const Icon(FluentIcons.bookmarks, size: 50),
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text("Bookings"),
-                  ),
-                  BlocBuilder<BookingsBloc, BookingsState>(
-                    builder: (_, state) => state.when(
-                        success: (_) => IconButton(
-                              icon: const Icon(FluentIcons.check_mark),
-                              onPressed: () {},
-                            ),
-                        error: (_) => FilledButton(
-                              child: Text("Error!"),
-                              onPressed: () {},
-                            ),
-                        loading: () => const ProgressRing()),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  const Icon(FluentIcons.home, size: 50),
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text("Halls"),
-                  ),
-                  BlocBuilder<HallsBloc, HallsState>(
-                    builder: (_, state) => state.when(
-                        success: (_, __) => IconButton(
-                              icon: const Icon(FluentIcons.check_mark),
-                              onPressed: () {},
-                            ),
-                        error: (_) => FilledButton(
-                              child: Text("Error!"),
-                              onPressed: () {},
-                            ),
-                        loading: () => const ProgressRing()),
-                  )
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 40),
-          HyperlinkButton(child: Text("Donate!"), onPressed: () {})
-        ],
-      ),
+      children: const [
+        NextBookingCard(),
+        WeeklyStatisticsCard(),
+        // HyperlinkButton(child: Text("Donate!"), onPressed: () {})
+      ],
     );
   }
 }

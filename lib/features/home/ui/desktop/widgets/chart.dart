@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,12 +24,12 @@ class WeeklyStatisticsCard extends StatelessWidget {
               Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
               Align(
                 alignment: Alignment.centerRight,
-                child: TextButton(
+                child: IconButton(
                   onPressed: () => _showWeeklyStatisticsInfo(context),
-                  child: Icon(
-                    Icons.question_mark,
-                    size: 14,
-                    color: Colors.red.shade400,
+                  icon: Icon(
+                    FluentIcons.status_circle_question_mark,
+                    size: 30,
+                    color: Colors.red.light,
                   ),
                 ),
               ),
@@ -38,7 +38,7 @@ class WeeklyStatisticsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: AspectRatio(
-              aspectRatio: 2,
+              aspectRatio: 3,
               child: BlocBuilder<BookingsBloc, BookingsState>(
                 builder: (context, state) => state.when(
                   success: (bookings) => WeeklyChartbar(bookings),
@@ -57,10 +57,16 @@ class WeeklyStatisticsCard extends StatelessWidget {
 
   void _showWeeklyStatisticsInfo(BuildContext context) => showDialog(
         context: context,
-        builder: (BuildContext context) => AlertDialog(
+        builder: (BuildContext context) => ContentDialog(
           title: Text(AppLocalizations.of(context)!.weeklyStatisticsTitle),
           content:
               Text(AppLocalizations.of(context)!.weeklyStatisticsDescription),
+          actions: [
+            FilledButton(
+              child: Text("I understand, thanks!"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
         ),
       );
 }
@@ -78,7 +84,7 @@ class WeeklyChartbar extends StatelessWidget {
             .SHORTWEEKDAYS;
 
     final bookingsPerWeekDay = groupBy(
-      bookings.where((final e) => e.bookingStatus.isCompleted()),
+      bookings, //.where((final e) => e.bookingStatus.isCompleted()),
       (final Booking e) => e.date.weekday,
     );
 
@@ -88,7 +94,7 @@ class WeeklyChartbar extends StatelessWidget {
         primaryYAxis: const NumericAxis(interval: 1),
         series: <CartesianSeries>[
           ColumnSeries<String, String>(
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            // color: Theme.of(context).colorScheme.onSecondaryContainer,
             dataSource: shortWeekDays,
             xValueMapper: (String data, _) => data,
             yValueMapper: (_, int index) => bookingsPerWeekDay[index]?.length,

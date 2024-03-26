@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
@@ -26,21 +28,24 @@ class _BookingTicketState extends State<BookingTicket> {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    final qrCodeSize = deviceSize.width > deviceSize.height
-        ? deviceSize.height * 0.6
-        : deviceSize.width * 0.6;
+    final qrCodeSize = min(
+      300.0,
+      deviceSize.width > deviceSize.height
+          ? deviceSize.height * 0.6
+          : deviceSize.width * 0.6,
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Expander(
-        // leading: Text("Ok"),
-        header: Container(
-          margin: const EdgeInsets.all(16),
-          height: 80,
-          child: Row(
-            children: [
-              if (!widget.minimal)
-                PrettyQrView.data(
+        contentPadding: widget.minimal
+            ? const EdgeInsets.all(16).copyWith(top: 8)
+            : const EdgeInsets.only(top: 8),
+        leading: widget.minimal
+            ? null
+            : SizedBox(
+                height: 80,
+                child: PrettyQrView.data(
                   data: widget.booking.bookingId.toUpperCase(),
                   decoration: PrettyQrDecoration(
                     shape: PrettyQrSmoothSymbol(
@@ -48,52 +53,50 @@ class _BookingTicketState extends State<BookingTicket> {
                     ),
                   ),
                 ),
-              if (!widget.minimal) const Divider(direction: Axis.vertical),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: widget.minimal
-                    ? CrossAxisAlignment.start
-                    : CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.booking.hallName,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    widget.booking.timeRange.format(context, " - "),
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
               ),
-              const Spacer(),
-              const Divider(direction: Axis.vertical),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                width: 70,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.seatNo,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      widget.booking.seatNo,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: "Monospace",
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+        header: Container(
+          margin: const EdgeInsets.all(16),
+          height: 80,
+          child: Column(
+            crossAxisAlignment: widget.minimal
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.booking.hallName,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                widget.booking.timeRange.format(context, " - "),
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+        trailing: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          width: 70,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.seatNo,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                widget.booking.seatNo,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: "Monospace",
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -122,14 +125,26 @@ class _BookingTicketState extends State<BookingTicket> {
                 ),
               ),
             ),
+            Text("Booking ID: " + widget.booking.bookingId),
             if (!widget.minimal)
-              Button(
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) =>
-                      widget.dialogBuilder!(context, widget.booking),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: FilledButton(
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) =>
+                        widget.dialogBuilder!(context, widget.booking),
+                  ),
+                  style: ButtonStyle(
+                    padding: ButtonState.all(
+                        const EdgeInsets.symmetric(vertical: 12)),
+                    shape: ButtonState.all<ShapeBorder>(LinearBorder.none),
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Text("Delete booking"),
+                  ),
                 ),
-                child: Text("Delete booking"),
               )
           ],
         ),

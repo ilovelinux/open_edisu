@@ -24,7 +24,6 @@ class DesktopApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         'login': (_) => const LoginPage(),
-        // 'signup': (_) => const SignupPage(),
       },
       theme: FluentThemeData(
         accentColor: Colors.red,
@@ -33,7 +32,7 @@ class DesktopApp extends StatelessWidget {
         accentColor: Colors.red,
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.dark,
+      // themeMode: ThemeMode.dark,
       home: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => state.whenOrNull<void>(
           authenticated: (user) {
