@@ -38,7 +38,6 @@ class _BookingTicketState extends State<BookingTicket> {
     return Card.outlined(
       elevation: 10,
       margin: const EdgeInsets.symmetric(vertical: 12.0),
-      color: Colors.transparent,
       child: InkWell(
         onTap: widget.onTap ?? () => setState(() => show = !show),
         borderRadius: BorderRadius.circular(16.0),

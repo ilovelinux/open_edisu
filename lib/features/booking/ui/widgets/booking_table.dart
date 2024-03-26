@@ -13,8 +13,6 @@ import 'package:open_edisu/features/booking/logic/booking_table_cubit.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/models/booking.dart';
 import 'package:open_edisu/features/booking/ui/config.dart';
-import 'package:open_edisu/features/booking/ui/mobile/screens/book.dart';
-import 'package:open_edisu/features/booking/ui/widgets/dialogs/booking_dialog.dart';
 
 class BookingTable extends StatelessWidget {
   const BookingTable(this.slots, this.bookingsPerSeats, {super.key});
@@ -46,25 +44,13 @@ class BookingTable extends StatelessWidget {
           );
         },
       ),
-      child: BlocProvider(
-        create: (context) => BookingTableCubit(),
-        child: ScrollConfiguration(
-          behavior: DragWithTouchAndMouse(),
-          child: Column(
-            children: [
-              Expanded(
-                  child: TimeTable(slots.withSeparators, bookingsPerSeats)),
-              _BookingButton(),
-            ],
-          ),
-        ),
-      ),
+      child: TimeTable(slots.withSeparators, bookingsPerSeats),
     );
   }
 }
 
 class TimeTable extends StatelessWidget {
-  const TimeTable(this.allSlots, this.bookingsPerSeats);
+  const TimeTable(this.allSlots, this.bookingsPerSeats, {super.key});
 
   final Slots allSlots;
   final BookingsPerSeats bookingsPerSeats;
@@ -84,9 +70,11 @@ class TimeTable extends StatelessWidget {
     }
 
     final bookingsOfTheDay = groupBy(
-      context.read<BookingsBloc>().bookings.where((booking) =>
-          booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
-          booking.isUpcoming()),
+      context.read<BookingsBloc>().bookings.where(
+            (booking) =>
+                booking.date.isAtSameDayAs(bookingsPerSeats.date) &&
+                booking.isUpcoming(),
+          ),
       (Booking booking) => booking.seatNo,
     );
 
@@ -108,16 +96,18 @@ class TimeTable extends StatelessWidget {
       rightSideItemBuilder: (_, int index) => _TableRow(
         slots: slots,
         seat: bookingsPerSeats.seats[index],
-        bookedSlots: bookingsOfTheDay[index + 1],
+        bookedSlots: bookingsOfTheDay[(index + 1).toString()],
       ),
       horizontalScrollbarStyle:
-          Platform.isWindows ? const ScrollbarStyle(isAlwaysShown: true) : null,
+          Platform.isAndroid ? null : const ScrollbarStyle(isAlwaysShown: true),
+      verticalScrollbarStyle:
+          Platform.isAndroid ? null : const ScrollbarStyle(isAlwaysShown: true),
       leftHandSideColBackgroundColor: Theme.of(context).colorScheme.background,
       rightHandSideColBackgroundColor: Theme.of(context).colorScheme.background,
     );
   }
 
-  List<Widget> _getHeaderWidgets(Slots slots) => <Widget>[
+  List<Widget> _getHeaderWidgets(Slots slots) => [
         SizedBox(width: tableConfig.ui.width, height: 25),
         ...slots.map(
           (e) => Container(
@@ -213,48 +203,6 @@ class _TableCell extends StatelessWidget {
         ),
         margin: EdgeInsets.all(tableConfig.ui.margin),
       ),
-    );
-  }
-}
-
-class _BookingButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<BookingTableCubit, BookingTableState>(
-      builder: (context, state) => Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-        child: FilledButton(
-          onPressed: _book(context, state),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(AppLocalizations.of(context)!.bookingButton),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Function()? _book(BuildContext context, BookingTableState state) {
-    return state.whenOrNull(
-      selected: (seat, slot) => () {
-        final bookingInfoBloc = context.read<BookingInfoBloc>();
-        showDialog(
-          context: context,
-          builder: (_) => BlocProvider.value(
-            value: bookingInfoBloc,
-            child: BlocProvider.value(
-              value: context.read<BookingsBloc>(),
-              child: BookingDialog(
-                hall: bookingInfoBloc.hall,
-                seat: seat,
-                date: bookingInfoBloc.date,
-                slot: slot,
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

@@ -28,12 +28,11 @@
 
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
-    "homeBottom": "Home",
     "nextBooking": "Prossima prenotazione",
     "showAll": "Mostra tutte",
-    "bookingsBottom": "Prenotazioni",
+    "bookings": "Prenotazioni",
     "newBooking": "Nuova prenotazione",
-    "settingsBottom": "Impostazioni",
+    "settings": "Impostazioni",
 
     "whatsnew": "Novità!",
     "changelog": "- Fixato un bug che non permetteva la cancellazione delle prenotazioni",
@@ -43,12 +42,11 @@
     "welcome": "Benvenuto, {firstName}!",
     "@welcome" : {
         "placeholders": {
-            "firstName": {},
-            "lastName": {}
+            "firstName": {}
         }
     },
     "logout": "Logout",
-    "logoutMessage": "Vuoi effettuare il logout?",
+    "logoutMessage": "Stai per effettuare il logout. Vuoi procedere?",
     "yes": "Sì",
     "no": "No",
     "weeklyStatisticsTitle": "Statistiche settimanali",
@@ -56,7 +54,7 @@
 
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
-    "noBookings": "Non ci sono prenotazioni al momento",
+    "noBookings": "Nessuna prenotazione da visualizzare",
     "seatNo": "Posto N°",
 
     "seats": "Posti",
@@ -75,7 +73,6 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
-    "settings": "IMPOSTAZIONI",
     "user": "Utente",
     "firstName": "Nome",
     "lastName": "Cognome",

@@ -22,6 +22,11 @@ Widget main() {
     systemNavigationBarColor: Colors.transparent,
   ));
 
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   return const MobileApp();
 }
 

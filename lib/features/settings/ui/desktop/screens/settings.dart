@@ -5,7 +5,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
-import 'package:open_edisu/features/auth/ui/widgets/logout_dialog.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -42,40 +41,41 @@ class SettingsView extends StatelessWidget {
         FlyoutTarget(
           controller: controller,
           child: ListTile(
-              leading: const Icon(FluentIcons.sign_out),
-              title: Text(AppLocalizations.of(context)!.logout),
-              onPressed: () => controller.showFlyout(
-                    autoModeConfiguration: FlyoutAutoConfiguration(
-                      preferredMode: FlyoutPlacementMode.topLeft,
-                    ),
-                    barrierDismissible: true,
-                    dismissOnPointerMoveAway: false,
-                    dismissWithEsc: true,
-                    builder: (context) {
-                      return FlyoutContent(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'You will be logged out. Do you want to continue?',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 12.0),
-                            Button(
-                              onPressed: () {
-                                context
-                                    .read<AuthBloc>()
-                                    .add(const AuthEvent.logout());
-                                Flyout.of(context).close();
-                              },
-                              child: const Text('Yes, logout!'),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  )),
+            leading: const Icon(FluentIcons.sign_out),
+            title: Text(AppLocalizations.of(context)!.logout),
+            onPressed: () => controller.showFlyout(
+              autoModeConfiguration: FlyoutAutoConfiguration(
+                preferredMode: FlyoutPlacementMode.topLeft,
+              ),
+              barrierDismissible: true,
+              dismissOnPointerMoveAway: false,
+              dismissWithEsc: true,
+              builder: (context) {
+                return FlyoutContent(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.logoutMessage,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12.0),
+                      Button(
+                        onPressed: () {
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEvent.logout());
+                          Flyout.of(context).close();
+                        },
+                        child: const Text('Yes, logout!'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ),
         const Divider(),
         ListTile(title: Text(AppLocalizations.of(context)!.other)),

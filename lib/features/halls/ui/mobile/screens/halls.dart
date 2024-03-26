@@ -23,18 +23,21 @@ class HallsPage extends StatelessWidget {
         child: BlocBuilder<HallsBloc, HallsState>(
           builder: (context, state) => state.when(
             success: (halls, hallsMobile) => SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: halls
-                    .map(
-                      (hall) => _HallCard(
-                        hall: hall,
-                        hallMobile: hallsMobile.firstWhere(
-                          (element) => element.name == hall.hname,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: halls
+                      .map(
+                        (hall) => _HallCard(
+                          hall: hall,
+                          hallMobile: hallsMobile.firstWhere(
+                            (element) => element.name == hall.hname,
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
+                      )
+                      .toList(),
+                ),
               ),
             ),
             loading: () => const LoadingWidget(),
@@ -56,13 +59,9 @@ class _HallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Card.outlined(
       elevation: 4.0,
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.black45),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(

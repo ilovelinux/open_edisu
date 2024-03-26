@@ -86,6 +86,7 @@ class WeeklyChartbar extends StatelessWidget {
         primaryYAxis: const NumericAxis(interval: 1),
         series: <CartesianSeries>[
           ColumnSeries<String, String>(
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
             dataSource: shortWeekDays,
             xValueMapper: (String data, _) => data,
             yValueMapper: (_, int index) => bookingsPerWeekDay[index]?.length,

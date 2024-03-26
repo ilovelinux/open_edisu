@@ -8,7 +8,7 @@
     "or": "OR",
     "signupButton": "Not yet registered? Sign up!",
 
-    "connectionError": "Connection error: check your internet connection and retry",
+    "connectionError": "Connection error: check your internet connection and retry.",
 
     "signup": "Signup",
     "continueSignup": "Continue",
@@ -28,12 +28,11 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
-    "homeBottom": "Home",
     "nextBooking": "Next booking",
     "showAll": "Show all",
-    "bookingsBottom": "Bookings",
+    "bookings": "Bookings",
     "newBooking": "New booking",
-    "settingsBottom": "Settings",
+    "settings": "Settings",
 
     "whatsnew": "What's new?",
     "changelog": "- Fix bug that didn't allow to delete a booking",
@@ -43,12 +42,11 @@
     "welcome": "Welcome, {firstName}!",
     "@welcome" : {
         "placeholders": {
-            "firstName": {},
-            "lastName": {}
+            "firstName": {}
         }
     },
     "logout": "Logout",
-    "logoutMessage": "Do you want to logout?",
+    "logoutMessage": "You are going to be logged out. Do you want to continue?",
     "yes": "Yes",
     "no": "No",
     "weeklyStatisticsTitle": "Weekly Statistics",
@@ -56,7 +54,7 @@
 
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
-    "noBookings": "There are no bookings right now",
+    "noBookings": "No bookings to show",
     "seatNo": "Seat No.",
 
     "seats": "Seats",
@@ -75,7 +73,6 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
-    "settings": "SETTINGS",
     "user": "User",
     "firstName": "First name",
     "lastName": "Last name",

@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.welcome(GetIt.I<User>().name, ''),
+          AppLocalizations.of(context)!.welcome(GetIt.I<User>().name),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             letterSpacing: 1.5,
@@ -38,7 +38,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const SettingsView(),
       body: const SingleChildScrollView(
         child: Flex(
           direction: Axis.vertical,

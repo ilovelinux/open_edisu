@@ -58,8 +58,11 @@ class SignupPage extends StatelessWidget {
                   ),
                   success: () => Column(
                     children: [
-                      const Icon(Icons.check_circle,
-                          size: 50, color: Colors.green),
+                      const Icon(
+                        Icons.check_circle,
+                        size: 50,
+                        color: Colors.green,
+                      ),
                       const SizedBox(height: 10),
                       Text(
                         AppLocalizations.of(context)!.signupSuccess,

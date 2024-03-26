@@ -1,21 +1,14 @@
-import 'dart:ui';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_edisu/core/utilities/extensions/date.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
 import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
+import 'package:open_edisu/features/booking/logic/booking_table_cubit.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/ui/widgets/booking_table.dart';
+import 'package:open_edisu/features/booking/ui/widgets/date_selector.dart';
+import 'package:open_edisu/features/booking/ui/widgets/dialogs/booking_dialog.dart';
 import 'package:open_edisu/features/halls/models/halls.dart';
-
-class DragWithTouchAndMouse extends ScrollBehavior {
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-      };
-}
 
 class BookingPage extends StatelessWidget {
   final Hall hall;
@@ -24,9 +17,20 @@ class BookingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
-      header: PageHeader(title: Text(hall.hname)),
-      content: BookingView(hall: hall),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BookingTableCubit(),
+        ),
+        BlocProvider(
+            create: (context) => BookingInfoBloc(hall)
+              ..add(BookingInfoEvent.changeDate(DateTime.now()))),
+      ],
+      child: ScaffoldPage(
+        header: PageHeader(title: Text(hall.hname)),
+        content: BookingView(hall: hall),
+        bottomBar: _BookingButton(),
+      ),
     );
   }
 }
@@ -38,85 +42,102 @@ class BookingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BookingInfoBloc(hall)
-        ..add(BookingInfoEvent.changeDate(DateTime.now())),
-      child: Column(
-        children: [
-          BlocBuilder<BookingInfoBloc, BookingInfoState>(
-            buildWhen: (_, current) => current.maybeWhen(
-              update: () => true,
-              orElse: () => false,
-            ),
-            builder: (context, _) =>
-                _DateSelector(date: context.read<BookingInfoBloc>().date),
+    return Column(
+      children: [
+        BlocBuilder<BookingInfoBloc, BookingInfoState>(
+          buildWhen: (_, current) => current.maybeWhen(
+            update: () => true,
+            orElse: () => false,
           ),
-          Expanded(
-            child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
-              builder: (context, state) => state.when(
-                success: (slots, bookingsPerSeat) =>
-                    BookingTable(slots, bookingsPerSeat),
-                loading: () => const LoadingWidget(),
-                update: () => const LoadingWidget(),
-                error: (e) => CenteredText(e),
-              ),
+          builder: (context, _) =>
+              _DateSelector(date: context.read<BookingInfoBloc>().date),
+        ),
+        SizedBox(height: 12.0),
+        Expanded(
+          child: BlocBuilder<BookingInfoBloc, BookingInfoState>(
+            builder: (context, state) => state.when(
+              success: (slots, bookingsPerSeat) =>
+                  BookingTable(slots, bookingsPerSeat),
+              loading: () => const LoadingWidget(),
+              update: () => const LoadingWidget(),
+              error: (e) => CenteredText(e),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _DateSelector extends StatelessWidget {
-  const _DateSelector({required this.date});
-
-  final DateTime date;
+class _DateSelector extends BaseDateSelector {
+  const _DateSelector({required super.date});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Button(
-            onPressed: _decrease(context),
-            child: const Icon(FluentIcons.chevron_left),
-          ),
-          DatePicker(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Button(
+          onPressed: decrease(context),
+          style: ButtonStyle(iconSize: ButtonState.all(20)),
+          child: const Icon(FluentIcons.chevron_left),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: DatePicker(
             selected: date,
             onChanged: (time) => changeDate(context, time),
             startDate: DateTime.now(),
             endDate: DateTime.now().add(const Duration(days: 70)),
           ),
-          Button(
-            onPressed: _increase(context),
-            child: const Icon(FluentIcons.chevron_right),
-          ),
-        ],
+        ),
+        Button(
+          onPressed: increase(context),
+          child: const Icon(FluentIcons.chevron_right),
+        ),
+      ],
+    );
+  }
+}
+
+class _BookingButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BookingTableCubit, BookingTableState>(
+      builder: (context, state) => FilledButton(
+        onPressed: _book(context, state),
+        style: ButtonStyle(
+          padding: ButtonState.all(EdgeInsets.symmetric(vertical: 12)),
+          shape: ButtonState.all<ShapeBorder>(LinearBorder.none),
+        ),
+        child: const SizedBox(
+          width: double.infinity,
+          child: Text("Book"),
+        ),
       ),
     );
   }
 
-  Function()? _decrease(BuildContext context) {
-    final newDate = date.subtract(const Duration(days: 1));
-    final downLimit = DateTime.now().withoutTime();
-    if (newDate.isBefore(downLimit)) {
-      return null;
-    }
-    return () => changeDate(context, newDate);
+  Function()? _book(BuildContext context, BookingTableState state) {
+    return state.whenOrNull(
+      selected: (seat, slot) => () {
+        final bookingInfoBloc = context.read<BookingInfoBloc>();
+        showDialog(
+          context: context,
+          builder: (_) => BlocProvider.value(
+            value: bookingInfoBloc,
+            child: BlocProvider.value(
+              value: context.read<BookingsBloc>(),
+              child: BookingDialog(
+                hall: bookingInfoBloc.hall,
+                seat: seat,
+                date: bookingInfoBloc.date,
+                slot: slot,
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
-
-  Function()? _increase(BuildContext context) {
-    final newDate = date.add(const Duration(days: 1));
-    final upLimit = DateTime.now().add(const Duration(days: 7));
-    if (newDate.isAfter(upLimit)) {
-      return null;
-    }
-    return () => changeDate(context, newDate);
-  }
-
-  void changeDate(BuildContext context, DateTime date) =>
-      context.read<BookingInfoBloc>().add(BookingInfoEvent.changeDate(date));
 }

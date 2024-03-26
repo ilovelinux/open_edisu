@@ -17,7 +17,7 @@ class BookingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.bookingsBottom),
+        title: Text(AppLocalizations.of(context)!.bookings),
         actions: [
           TextButton(
             onPressed: () =>
@@ -41,7 +41,6 @@ class _BookingViewBody extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          shadowColor: const Color(0x00FFFFFF),
           flexibleSpace: Align(
             alignment: Alignment.bottomCenter,
             child: TabBar(
@@ -103,7 +102,7 @@ class BookingList extends StatelessWidget {
     final bookingsByDate = groupBy(bookings, (Booking booking) => booking.date);
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(top: 8.0, bottom: 20.0),
         child: Column(
           children: bookingsByDate.entries
               .map<Widget>(
@@ -111,12 +110,12 @@ class BookingList extends StatelessWidget {
                   header: Container(
                     width: double.infinity,
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Colors.transparent,
                           blurRadius: 1.0,
-                          offset: const Offset(0.0, 1.0),
+                          offset: Offset(0.0, -2),
                         ),
                       ],
                     ),
@@ -132,8 +131,11 @@ class BookingList extends StatelessWidget {
                       ),
                     ),
                   ),
-                  content: Column(
-                    children: b.value.map((e) => BookingTicket(e)).toList(),
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      children: b.value.map((e) => BookingTicket(e)).toList(),
+                    ),
                   ),
                 ),
               )

@@ -15,16 +15,16 @@ class BookingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage.scrollable(
+    return ScaffoldPage(
       header: PageHeader(
-        title: Text(AppLocalizations.of(context)!.bookingsBottom),
+        title: Text(AppLocalizations.of(context)!.bookings),
         commandBar: IconButton(
           onPressed: () =>
               context.read<BookingsBloc>().add(const BookingsEvent.update()),
           icon: const Icon(FluentIcons.refresh, size: 20),
         ),
       ),
-      children: [_BookingViewBody()],
+      content: _BookingViewBody(),
     );
   }
 }
@@ -36,28 +36,9 @@ class _BookingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookingsBloc, BookingsState>(
       builder: (context, state) => state.when(
-        success: (bookings) {
-          List<Booking> upcoming = [];
-          List<Booking> past = [];
-
-          for (final booking in bookings) {
-            if (booking.isUpcoming()) {
-              upcoming.add(booking);
-            } else {
-              past.add(booking);
-            }
-          }
-
-          upcoming.sortBy((a) => a.toDateTime());
-          past.sortBy((a) => a.toDateTime());
-
-          return Column(
-            children: [
-              BookingList(bookings: upcoming),
-              BookingList(bookings: past.reversed),
-            ],
-          );
-        },
+        success: (bookings) => BookingList(
+          bookings: bookings.toList()..sortBy((a) => a.toDateTime()),
+        ),
         loading: () => const LoadingWidget(),
         error: (e) => CenteredText(
           kDebugMode ? e : AppLocalizations.of(context)!.genericError,
@@ -78,45 +59,44 @@ class BookingList extends StatelessWidget {
       return CenteredText("${AppLocalizations.of(context)!.noBookings} :(");
     }
 
-    final bookingsByDate = groupBy(bookings, (Booking booking) => booking.date);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: bookingsByDate.entries
-              .map<Widget>(
-                (b) => StickyHeader(
-                  header: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 1.0,
-                          offset: const Offset(0.0, 1.0),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        DateFormat.yMMMMEEEEd(
-                          Localizations.localeOf(context).toLanguageTag(),
-                        ).format(b.key),
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  content: Column(
-                    children: b.value.map((e) => BookingTicket(e)).toList(),
-                  ),
+    final bookingsByDate =
+        groupBy(bookings, (Booking booking) => booking.date).entries.toList();
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: bookingsByDate.length,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      itemBuilder: (context, index) {
+        final b = bookingsByDate[index];
+        return StickyHeader(
+          header: Container(
+            width: double.infinity,
+            height: 50,
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.transparent,
+                  blurRadius: 1.0,
+                  offset: Offset(0.0, 1.0),
                 ),
-              )
-              .toList(),
-        ),
-      ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                DateFormat.yMMMMEEEEd(
+                  Localizations.localeOf(context).toLanguageTag(),
+                ).format(b.key),
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          content: Column(
+            children: b.value.map((e) => BookingTicket(e)).toList(),
+          ),
+        );
+      },
     );
   }
 }
