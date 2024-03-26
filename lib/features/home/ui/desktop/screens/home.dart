@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
-import 'package:open_edisu/features/booking/ui/desktop/bookings.dart';
-import 'package:open_edisu/features/booking/ui/mobile/screens/book.dart';
+import 'package:open_edisu/features/booking/ui/desktop/screens/bookings.dart';
+import 'package:open_edisu/features/booking/ui/desktop/screens/book.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:open_edisu/core/utilities/errors.dart';
 import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
 import 'package:open_edisu/features/auth/models/user.dart';
 import 'package:open_edisu/features/auth/ui/desktop/screens/login.dart';
@@ -27,7 +26,14 @@ class DesktopApp extends StatelessWidget {
         'login': (_) => const LoginPage(),
         // 'signup': (_) => const SignupPage(),
       },
-      color: Colors.red,
+      theme: FluentThemeData(
+        accentColor: Colors.red,
+      ),
+      darkTheme: FluentThemeData(
+        accentColor: Colors.red,
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.dark,
       home: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => state.whenOrNull<void>(
           authenticated: (user) {

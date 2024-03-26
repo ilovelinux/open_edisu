@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:fluent_ui/fluent_ui.dart' as fu;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -26,38 +29,58 @@ class BookingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(AppLocalizations.of(context)!.bookingConfirmationTitle),
-      content: Text(
-        AppLocalizations.of(context)!.bookingConfirmationContent(
-          seat.seatNo,
-          slot.timeStart.to24hours(),
-          slot.timeEnd.to24hours(),
+    final title = AppLocalizations.of(context)!.bookingConfirmationTitle;
+    final content = AppLocalizations.of(context)!.bookingConfirmationContent(
+      seat.seatNo,
+      slot.timeStart.to24hours(),
+      slot.timeEnd.to24hours(),
+    );
+
+    if (Platform.isAndroid)
+      return AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: <Widget>[
+          TextButton(
+            child: Text(AppLocalizations.of(context)!.yes),
+            onPressed: () => _book(context),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context)!.no),
+          ),
+        ],
+      );
+
+    return fu.ContentDialog(
+      title: fu.Text(title),
+      content: fu.Text(content),
+      actions: [
+        fu.Button(
+          child: fu.Text(AppLocalizations.of(context)!.yes),
+          onPressed: () => _book(context),
         ),
-      ),
-      actions: <Widget>[
-        TextButton(
-          child: Text(AppLocalizations.of(context)!.yes),
-          onPressed: () => client
-              .customSlotBook(
-                hall: hall,
-                date: date,
-                seatID: seat.id,
-                slot: slot,
-              )
-              .then(
-                (value) => context
-                    .read<BookingsBloc>()
-                    .add(const BookingsEvent.update()),
-              )
-              .catchError((e) => showErrorInDialog(context, getErrorString(e)))
-              .whenComplete(() => Navigator.of(context).pop()),
-        ),
-        TextButton(
+        fu.FilledButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(AppLocalizations.of(context)!.no),
+          child: fu.Text(AppLocalizations.of(context)!.no),
         ),
       ],
     );
+  }
+
+  void _book(BuildContext context) {
+    client
+        .customSlotBook(
+          hall: hall,
+          date: date,
+          seatID: seat.id,
+          slot: slot,
+        )
+        .then(
+          (value) =>
+              context.read<BookingsBloc>().add(const BookingsEvent.update()),
+        )
+        .catchError((e) => showErrorInDialog(context, getErrorString(e)))
+        .whenComplete(() => Navigator.of(context).pop());
   }
 }

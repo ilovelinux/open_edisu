@@ -1,15 +1,14 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:open_edisu/core/utilities/extensions/date.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
 import 'package:open_edisu/features/booking/logic/booking_info_bloc.dart';
 import 'package:open_edisu/features/booking/ui/widgets/booking_table.dart';
 import 'package:open_edisu/features/halls/models/halls.dart';
 
-class DragWithTouchAndMouse extends MaterialScrollBehavior {
+class DragWithTouchAndMouse extends ScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
@@ -25,9 +24,9 @@ class BookingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(hall.hname)),
-      body: BookingView(hall: hall),
+    return ScaffoldPage(
+      header: PageHeader(title: Text(hall.hname)),
+      content: BookingView(hall: hall),
     );
   }
 }
@@ -81,28 +80,19 @@ class _DateSelector extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          TextButton(
+          Button(
             onPressed: _decrease(context),
-            child: const Icon(Icons.arrow_back),
+            child: const Icon(FluentIcons.chevron_left),
           ),
-          TextButton(
-            onPressed: () => showDatePicker(
-              context: context,
-              initialDate: date,
-              firstDate: DateTime.now(),
-              lastDate: DateTime.now().add(const Duration(days: 7)),
-            ).then((newDate) {
-              if (newDate != null) {
-                changeDate(context, newDate);
-              }
-            }),
-            child: Text(
-                DateFormat.yMEd(Localizations.localeOf(context).toLanguageTag())
-                    .format(date)),
+          DatePicker(
+            selected: date,
+            onChanged: (time) => changeDate(context, time),
+            startDate: DateTime.now(),
+            endDate: DateTime.now().add(const Duration(days: 70)),
           ),
-          TextButton(
+          Button(
             onPressed: _increase(context),
-            child: const Icon(Icons.arrow_forward),
+            child: const Icon(FluentIcons.chevron_right),
           ),
         ],
       ),
