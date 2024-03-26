@@ -60,6 +60,9 @@ dependencies:
   maps_launcher: ^2.2.1
   syncfusion_flutter_charts: ^25.1.35
   pretty_qr_code: ^3.3.0
+  fluent_ui: ^4.8.6
+  fluentui_system_icons: ^1.1.232
+  window_manager: ^0.3.8
 
 dev_dependencies:
   flutter_test:
