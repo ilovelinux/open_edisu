@@ -117,7 +117,7 @@ class BookingList extends StatelessWidget {
                 .catchError(
                   (e) => displayInfoBar(context, builder: (context, close) {
                     return InfoBar(
-                      title: const Text('Error'),
+                      title: Text(AppLocalizations.of(context)!.errorTitle),
                       content: Text(getErrorString(e)),
                       action: IconButton(
                         icon: const Icon(FluentIcons.clear),

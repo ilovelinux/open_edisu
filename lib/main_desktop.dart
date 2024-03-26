@@ -32,7 +32,7 @@ class DesktopApp extends StatelessWidget {
         accentColor: Colors.red,
         brightness: Brightness.dark,
       ),
-      // themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.dark,
       home: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => state.whenOrNull<void>(
           authenticated: (user) {
@@ -57,7 +57,7 @@ class DesktopApp extends StatelessWidget {
             if (error != null) {
               await displayInfoBar(context, builder: (context, close) {
                 return InfoBar(
-                  title: const Text('Error'),
+                  title: Text(AppLocalizations.of(context)!.errorTitle),
                   content: Text(error),
                   action: IconButton(
                     icon: const Icon(FluentIcons.clear),

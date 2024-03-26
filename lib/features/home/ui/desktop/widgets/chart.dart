@@ -38,7 +38,7 @@ class WeeklyStatisticsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: AspectRatio(
-              aspectRatio: 3,
+              aspectRatio: 4,
               child: BlocBuilder<BookingsBloc, BookingsState>(
                 builder: (context, state) => state.when(
                   success: (bookings) => WeeklyChartbar(bookings),
@@ -94,7 +94,6 @@ class WeeklyChartbar extends StatelessWidget {
         primaryYAxis: const NumericAxis(interval: 1),
         series: <CartesianSeries>[
           ColumnSeries<String, String>(
-            // color: Theme.of(context).colorScheme.onSecondaryContainer,
             dataSource: shortWeekDays,
             xValueMapper: (String data, _) => data,
             yValueMapper: (_, int index) => bookingsPerWeekDay[index]?.length,

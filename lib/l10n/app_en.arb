@@ -2,7 +2,7 @@
     "login": "Login",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
-    "invalidEmail": "The email is not a valid email.",
+    "invalidEmail": "The email is not valid.",
     "invalidPassword": "The password is too short.",
     "submit": "Sign in",
     "or": "OR",
