@@ -46,7 +46,7 @@ dependencies:
   freezed_annotation: ^2.0.3
   get_it: ^7.6.7
   retrofit: ^4.1.0
-  dio: ^5.4.1
+  dio: ^5.4.2
   json_annotation: ^4.8.1
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.2.2
