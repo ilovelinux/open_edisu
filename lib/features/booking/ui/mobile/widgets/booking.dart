@@ -134,7 +134,11 @@ class _BookingTicketState extends State<BookingTicket> {
                   ),
                 ),
               ),
-              if (show) Text("Booking id: " + widget.booking.bookingId),
+              if (show)
+                Text(
+                  AppLocalizations.of(context)!
+                      .bookingId(widget.booking.bookingId),
+                ),
               if (!widget.minimal && show)
                 TextButton(
                   onPressed: () => showDialog(
@@ -142,7 +146,7 @@ class _BookingTicketState extends State<BookingTicket> {
                     builder: (context) =>
                         widget.dialogBuilder!(context, widget.booking),
                   ),
-                  child: Text("Delete booking"),
+                  child: Text(AppLocalizations.of(context)!.delete),
                 ),
             ],
           ),

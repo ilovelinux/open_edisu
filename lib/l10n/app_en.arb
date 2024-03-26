@@ -1,4 +1,5 @@
 {
+    "openEdisu": "Open Edisu",
     "login": "Login",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
@@ -28,6 +29,9 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
+    "home": "Home",
+    "welcomeTo": "Welcome to Open Edisu!",
+
     "nextBooking": "Next booking",
     "showAll": "Show all",
     "bookings": "Bookings",
@@ -51,14 +55,26 @@
     "no": "No",
     "weeklyStatisticsTitle": "Weekly Statistics",
     "weeklyStatisticsDescription": "This chart represents how many times you went to the study room, divided by weekdays.\n\nOnly confirmed bookings are taken into consideration.",
+    "weeklyStatisticsConfirm": "I understand, thanks!",
 
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
     "noBookings": "No bookings to show",
+    "delete": "Delete booking",
+    "deleteQuestion": "You are going to delete this booking. Are you sure?",
+    "deleteConfirm": "Yes, delete!",
+    "deleteDeny": "No, keep it.",
+    "bookingId": "Booking ID: {id}",
+    "@bookingId": {
+        "placeholders": {
+            "id": {}
+        }
+    },
     "seatNo": "Seat No.",
 
     "seats": "Seats",
 
+    "halls": "Halls",
     "noSlotsAvailable": "No slots available",
     "bookingButton": "BOOK",
     "bookingConfirmationTitle": "Confirm booking",

@@ -100,15 +100,11 @@ class BookingList extends StatelessWidget {
   }
 
   void _dialogBuilder(BuildContext context, Booking booking) => ContentDialog(
-        title: const Text("Delete booking"),
-        content: const Text("Are you sure you wanna delete booking"),
+        title: Text(AppLocalizations.of(context)!.delete),
+        content: Text(AppLocalizations.of(context)!.deleteQuestion),
         actions: [
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text("No, keep it"),
-          ),
           Button(
-            child: const Text("Yes, delete!"),
+            child: Text(AppLocalizations.of(context)!.deleteConfirm),
             onPressed: () => client
                 .bookingCancel(booking.id)
                 .then((_) => context
@@ -128,6 +124,10 @@ class BookingList extends StatelessWidget {
                   }),
                 )
                 .whenComplete(() => Navigator.of(context).pop()),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context)!.deleteDeny),
           ),
         ],
       );

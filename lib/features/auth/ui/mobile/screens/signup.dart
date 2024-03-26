@@ -19,7 +19,11 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("OPEN EDISU")),
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.openEdisu.toUpperCase(),
+        ),
+      ),
       body: BlocProvider(
         create: (context) => SignupBloc(),
         child: Padding(

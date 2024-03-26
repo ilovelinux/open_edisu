@@ -125,7 +125,9 @@ class _BookingTicketState extends State<BookingTicket> {
                 ),
               ),
             ),
-            Text("Booking ID: " + widget.booking.bookingId),
+            Text(
+              AppLocalizations.of(context)!.bookingId(widget.booking.bookingId),
+            ),
             if (!widget.minimal)
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
@@ -142,7 +144,7 @@ class _BookingTicketState extends State<BookingTicket> {
                   ),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Text("Delete booking"),
+                    child: Text(AppLocalizations.of(context)!.delete),
                   ),
                 ),
               )

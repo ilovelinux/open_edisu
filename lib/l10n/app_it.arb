@@ -1,4 +1,5 @@
 {
+    "openEdisu": "Open Edisu",
     "login": "Accedi",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
@@ -28,6 +29,9 @@
 
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
+    "home": "Home",
+    "welcomeTo": "Benvenuto in Open Edisu!",
+
     "nextBooking": "Prossima prenotazione",
     "showAll": "Mostra tutte",
     "bookings": "Prenotazioni",
@@ -51,10 +55,21 @@
     "no": "No",
     "weeklyStatisticsTitle": "Statistiche settimanali",
     "weeklyStatisticsDescription": "Il grafico raffigura quante volte sei andato in sala studio, diviso in giorni della settimana.\n\nSolo le prenotazioni confermate vengono prese in considerazione.",
+    "weeklyStatisticsConfirm": "Ho capito, grazie!",
 
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
     "noBookings": "Nessuna prenotazione da visualizzare",
+    "delete": "Cancella prenotazione",
+    "deleteQuestion": "Stai per cancellare questa prenotazione. Sei sicuro di voler continuare?",
+    "deleteConfirm": "Sì, cancella!",
+    "deleteDeny": "No, non cancellarla.",
+    "bookingId": "ID prenotazione: {id}",
+    "@bookingId": {
+        "placeholders": {
+            "id": {}
+        }
+    },
     "seatNo": "Posto N°",
 
     "seats": "Posti",

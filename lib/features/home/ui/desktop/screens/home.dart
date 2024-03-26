@@ -45,16 +45,16 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
             items: [
               PaneItem(
                 icon: const Icon(FluentIcons.home),
-                title: const Text('Home'),
+                title: Text(AppLocalizations.of(context)!.home),
                 body: const HomeView(),
               ),
               PaneItem(
                 icon: const Icon(FluentIcons.book_answers),
-                title: const Text("Bookings"),
+                title: Text(AppLocalizations.of(context)!.bookings),
                 body: const BookingsPage(),
               ),
               PaneItemSeparator(),
-              PaneItemHeader(header: Text("Halls")),
+              PaneItemHeader(header: Text(AppLocalizations.of(context)!.halls)),
               ...state.when(
                   success: (halls, hallsMobile) => halls.map(
                         (e) => PaneItem(
@@ -96,7 +96,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage.scrollable(
-      header: PageHeader(title: Text("Welcome to Open Edisu!")),
+      header: PageHeader(title: Text(AppLocalizations.of(context)!.welcomeTo)),
       children: const [
         NextBookingCard(),
         WeeklyStatisticsCard(),
@@ -124,7 +124,7 @@ Future<void> _showChangelogDialog(context) async {
     context: context,
     builder: (context) => ContentDialog(
       title: Text(
-        "Open Edisu v${packageInfo.version}",
+        "${AppLocalizations.of(context)!.openEdisu} v${packageInfo.version}",
         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
       content: Column(

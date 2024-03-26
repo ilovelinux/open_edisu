@@ -12,7 +12,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Fix overflow when keyboard pops up before re-enabling warning
     return Scaffold(
-      appBar: AppBar(title: const Text("OPEN EDISU")),
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.openEdisu.toUpperCase(),
+        ),
+      ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,

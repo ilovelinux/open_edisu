@@ -63,7 +63,9 @@ class WeeklyStatisticsCard extends StatelessWidget {
               Text(AppLocalizations.of(context)!.weeklyStatisticsDescription),
           actions: [
             FilledButton(
-              child: Text("I understand, thanks!"),
+              child: Text(
+                AppLocalizations.of(context)!.weeklyStatisticsConfirm,
+              ),
               onPressed: () => Navigator.pop(context),
             ),
           ],
