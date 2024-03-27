@@ -63,7 +63,11 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                           body: BookingPage(hall: e),
                         ),
                       ),
-                  loading: () => [PaneItemHeader(header: Text('Loading'))],
+                  loading: () => [
+                        PaneItemHeader(
+                          header: Text(AppLocalizations.of(context)!.loading),
+                        ),
+                      ],
                   error: (e) => [
                         PaneItemHeader(
                           header: Text(

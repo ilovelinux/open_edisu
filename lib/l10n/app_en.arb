@@ -57,6 +57,7 @@
     "weeklyStatisticsDescription": "This chart represents how many times you went to the study room, divided by weekdays.\n\nOnly confirmed bookings are taken into consideration.",
     "weeklyStatisticsConfirm": "I understand, thanks!",
 
+    "loading": "Loading...",
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
     "noBookings": "No bookings to show",
@@ -97,6 +98,8 @@
 
     "unofficialWarning": "Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu©.",
     "license": "Released under GPLv3 license",
+    "viewLicense": "View license",
+    "close": "Close",
 
     "errorTitle": "Error",
     "genericError": "An unknown error occurred, try again later."

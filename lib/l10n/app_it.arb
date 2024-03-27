@@ -57,6 +57,7 @@
     "weeklyStatisticsDescription": "Il grafico raffigura quante volte sei andato in sala studio, diviso in giorni della settimana.\n\nSolo le prenotazioni confermate vengono prese in considerazione.",
     "weeklyStatisticsConfirm": "Ho capito, grazie!",
 
+    "loading": "Caricamento...",
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
     "noBookings": "Nessuna prenotazione da visualizzare",
@@ -96,6 +97,8 @@
 
     "unofficialWarning": "Open Edisu è un prodotto non ufficiale. Open Edisu non è affiliato con, né approvato da, Edisu©.",
     "license": "Rilasciato sotto licenza GPLv3",
+    "viewLicense": "Mostra licenza",
+    "close": "Chiudi",
 
     "errorTitle": "Errore",
     "genericError": "Errore sconosciuto, riprovare più tardi."

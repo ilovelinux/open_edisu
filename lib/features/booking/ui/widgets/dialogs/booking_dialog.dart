@@ -36,7 +36,7 @@ class BookingDialog extends StatelessWidget {
       slot.timeEnd.to24hours(),
     );
 
-    if (Platform.isAndroid)
+    if (Platform.isAndroid) {
       return AlertDialog(
         title: Text(title),
         content: Text(content),
@@ -51,6 +51,7 @@ class BookingDialog extends StatelessWidget {
           ),
         ],
       );
+    }
 
     return fu.ContentDialog(
       title: fu.Text(title),

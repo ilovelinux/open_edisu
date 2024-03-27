@@ -95,7 +95,9 @@ class SettingsView extends StatelessWidget {
                       scale: 40,
                     ),
                     const SizedBox(width: 16),
-                    Text('Open Edisu v${platform.version}'),
+                    Text(
+                      '${AppLocalizations.of(context)!.openEdisu} v${platform.version}',
+                    ),
                   ],
                 ),
                 style: const ContentDialogThemeData(
@@ -111,10 +113,20 @@ class SettingsView extends StatelessWidget {
                 ),
                 actions: [
                   HyperlinkButton(
-                      child: Text("View license"), onPressed: () {}),
+                    child: Text(AppLocalizations.of(context)!.viewLicense),
+                    onPressed: () => launchUrl(
+                      Uri.https(
+                        'github.com',
+                        '/ilovelinux/open_edisu/blob/main/LICENSE',
+                      ),
+                    ),
+                  ),
                   FilledButton(
-                      child: Text("Close"),
-                      onPressed: () => Navigator.pop(context)),
+                    child: Text(
+                      AppLocalizations.of(context)!.close,
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                  ),
                 ],
               ),
             );
