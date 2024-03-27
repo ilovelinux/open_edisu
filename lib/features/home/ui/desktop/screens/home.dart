@@ -30,10 +30,10 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
       create: (context) => HallsBloc()..add(const HallsEvent.update()),
       child: BlocBuilder<HallsBloc, HallsState>(
         builder: (context, state) => NavigationView(
-          appBar: const NavigationAppBar(
+          appBar: NavigationAppBar(
             title: Text(
-              "Open Edisu",
-              style: TextStyle(
+              AppLocalizations.of(context)!.openEdisu,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),

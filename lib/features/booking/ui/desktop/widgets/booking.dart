@@ -9,7 +9,6 @@ import 'package:open_edisu/features/booking/models/booking.dart';
 
 class BookingTicket extends StatefulWidget {
   final Booking booking;
-  final Function()? onTap;
   final bool minimal;
   final Function(BuildContext, Booking)? dialogBuilder;
 
@@ -17,7 +16,6 @@ class BookingTicket extends StatefulWidget {
     this.booking, {
     super.key,
     this.dialogBuilder,
-    this.onTap,
     this.minimal = false,
   });
 
