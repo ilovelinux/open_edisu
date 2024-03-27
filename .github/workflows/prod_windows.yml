@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/setup-flutter
 
       - name: Build EXE package
-        run: dart build windows
+        run: flutter build windows
 
       - name: Upload EXE package
         uses: actions/upload-artifact@v3
