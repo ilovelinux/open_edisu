@@ -8,9 +8,5 @@ class BookingInfoState with _$BookingInfoState {
     final Slots slots,
     final BookingsPerSeats bookingsPerSeat,
   ) = _Success;
-  const factory BookingInfoState.alternativeSuccess(
-    final Slots slots,
-    final SeatsList seats,
-  ) = _Alternative;
   const factory BookingInfoState.error(final String message) = _Error;
 }

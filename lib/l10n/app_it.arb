@@ -1,4 +1,5 @@
 {
+    "openEdisu": "Open Edisu",
     "login": "Accedi",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
@@ -28,44 +29,53 @@
 
     "sessionExpired": "La tua sessione è scaduta, per favore effettuare di nuovo il login.",
 
-    "homeTitles": "{page, select, 0{OPEN EDISU} 1{PRENOTAZIONI} 2{SALE STUDIO} other{}}",
-    "@homeTitles": {
-        "description": "Titoli dell'homepage",
-        "placeholders": {
-            "page": {}
-        }
-    },
-    "homeBottom": "Home",
-    "bookingsBottom": "Prenotazioni",
-    "newBookingBottom": "Nuova",
-    "settingsBottom": "Impostazioni",
+    "home": "Home",
+    "welcomeTo": "Benvenuto in Open Edisu!",
+
+    "nextBooking": "Prossima prenotazione",
+    "showAll": "Mostra tutte",
+    "bookings": "Prenotazioni",
+    "newBooking": "Nuova prenotazione",
+    "settings": "Impostazioni",
 
     "whatsnew": "Novità!",
     "changelog": "- Fixato un bug che non permetteva la cancellazione delle prenotazioni",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 
-    "welcome": "Benvenuto, {firstName} {lastName}",
+    "welcome": "Benvenuto, {firstName}!",
     "@welcome" : {
         "placeholders": {
-            "firstName": {},
-            "lastName": {}
+            "firstName": {}
         }
     },
     "logout": "Logout",
-    "logoutMessage": "Vuoi effettuare il logout?",
+    "logoutMessage": "Stai per effettuare il logout. Vuoi procedere?",
     "yes": "Sì",
     "no": "No",
     "weeklyStatisticsTitle": "Statistiche settimanali",
     "weeklyStatisticsDescription": "Il grafico raffigura quante volte sei andato in sala studio, diviso in giorni della settimana.\n\nSolo le prenotazioni confermate vengono prese in considerazione.",
+    "weeklyStatisticsConfirm": "Ho capito, grazie!",
 
+    "loading": "Caricamento...",
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
-    "noBookings": "Non ci sono prenotazioni al momento",
+    "noBookings": "Nessuna prenotazione da visualizzare",
+    "delete": "Cancella prenotazione",
+    "deleteQuestion": "Stai per cancellare questa prenotazione. Sei sicuro di voler continuare?",
+    "deleteConfirm": "Sì, cancella!",
+    "deleteDeny": "No, non cancellarla.",
+    "bookingId": "ID prenotazione: {id}",
+    "@bookingId": {
+        "placeholders": {
+            "id": {}
+        }
+    },
     "seatNo": "Posto N°",
 
     "seats": "Posti",
 
+    "halls": "Sale studio",
     "noSlotsAvailable": "Nessuno slot disponibile",
     "bookingButton": "PRENOTA",
     "bookingConfirmationTitle": "Conferma la prenotazione",
@@ -80,7 +90,6 @@
     "bookingSuccessTitle": "Fatto!",
     "bookingSuccessContent": "Il posto è stato prenotato con successo!",
 
-    "settings": "IMPOSTAZIONI",
     "user": "Utente",
     "firstName": "Nome",
     "lastName": "Cognome",
@@ -89,6 +98,8 @@
 
     "unofficialWarning": "Open Edisu è un prodotto non ufficiale. Open Edisu non è affiliato con, né approvato da, Edisu©.",
     "license": "Rilasciato sotto licenza GPLv3",
+    "viewLicense": "Mostra licenza",
+    "close": "Chiudi",
 
     "errorTitle": "Errore",
     "genericError": "Errore sconosciuto, riprovare più tardi."

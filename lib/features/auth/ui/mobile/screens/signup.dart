@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../../core/utilities/errors.dart';
-import '../../../settings/models/settings.dart';
-import '../../logic/auth_bloc.dart';
-import '../../logic/signup_bloc.dart';
-import '../widgets/login_signup.dart';
+import 'package:open_edisu/core/utilities/errors.dart';
+import 'package:open_edisu/features/settings/models/settings.dart';
+import 'package:open_edisu/features/auth/logic/auth_bloc.dart';
+import 'package:open_edisu/features/auth/logic/signup_bloc.dart';
+import 'package:open_edisu/features/auth/ui/widgets/login_signup.dart';
 
 part 'signup_initial.dart';
 part 'signup_verify_code.dart';
@@ -19,7 +19,11 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("OPEN EDISU")),
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.openEdisu.toUpperCase(),
+        ),
+      ),
       body: BlocProvider(
         create: (context) => SignupBloc(),
         child: Padding(
@@ -58,8 +62,11 @@ class SignupPage extends StatelessWidget {
                   ),
                   success: () => Column(
                     children: [
-                      const Icon(Icons.check_circle,
-                          size: 50, color: Colors.green),
+                      const Icon(
+                        Icons.check_circle,
+                        size: 50,
+                        color: Colors.green,
+                      ),
                       const SizedBox(height: 10),
                       Text(
                         AppLocalizations.of(context)!.signupSuccess,

@@ -9,9 +9,9 @@ import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../network/api.dart';
-import '../network/client.dart';
-import '../network/models.dart';
+import 'package:open_edisu/core/network/api.dart';
+import 'package:open_edisu/core/network/client.dart';
+import 'package:open_edisu/core/network/models.dart';
 
 Future<CacheOptions> get defaultCacheOptions async => CacheOptions(
       store: HiveCacheStore((await getTemporaryDirectory()).absolute.path),

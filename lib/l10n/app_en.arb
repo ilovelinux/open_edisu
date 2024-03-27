@@ -1,14 +1,15 @@
 {
+    "openEdisu": "Open Edisu",
     "login": "Login",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
-    "invalidEmail": "The email is not a valid email.",
+    "invalidEmail": "The email is not valid.",
     "invalidPassword": "The password is too short.",
     "submit": "Sign in",
     "or": "OR",
     "signupButton": "Not yet registered? Sign up!",
 
-    "connectionError": "Connection error: check your internet connection and retry",
+    "connectionError": "Connection error: check your internet connection and retry.",
 
     "signup": "Signup",
     "continueSignup": "Continue",
@@ -28,44 +29,53 @@
 
     "sessionExpired": "Your session has expired, please login again.",
 
-    "homeTitles": "{page, select, 0 {OPEN EDISU} 1 {BOOKINGS} 2 {HALLS} other{}}",
-    "@homeTitles": {
-        "description": "Homepage titles",
-        "placeholders": {
-            "page": {}
-        }
-    },
-    "homeBottom": "Home",
-    "bookingsBottom": "Bookings",
-    "newBookingBottom": "New",
-    "settingsBottom": "Settings",
+    "home": "Home",
+    "welcomeTo": "Welcome to Open Edisu!",
+
+    "nextBooking": "Next booking",
+    "showAll": "Show all",
+    "bookings": "Bookings",
+    "newBooking": "New booking",
+    "settings": "Settings",
 
     "whatsnew": "What's new?",
     "changelog": "- Fix bug that didn't allow to delete a booking",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
-    "welcome": "Welcome, {firstName} {lastName}",
+    "welcome": "Welcome, {firstName}!",
     "@welcome" : {
         "placeholders": {
-            "firstName": {},
-            "lastName": {}
+            "firstName": {}
         }
     },
     "logout": "Logout",
-    "logoutMessage": "Do you want to logout?",
+    "logoutMessage": "You are going to be logged out. Do you want to continue?",
     "yes": "Yes",
     "no": "No",
     "weeklyStatisticsTitle": "Weekly Statistics",
     "weeklyStatisticsDescription": "This chart represents how many times you went to the study room, divided by weekdays.\n\nOnly confirmed bookings are taken into consideration.",
+    "weeklyStatisticsConfirm": "I understand, thanks!",
 
+    "loading": "Loading...",
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
-    "noBookings": "There are no bookings right now",
+    "noBookings": "No bookings to show",
+    "delete": "Delete booking",
+    "deleteQuestion": "You are going to delete this booking. Are you sure?",
+    "deleteConfirm": "Yes, delete!",
+    "deleteDeny": "No, keep it.",
+    "bookingId": "Booking ID: {id}",
+    "@bookingId": {
+        "placeholders": {
+            "id": {}
+        }
+    },
     "seatNo": "Seat No.",
 
     "seats": "Seats",
 
+    "halls": "Study hallsr",
     "noSlotsAvailable": "No slots available",
     "bookingButton": "BOOK",
     "bookingConfirmationTitle": "Confirm booking",
@@ -80,7 +90,6 @@
     "bookingSuccessTitle": "Done!",
     "bookingSuccessContent": "The seat has been successfully booked!",
 
-    "settings": "SETTINGS",
     "user": "User",
     "firstName": "First name",
     "lastName": "Last name",
@@ -89,6 +98,8 @@
 
     "unofficialWarning": "Open Edisu is an unofficial product. Open Edisu is not affiliated to, nor endorsed by, Edisu©.",
     "license": "Released under GPLv3 license",
+    "viewLicense": "View license",
+    "close": "Close",
 
     "errorTitle": "Error",
     "genericError": "An unknown error occurred, try again later."

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-import '../../features/auth/models/user.dart';
-import '../../features/booking/models/booking.dart';
-import '../../features/halls/models/halls.dart';
-import '../../features/settings/models/settings.dart';
-import '../utilities/json/converters.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
+import 'package:open_edisu/features/settings/models/settings.dart';
+import 'package:open_edisu/core/utilities/json/converters.dart';
 
 part 'models/bookingcancel.dart';
 part 'models/bookingsperseats.dart';

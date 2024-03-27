@@ -3,40 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
+import 'package:open_edisu/features/booking/ui/mobile/screens/book.dart';
+import 'package:open_edisu/features/halls/logic/halls_bloc.dart';
+import 'package:open_edisu/features/halls/models/halls.dart';
 
-import '../../../../../core/widgets/commons.dart';
-import '../../../../booking/logic/bookings_bloc.dart';
-import '../../../../booking/ui/screens/booking.dart';
-import '../../../logic/halls_bloc.dart';
-import '../../../models/halls.dart';
-
-class HallsView extends StatelessWidget {
-  const HallsView({super.key});
+class HallsPage extends StatelessWidget {
+  const HallsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HallsBloc()..add(const HallsEvent.update()),
-      child: BlocBuilder<HallsBloc, HallsState>(
-        builder: (context, state) => state.when(
-          success: (halls, hallsMobile) => SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: halls
-                  .map(
-                    (hall) => _HallCard(
-                      hall: hall,
-                      hallMobile: hallsMobile.firstWhere(
-                        (element) => element.name == hall.hname,
-                      ),
-                    ),
-                  )
-                  .toList(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.newBooking),
+      ),
+      body: BlocProvider(
+        create: (context) => HallsBloc()..add(const HallsEvent.update()),
+        child: BlocBuilder<HallsBloc, HallsState>(
+          builder: (context, state) => state.when(
+            success: (halls, hallsMobile) => SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: halls
+                      .map(
+                        (hall) => _HallCard(
+                          hall: hall,
+                          hallMobile: hallsMobile.firstWhere(
+                            (element) => element.name == hall.hname,
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
             ),
-          ),
-          loading: () => const LoadingWidget(),
-          error: (e) => CenteredText(
-            kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+            loading: () => const LoadingWidget(),
+            error: (e) => CenteredText(
+              kDebugMode ? e : AppLocalizations.of(context)!.genericError,
+            ),
           ),
         ),
       ),
@@ -52,13 +59,9 @@ class _HallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Card.outlined(
       elevation: 4.0,
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.black45),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(

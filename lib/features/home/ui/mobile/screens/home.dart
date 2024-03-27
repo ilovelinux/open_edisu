@@ -1,80 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
+import 'package:open_edisu/features/halls/ui/mobile/screens/halls.dart';
+import 'package:open_edisu/features/home/ui/mobile/widgets/chart.dart';
+import 'package:open_edisu/features/home/ui/mobile/widgets/next_booking.dart';
+import 'package:open_edisu/features/settings/ui/mobile/screens/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../booking/logic/bookings_bloc.dart';
-import '../../../booking/ui/screens/tabs/bookings.dart';
-import '../../../halls/ui/screens/tabs/halls.dart';
-import '../../../settings/ui/screens/settings.dart';
-import 'tabs/home.dart';
-
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  final _pages = const [
-    Home(),
-    BookingsView(),
-    HallsView(),
-  ];
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
     _showChangelogOnUpdate(context);
 
-    return BlocProvider(
-      create: (_) => BookingsBloc()..add(const BookingsEvent.update()),
-      child: Scaffold(
-        appBar: AppBar(
-          title:
-              Text(AppLocalizations.of(context)!.homeTitles(index.toString())),
-          actions: [
-            if (index == 0)
-              TextButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const SettingsView(),
-                  ),
-                ),
-                child: const Icon(Icons.settings, color: Colors.white),
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.welcome(GetIt.I<User>().name),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+          textScaler: const TextScaler.linear(1.05),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SettingsView(),
               ),
-            if (index == 1)
-              TextButton(
-                onPressed: () => context
-                    .read<BookingsBloc>()
-                    .add(const BookingsEvent.update()),
-                child: const Icon(Icons.replay, color: Colors.white),
-              ),
+            ),
+            child: const Icon(Icons.settings),
+          ),
+        ],
+      ),
+      body: const SingleChildScrollView(
+        child: Flex(
+          direction: Axis.vertical,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            NextBookingCard(),
+            WeeklyStatisticsCard(),
           ],
         ),
-        body: IndexedStack(index: index, children: widget._pages),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: index,
-          onTap: (i) => setState(() => index = i),
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: AppLocalizations.of(context)!.homeBottom,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.library_books),
-              label: AppLocalizations.of(context)!.bookingsBottom,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.plus_one),
-              label: AppLocalizations.of(context)!.newBookingBottom,
-            ),
-          ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const HallsPage(),
+          ),
         ),
+        icon: const Icon(Icons.add),
+        label: Text(AppLocalizations.of(context)!.newBooking),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
 
-import '../models/booking.dart';
+import 'package:open_edisu/features/booking/models/booking.dart';
 
 part 'booking_table_state.dart';
 part 'booking_table_cubit.freezed.dart';

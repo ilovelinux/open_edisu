@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 
-import '../../../core/utilities/dio.dart';
-import '../../../core/utilities/inceptor.dart';
-import '../models/user.dart';
+import 'package:open_edisu/core/utilities/dio.dart';
+import 'package:open_edisu/core/utilities/inceptor.dart';
+import 'package:open_edisu/features/auth/models/user.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

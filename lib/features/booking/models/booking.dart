@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:open_edisu/core/utilities/extensions/time.dart';
-
-import '../../../core/utilities/json/converters.dart';
+import 'package:open_edisu/core/utilities/json/converters.dart';
 
 part 'booking.g.dart';
 
@@ -51,7 +50,7 @@ class Booking {
   TimeRange get timeRange => TimeRange(timeStart: startTime, timeEnd: endTime);
 }
 
-typedef Bookings = List<Booking>;
+typedef Bookings = Iterable<Booking>;
 
 enum BookingStatus {
   @JsonValue(0)
@@ -153,7 +152,7 @@ class BookedSeat {
       _$BookedSeatFromJson(json);
 
   @override
-  bool operator ==(Object? other) => other is BookedSeat && id == other.id;
+  bool operator ==(Object other) => other is BookedSeat && id == other.id;
 
   @override
   int get hashCode => id;

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../core/utilities/json/castings.dart';
+import 'package:open_edisu/core/utilities/json/castings.dart';
 
 part 'user.g.dart';
 
