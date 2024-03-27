@@ -86,7 +86,7 @@ class WeeklyChartbar extends StatelessWidget {
             .SHORTWEEKDAYS;
 
     final bookingsPerWeekDay = groupBy(
-      bookings, //.where((final e) => e.bookingStatus.isCompleted()),
+      bookings.where((final e) => e.bookingStatus.isCompleted()),
       (final Booking e) => e.date.weekday,
     );
 

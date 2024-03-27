@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+
 ## [Unreleased]
-- Minor translation fix
+- Full app redesign
+- Added dark theme
+- Create new UI for desktop view
+- Fix bug not showing booked hours in the booking table
 
 ## [0.1.15]
 - Fix bug that didn't allow to delete a booking
