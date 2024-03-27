@@ -75,6 +75,7 @@
 
     "seats": "Posti",
 
+    "halls": "Sale studio",
     "noSlotsAvailable": "Nessuno slot disponibile",
     "bookingButton": "PRENOTA",
     "bookingConfirmationTitle": "Conferma la prenotazione",
