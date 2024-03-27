@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -38,21 +39,41 @@ class _BookingTicketState extends State<BookingTicket> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Expander(
+        headerBackgroundColor: widget.booking.isUpcoming()
+            ? null
+            : FluentTheme.of(context).brightness == Brightness.light
+                ? ButtonState.all(Colors.grey[20])
+                : ButtonState.all(Colors.red.withAlpha(32)),
         contentPadding: widget.minimal
             ? const EdgeInsets.all(16).copyWith(top: 8)
             : const EdgeInsets.only(top: 8),
         leading: widget.minimal
             ? null
-            : SizedBox(
-                height: 80,
-                child: PrettyQrView.data(
-                  data: widget.booking.bookingId.toUpperCase(),
-                  decoration: PrettyQrDecoration(
-                    shape: PrettyQrSmoothSymbol(
-                      color: FluentTheme.of(context).iconTheme.color!,
+            : Stack(
+                children: [
+                  Container(
+                    height: widget.booking.isUpcoming() ? 80 : 70,
+                    margin: widget.booking.isUpcoming()
+                        ? null
+                        : const EdgeInsets.only(left: 5, top: 5),
+                    child: PrettyQrView.data(
+                      data: widget.booking.bookingId.toUpperCase(),
+                      decoration: PrettyQrDecoration(
+                        shape: PrettyQrSmoothSymbol(
+                          color: FluentTheme.of(context).iconTheme.color!,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  if (!widget.booking.isUpcoming())
+                    ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                        blendMode: BlendMode.srcOver,
+                        child: const SizedBox(height: 80, width: 80),
+                      ),
+                    ),
+                ],
               ),
         header: Container(
           margin: const EdgeInsets.all(16),
