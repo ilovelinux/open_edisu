@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Toggle to show/hide expired bookings on Desktop
+- Sort bookings by status on Desktop
 
 ## [2.0.0]
 - Full app redesign

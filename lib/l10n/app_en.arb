@@ -61,6 +61,7 @@
     "upcomingBookings": "Upcoming",
     "pastBookings": "Expired",
     "noBookings": "No bookings to show",
+    "showExpiredBookings": "Show expired bookings",
     "delete": "Delete booking",
     "deleteQuestion": "You are going to delete this booking. Are you sure?",
     "deleteConfirm": "Yes, delete!",

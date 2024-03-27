@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:open_edisu/core/utilities/dio.dart';
 import 'package:open_edisu/core/utilities/inceptor.dart';
 import 'package:open_edisu/core/widgets/commons.dart';
+import 'package:open_edisu/features/booking/logic/booking_filter_cubit.dart';
 import 'package:open_edisu/features/booking/logic/bookings_bloc.dart';
 import 'package:open_edisu/features/booking/models/booking.dart';
 import 'package:open_edisu/features/booking/ui/desktop/widgets/booking.dart';
@@ -17,16 +18,38 @@ class BookingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
-      header: PageHeader(
-        title: Text(AppLocalizations.of(context)!.bookings),
-        commandBar: IconButton(
-          onPressed: () =>
-              context.read<BookingsBloc>().add(const BookingsEvent.update()),
-          icon: const Icon(FluentIcons.refresh, size: 20),
+    return BlocProvider(
+      create: (context) => BookingFilterCubit(),
+      child: ScaffoldPage(
+        header: PageHeader(
+          title: Text(AppLocalizations.of(context)!.bookings),
+          commandBar: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              BlocBuilder<BookingFilterCubit, BookingFilterState>(
+                builder: (context, state) => ToggleButton(
+                  checked: state.when(
+                      updated: (f) => f[BookingFilters.showInactives]!),
+                  onChanged: (v) => context
+                      .read<BookingFilterCubit>()
+                      .set(BookingFilters.showInactives, v),
+                  child: Text(
+                    AppLocalizations.of(context)!.showInactiveBookings,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              IconButton(
+                onPressed: () => context
+                    .read<BookingsBloc>()
+                    .add(const BookingsEvent.update()),
+                icon: const Icon(FluentIcons.refresh),
+              ),
+            ],
+          ),
         ),
+        content: const _BookingViewBody(),
       ),
-      content: const _BookingViewBody(),
     );
   }
 }
@@ -38,8 +61,19 @@ class _BookingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookingsBloc, BookingsState>(
       builder: (context, state) => state.when(
-        success: (bookings) => BookingList(
-          bookings: bookings.toList().sortedBy((a) => a.toDateTime()).reversed,
+        success: (bookings) =>
+            BlocBuilder<BookingFilterCubit, BookingFilterState>(
+          builder: (context, state) {
+            Iterable<Booking> bookingsToShow = bookings.toList();
+            if (!state.filters[BookingFilters.showInactives]!) {
+              bookingsToShow =
+                  bookingsToShow.where((element) => element.isUpcoming());
+            }
+
+            return BookingList(
+              bookings: bookingsToShow.sortedBy((a) => a.toDateTime()).reversed,
+            );
+          },
         ),
         loading: () => const LoadingWidget(),
         error: (e) => CenteredText(
