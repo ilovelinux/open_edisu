@@ -39,7 +39,7 @@
     "settings": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Fix bug that didn't allow to delete a booking",
+    "changelog": "- Full app redesign\n- Added dark theme\n- Create new UI for desktop view\n- Fix bug not showing booked hours in the booking table",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 

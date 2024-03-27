@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [2.0.0]
 - Full app redesign
 - Added dark theme
 - Create new UI for desktop view
@@ -88,8 +90,9 @@ The app actually allows you to:
 
 Further improvements and minor bugs are known and will be fixed in next releases.
 
-[unreleased]: https://github.com/ilovelinux/open_edisu/compare/v0.1.15...HEAD
-[0.1.14]: https://github.com/ilovelinux/open_edisu/compare/v0.1.14...v0.1.15
+[unreleased]: https://github.com/ilovelinux/open_edisu/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/ilovelinux/open_edisu/compare/v0.1.15...v2.0.0
+[0.1.15]: https://github.com/ilovelinux/open_edisu/compare/v0.1.14...v0.1.15
 [0.1.14]: https://github.com/ilovelinux/open_edisu/compare/v0.1.13...v0.1.14
 [0.1.13]: https://github.com/ilovelinux/open_edisu/compare/v0.1.12...v0.1.13
 [0.1.12]: https://github.com/ilovelinux/open_edisu/compare/v0.1.11...v0.1.12

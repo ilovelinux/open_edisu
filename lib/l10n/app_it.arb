@@ -39,7 +39,7 @@
     "settings": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Fixato un bug che non permetteva la cancellazione delle prenotazioni",
+    "changelog": "- Redesign dell'app\n- Aggiunto il tema nero\n- Creata nuova interfaccia per Windows\n- Fixato un bug che non mostrava gli slot prenotati nella tabella di prenotazione",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 
