@@ -34,10 +34,20 @@ jobs:
       - name: Setup Flutter
         uses: ./.github/actions/setup-flutter
 
+      - name: Build EXE package
+        run: dart build windows
+
+      - name: Upload EXE package
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-exe-build
+          path: build\windows\x64\runner\Release\
+          if-no-files-found: error
+
       - name: Build MSIX installer
         run: dart run msix:create --store --release
 
-      - name: Upload debug symbols
+      - name: Upload MSIX installer
         uses: actions/upload-artifact@v3
         with:
           name: windows-msix-build
