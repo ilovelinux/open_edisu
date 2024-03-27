@@ -32,7 +32,6 @@ class DesktopApp extends StatelessWidget {
         accentColor: Colors.red,
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.dark,
       home: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => state.whenOrNull<void>(
           authenticated: (user) {
