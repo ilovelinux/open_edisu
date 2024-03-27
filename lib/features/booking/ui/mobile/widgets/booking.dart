@@ -139,7 +139,7 @@ class _BookingTicketState extends State<BookingTicket> {
                   AppLocalizations.of(context)!
                       .bookingId(widget.booking.bookingId),
                 ),
-              if (!widget.minimal && show)
+              if (!widget.minimal && show && widget.booking.isUpcoming())
                 TextButton(
                   onPressed: () => showDialog(
                     context: context,

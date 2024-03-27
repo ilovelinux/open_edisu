@@ -128,7 +128,7 @@ class _BookingTicketState extends State<BookingTicket> {
             Text(
               AppLocalizations.of(context)!.bookingId(widget.booking.bookingId),
             ),
-            if (!widget.minimal)
+            if (!widget.minimal && widget.booking.isUpcoming())
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: FilledButton(
