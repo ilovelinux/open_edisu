@@ -90,6 +90,10 @@ class BookingList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: b.value
+                  .sortedByCompare(
+                    (a) => a.isUpcoming() ? 1 : 0,
+                    (a, b) => b - a,
+                  )
                   .map((e) => BookingTicket(e, dialogBuilder: _dialogBuilder))
                   .toList(),
             ),
