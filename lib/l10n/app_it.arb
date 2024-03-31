@@ -61,7 +61,7 @@
     "upcomingBookings": "Future",
     "pastBookings": "Scadute",
     "noBookings": "Nessuna prenotazione da visualizzare",
-    "showInactiveBookings": "Mostra prenotazioni scadute",
+    "showExpiredBookings": "Mostra prenotazioni scadute",
     "delete": "Cancella prenotazione",
     "deleteQuestion": "Stai per cancellare questa prenotazione. Sei sicuro di voler continuare?",
     "deleteConfirm": "Sì, cancella!",

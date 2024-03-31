@@ -34,7 +34,7 @@ class BookingsPage extends StatelessWidget {
                       .read<BookingFilterCubit>()
                       .set(BookingFilters.showInactives, v),
                   child: Text(
-                    AppLocalizations.of(context)!.showInactiveBookings,
+                    AppLocalizations.of(context)!.showExpiredBookings,
                   ),
                 ),
               ),
