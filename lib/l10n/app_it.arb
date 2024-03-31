@@ -39,7 +39,7 @@
     "settings": "Impostazioni",
 
     "whatsnew": "Novità!",
-    "changelog": "- Redesign dell'app\n- Aggiunto il tema nero\n- Creata nuova interfaccia per Windows\n- Fixato un bug che non mostrava gli slot prenotati nella tabella di prenotazione",
+    "changelog": "- Aggiunto un bottone per mostrare/nascondere le prenotazioni scadute su Desktop\n- Ordinate le prenotazioni per stato\n- Abilitata la modalità chiara su Desktop",
     "great": "Ottimo!",
     "dontshowagain": "Non mostrare di nuovo",
 

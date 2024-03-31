@@ -39,7 +39,7 @@
     "settings": "Settings",
 
     "whatsnew": "What's new?",
-    "changelog": "- Full app redesign\n- Added dark theme\n- Create new UI for desktop view\n- Fix bug not showing booked hours in the booking table",
+    "changelog": "- Added toggle to show/hide expired bookings on Desktop\n- Sort bookings by status on Desktop\n- Enabled light theme on Desktop",
     "great": "Great!",
     "dontshowagain": "Don't show again",
 
