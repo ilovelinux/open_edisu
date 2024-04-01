@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:open_edisu/core/utilities/errors.dart';
 
 import 'package:open_edisu/core/widgets/commons.dart';
@@ -26,6 +27,8 @@ Widget main() {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  _checkForUpdates();
 
   return const MobileApp();
 }
@@ -83,5 +86,13 @@ class MobileApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+void _checkForUpdates() async {
+  final updateInfo = await InAppUpdate.checkForUpdate();
+  if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable ||
+      true) {
+    await InAppUpdate.startFlexibleUpdate();
   }
 }

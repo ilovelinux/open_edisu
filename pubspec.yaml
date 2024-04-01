@@ -63,6 +63,7 @@ dependencies:
   fluent_ui: ^4.8.6
   fluentui_system_icons: ^1.1.232
   window_manager: ^0.3.8
+  in_app_update: ^4.2.2
 
 dev_dependencies:
   flutter_test:
