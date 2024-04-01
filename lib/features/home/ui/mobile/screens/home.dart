@@ -3,18 +3,18 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_edisu/features/auth/models/user.dart';
 import 'package:open_edisu/features/halls/ui/mobile/screens/halls.dart';
+import 'package:open_edisu/features/home/ui/mobile/widgets/changelog_dialog.dart';
 import 'package:open_edisu/features/home/ui/mobile/widgets/chart.dart';
 import 'package:open_edisu/features/home/ui/mobile/widgets/next_booking.dart';
+import 'package:open_edisu/features/home/ui/widgets/changelog_dialog.dart';
 import 'package:open_edisu/features/settings/ui/mobile/screens/settings.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    _showChangelogOnUpdate(context);
+    showChangelogOnUpdate(context, ChangelogDialogMobile.new);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -29,11 +29,7 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SettingsView(),
-              ),
-            ),
+            onPressed: () => _openSettings(context),
             child: const Icon(Icons.settings),
           ),
         ],
@@ -49,88 +45,22 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const HallsPage(),
-          ),
-        ),
+        onPressed: () => _openHalls(context),
         icon: const Icon(Icons.add),
         label: Text(AppLocalizations.of(context)!.newBooking),
       ),
     );
   }
-}
 
-Future<void> _showChangelogOnUpdate(context) async {
-  final packageInfo = await PackageInfo.fromPlatform();
-  final prefs = await SharedPreferences.getInstance();
-  final hasUpdated = packageInfo.buildNumber != prefs.getString('buildNumber');
-  final shouldShow = prefs.getBool('showChangelog') ?? true;
-  if (shouldShow && hasUpdated) {
-    await prefs.setString('buildNumber', packageInfo.buildNumber);
-    await _showChangelogDialog(context);
-  }
-}
-
-Future<void> _showChangelogDialog(context) async {
-  final packageInfo = await PackageInfo.fromPlatform();
-
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(
-        "Open Edisu v${packageInfo.version}",
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.whatsnew,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          ..._changelogWidgets(context),
-        ],
-      ),
-      actionsOverflowAlignment: OverflowBarAlignment.start,
-      actions: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.dontshowagain),
-              onPressed: () {
-                SharedPreferences.getInstance().then(
-                  (prefs) => prefs.setBool("showChangelog", false),
-                );
-                Navigator.pop(context);
-              },
-            ),
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.great),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
+  void _openSettings(BuildContext context) => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const SettingsView(),
         ),
-      ],
-    ),
-  );
-}
+      );
 
-// TODO: Find a way to parse changelog from CHANGELOG.md
-List<Widget> _changelogWidgets(context) => AppLocalizations.of(context)!
-        .changelog
-        .replaceAll(RegExp(r'^-', multiLine: true), "•")
-        .split("\n")
-        .fold<Iterable<Widget>>(
-      const [],
-      (widgets, line) => widgets.followedBy(
-        [Text(line), const SizedBox(height: 4)],
-      ),
-    ).toList()
-      ..removeLast();
+  void _openHalls(BuildContext context) => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const HallsPage(),
+        ),
+      );
+}

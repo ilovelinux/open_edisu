@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:open_edisu/features/booking/ui/desktop/screens/bookings.dart';
 import 'package:open_edisu/features/booking/ui/desktop/screens/book.dart';
+import 'package:open_edisu/features/home/ui/desktop/widgets/changelog_dialog.dart';
 import 'package:open_edisu/features/home/ui/desktop/widgets/next_booking.dart';
 import 'package:open_edisu/features/home/ui/desktop/widgets/chart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:open_edisu/features/home/ui/widgets/changelog_dialog.dart';
 
 import 'package:open_edisu/features/halls/logic/halls_bloc.dart';
 import 'package:open_edisu/features/settings/ui/desktop/screens/settings.dart';
@@ -24,7 +24,7 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    _showChangelogOnUpdate(context);
+    showChangelogOnUpdate(context, ChangelogDialogDesktop.new);
 
     return BlocProvider(
       create: (context) => HallsBloc()..add(const HallsEvent.update()),
@@ -109,76 +109,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-
-Future<void> _showChangelogOnUpdate(context) async {
-  final packageInfo = await PackageInfo.fromPlatform();
-  final prefs = await SharedPreferences.getInstance();
-  final hasUpdated = packageInfo.buildNumber != prefs.getString('buildNumber');
-  final shouldShow = prefs.getBool('showChangelog') ?? true;
-  if (shouldShow && hasUpdated) {
-    await prefs.setString('buildNumber', packageInfo.buildNumber);
-    await _showChangelogDialog(context);
-  }
-}
-
-Future<void> _showChangelogDialog(context) async {
-  final packageInfo = await PackageInfo.fromPlatform();
-
-  showDialog(
-    context: context,
-    builder: (context) => ContentDialog(
-      title: Text(
-        "${AppLocalizations.of(context)!.openEdisu} v${packageInfo.version}",
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.whatsnew,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          ..._changelogWidgets(context),
-        ],
-      ),
-      actions: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Button(
-              child: Text(AppLocalizations.of(context)!.dontshowagain),
-              onPressed: () {
-                SharedPreferences.getInstance().then(
-                  (prefs) => prefs.setBool("showChangelog", false),
-                );
-                Navigator.pop(context);
-              },
-            ),
-            FilledButton(
-              child: Text(AppLocalizations.of(context)!.great),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-}
-
-// TODO: Find a way to parse changelog from CHANGELOG.md
-List<Widget> _changelogWidgets(context) => AppLocalizations.of(context)!
-        .changelog
-        .replaceAll(RegExp(r'^-', multiLine: true), "•")
-        .split("\n")
-        .fold<Iterable<Widget>>(
-      const [],
-      (widgets, line) => widgets.followedBy(
-        [Text(line), const SizedBox(height: 4)],
-      ),
-    ).toList()
-      ..removeLast();
