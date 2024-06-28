@@ -61,7 +61,7 @@ dependencies:
   syncfusion_flutter_charts: ^25.2.3+1
   pretty_qr_code: ^3.3.0
   fluent_ui: ^4.8.6
-  fluentui_system_icons: ^1.1.242
+  fluentui_system_icons: ^1.1.245
   window_manager: ^0.3.8
 
 dev_dependencies:
