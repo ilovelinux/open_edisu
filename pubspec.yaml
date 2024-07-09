@@ -43,7 +43,7 @@ dependencies:
   horizontal_data_table: ^4.0.0
   flutter_bloc: ^8.1.4
   collection: ^1.18.0
-  freezed_annotation: ^2.0.3
+  freezed_annotation: ^2.4.3
   get_it: ^7.7.0
   retrofit: ^4.1.0
   dio: ^5.4.1
