@@ -58,7 +58,7 @@ dependencies:
   logging: ^1.0.2
   sticky_headers: ^0.3.0+2
   maps_launcher: ^2.2.1
-  syncfusion_flutter_charts: ^25.2.3+1
+  syncfusion_flutter_charts: ^26.2.5+1
   pretty_qr_code: ^3.3.0
   fluent_ui: ^4.8.6
   fluentui_system_icons: ^1.1.242
